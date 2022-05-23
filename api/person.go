@@ -22,21 +22,21 @@ type Person struct {
 // Enrich a person record on a variety of fields
 // TODO
 func (p Person) Enrich(ctx context.Context, params model.EnrichPersonParams) (*model.EnrichPersonResponse, error) {
-	var response *model.EnrichPersonResponse
+	response := &model.EnrichPersonResponse{}
 	return response, p.Client.Get(ctx, personEnrichPath, params, response)
 }
 
 // Identify recovers all related profiles for an identity
 // TODO
 func (p Person) Identify(ctx context.Context, params model.IdentifyPersonParams) (*model.IdentifyPersonResponse, error) {
-	var response *model.IdentifyPersonResponse
+	response := &model.IdentifyPersonResponse{}
 	return response, p.Client.Get(ctx, personIdentifyPath, params, response)
 }
 
 // Search
 // TODO
 func (p Person) Search(ctx context.Context, params model.SearchParams) (*model.SearchPersonResponse, error) {
-	var response *model.SearchPersonResponse
+	response := &model.SearchPersonResponse{}
 	return response, p.Client.Post(ctx, personSearchPath, params, response)
 }
 
@@ -44,7 +44,7 @@ func (p Person) Search(ctx context.Context, params model.SearchParams) (*model.S
 // TODO
 func (p Person) Retrieve(ctx context.Context, params model.RetrievePersonParams) (*model.RetrievePersonResponse, error) {
 	path := fmt.Sprintf(personRetrievePath, params.PersonID)
-	var response *model.RetrievePersonResponse
+	response := &model.RetrievePersonResponse{}
 	return response, p.Client.Get(ctx, path, params, &response)
 }
 
