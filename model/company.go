@@ -22,7 +22,7 @@ type EnrichCompanyParams struct {
 type EnrichCompanyResponse struct {
 	Status     int `json:"status"`
 	Likelihood int `json:"likelihood"`
-	CompanyRecord
+	Company
 }
 
 type CleanCompanyParams struct {
@@ -45,15 +45,15 @@ type CleanCompanyParams struct {
 	//TitleCase        bool   `json:"titlecase" url:"titlecase,omitempty"`                   // Setting titlecase to true will titlecase the response data in 200 responses.
 }
 type CleanCompanyResponse struct {
-	CompanyRecord
+	Company
 	FuzzyMatch bool `json:"fuzzy_match"`
 }
 
 type SearchCompanyResponse struct {
-	Status      int             `json:"status"`
-	Data        []CompanyRecord `json:"data"`
-	ScrollToken string          `json:"scroll_token"` // Scroll value used for pagination
-	Total       int             `json:"total"`        // Number of records matching a given query or sql input.
+	Status      int       `json:"status"`
+	Data        []Company `json:"data"`
+	ScrollToken string    `json:"scroll_token"` // Scroll value used for pagination
+	Total       int       `json:"total"`        // Number of records matching a given query or sql input.
 	Error       struct {
 		Type    []string `json:"type"`
 		Message string   `json:"message"`

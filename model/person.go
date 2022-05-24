@@ -28,9 +28,9 @@ type EnrichPersonParams struct {
 	// TODO: Add validations of min params
 }
 type EnrichPersonResponse struct {
-	Status     int          `json:"status"`
-	Likelihood int          `json:"likelihood"`
-	Data       PersonRecord `json:"data"`
+	Status     int    `json:"status"`
+	Likelihood int    `json:"likelihood"`
+	Data       Person `json:"data"`
 }
 
 type IdentifyPersonParams struct {
@@ -42,9 +42,9 @@ type IdentifyPersonParams struct {
 type IdentifyPersonResponse struct {
 	Status  int `json:"status"`
 	Matches []struct {
-		Data       PersonRecord `json:"data"`
-		MatchScore int          `json:"match_score"`
-		MatchedOn  []string     `json:"matched_on"`
+		Data       Person   `json:"data"`
+		MatchScore int      `json:"match_score"`
+		MatchedOn  []string `json:"matched_on"`
 	} `json:"matches"`
 }
 
@@ -54,9 +54,9 @@ type RetrievePersonParams struct {
 	// TODO: Add validation of PersonID != ""
 }
 type RetrievePersonResponse struct {
-	Status int          `json:"status"`
-	Data   PersonRecord `json:"data"`
-	Billed bool         `json:"billed"` // A flag indicating whether the record was charged a credit.
+	Status int    `json:"status"`
+	Data   Person `json:"data"`
+	Billed bool   `json:"billed"` // A flag indicating whether the record was charged a credit.
 }
 
 type BulkRetrievePersonParams struct {
@@ -71,7 +71,7 @@ type BulkRetrieveSinglePersonParams struct {
 }
 type BulkRetrievePersonResponse struct {
 	Status   int            `json:"status"`
-	Data     PersonRecord   `json:"data"`
+	Data     Person         `json:"data"`
 	Billed   bool           `json:"billed"` // A flag indicating whether the record was charged a credit.
 	Metadata PersonMetadata `json:"metadata"`
 }
@@ -83,7 +83,7 @@ type SearchPersonResponse struct {
 		Type    []string `json:"type"`
 		Message string   `json:"message"`
 	} `json:"error"`
-	Data        []PersonRecord `json:"data"`
-	Total       int            `json:"total"`        // Number of records matching a given query or sql input.
-	ScrollToken string         `json:"scroll_token"` // Scroll value used for pagination
+	Data        []Person `json:"data"`
+	Total       int      `json:"total"`        // Number of records matching a given query or sql input.
+	ScrollToken string   `json:"scroll_token"` // Scroll value used for pagination
 }

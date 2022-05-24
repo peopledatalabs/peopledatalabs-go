@@ -1,6 +1,6 @@
 package model
 
-type PersonRecord struct {
+type Person struct {
 	Id                              string   `json:"id"`                                  // PDL persistent ID
 	FullName                        string   `json:"full_name"`                           // The first and the last name fields appended with a space
 	FirstName                       string   `json:"first_name"`                          // A person's first name
@@ -92,23 +92,12 @@ type PersonRecord struct {
 	} `json:"street_addresses"` // List of full parsed addresses associated with the person
 	Experience []struct {
 		Company struct {
-			Name     string `json:"name"`     // The name associated with the company
-			Size     string `json:"size"`     // The size range of the company
-			Id       string `json:"id"`       // Our current NOT PERSISTENT ids that tie company data to the canonical data
-			Founded  int    `json:"founded"`  // YYYY-MM-DD The year that the company was founded
-			Industry string `json:"industry"` // The industry associated with the company
-			Location struct {
-				Name          string `json:"name"`           // The canonical location name associated with the company HQ
-				Locality      string `json:"locality"`       // Company locality
-				Region        string `json:"region"`         // Company region
-				Metro         string `json:"metro"`          // Company metro area
-				Country       string `json:"country"`        // Company country
-				Continent     string `json:"continent"`      // The continent associated with the company HQ
-				StreetAddress string `json:"street_address"` // Company HQ address
-				AddressLine2  string `json:"address_line_2"` // The adress line 2 associated with the company HQ
-				PostalCode    string `json:"postal_code"`    // The postal code associated with the company HQ
-				Geo           string `json:"geo"`            // The geo code associated with the company HQ
-			} `json:"location"` // Information for the associated company location
+			Name        string   `json:"name"`         // The name associated with the company
+			Size        string   `json:"size"`         // The size range of the company
+			Id          string   `json:"id"`           // Our current NOT PERSISTENT ids that tie company data to the canonical data
+			Founded     int      `json:"founded"`      // YYYY-MM-DD The year that the company was founded
+			Industry    string   `json:"industry"`     // The industry associated with the company
+			Location    Location `json:"location"`     // Information for the associated company location
 			LinkedinUrl string   `json:"linkedin_url"` // The linkedin url associated with the company
 			LinkedinId  string   `json:"linkedin_id"`  // The linkedin id associated with the company
 			FacebookUrl string   `json:"facebook_url"` // The facebook url associated with the company
@@ -134,26 +123,7 @@ type PersonRecord struct {
 		Summary   *string `json:"summary"`    // User-inputted summary of experience
 	} `json:"experience"` // Experience objects associated with this person profile
 	Education []struct {
-		School struct {
-			Name     string `json:"name"` // The name associated with the school
-			Type     string `json:"type"` // The type of school
-			Id       string `json:"id"`   // Our current NOT PERSISTENT ids that tie company data to the canonical data
-			Location struct {
-				Name      string `json:"name"`      // The canonical name of the location associated with the school
-				Locality  string `json:"locality"`  // The locality associated with the school
-				Region    string `json:"region"`    // The region associated with the school
-				Country   string `json:"country"`   // The country associated with the school
-				Continent string `json:"continent"` // The continent associated with the school
-			} `json:"location"` // The location associated with the school
-			LinkedinUrl string   `json:"linkedin_url"` // The linkedin url associated with the school
-			LinkedinId  string   `json:"linkedin_id"`  // The linkedin ID associated with the school
-			FacebookUrl string   `json:"facebook_url"` // The facebook url associated with the school
-			TwitterUrl  string   `json:"twitter_url"`  // The twitter url associated with the school
-			Website     string   `json:"website"`      // The website associated with the school, could include subdomains
-			Domain      string   `json:"domain"`       // The website associated with the school
-			Raw         []string `json:"raw"`          // Raw school names
-			Summary     *string  `json:"summary"`      // User-inputted summary of education
-		} `json:"school"` // Information for the associated school
+		School    School   `json:"school"`     // Information for the associated school
 		StartDate string   `json:"start_date"` // Indicates the start period of the object
 		EndDate   string   `json:"end_date"`   // Indicates the end period of the object
 		Gpa       float64  `json:"gpa"`        // The gpa associated with the given degree
@@ -227,7 +197,7 @@ type PersonRecord struct {
 	Summary *string `json:"summary"` // Self-written summaries tied to person profile (often linkedin summaries)
 }
 
-type CompanyRecord struct {
+type Company struct {
 	Name               string   `json:"name"`                // The company's main common name
 	Size               string   `json:"size"`                // A range representing the number of people working at the company
 	EmployeeCount      int      `json:"employee_count"`      // The current number of employees working at the company based on number of PDL profiles.
@@ -248,19 +218,8 @@ type CompanyRecord struct {
 	AlternativeNames   []string `json:"alternative_names"`   // A list of names associated with this company.
 	AlternativeDomains []string `json:"alternative_domains"` // A list of alternate domains associated with this company.
 	AffiliatedProfiles []string `json:"affiliated_profiles"` // Company IDs that are affiliated with the queried company (parents & subsidiaries).
-	Location           struct {
-		Name          string `json:"name"`           // Our cleaned values for locations. They are constructed from the locality, region, and country.
-		Locality      string `json:"locality"`       // The company's current HQ locality
-		Region        string `json:"region"`         // The company's current HQ region
-		Metro         string `json:"metro"`          // US ONLY. These are generated based on the census-designated MSAs and maps.
-		Country       string `json:"country"`        // The company's current HQ country
-		Continent     string `json:"continent"`      // Standardized format for the company’s current HQ’s continent
-		StreetAddress string `json:"street_address"` //
-		AddressLine2  string `json:"address_line_2"` //
-		PostalCode    string `json:"postal_code"`    //
-		Geo           string `json:"geo"`            // City-center geo code of a locality.
-	} `json:"location"` // Location of the company’s current HQ.
-	NAICS []struct {
+	Location           Location `json:"location"`            // Location of the company’s current HQ.
+	NAICS              []struct {
 		NaicsCode        string `json:"naics_code"`        // The NAICS code associated with a company’s industry classification.
 		Sector           string `json:"sector"`            // The industry classification according to the first 2 digits in the NAICS code.
 		SubSector        string `json:"sub_sector"`        // The industry classification according to the first 3 digits in the NAICS code.
@@ -317,4 +276,32 @@ type CompanyRecord struct {
 	} `json:"recent_exec_departures"` // The profiles of all of CXOs, owners and VPs that have left the company in the last 3 months.
 	TopPreviousEmployersByRole map[string]map[string]int `json:"top_previous_employers_by_role"` // The top 10 previous companies employees worked for and how many current employees were previously employed by them.
 	TopNextEmployersByRole     map[string]map[string]int `json:"top_next_employers_by_role"`     // The top 10 companies employees moved to and how many employees moved there.
+}
+
+type School struct {
+	Name        string   `json:"name"`         // The name associated with the school
+	Type        string   `json:"type"`         // The type of school
+	Id          string   `json:"id"`           // Our current NOT PERSISTENT ids that tie company data to the canonical data
+	Location    Location `json:"location"`     // The location associated with the school
+	LinkedinUrl string   `json:"linkedin_url"` // The linkedin url associated with the school
+	LinkedinId  string   `json:"linkedin_id"`  // The linkedin ID associated with the school
+	FacebookUrl string   `json:"facebook_url"` // The facebook url associated with the school
+	TwitterUrl  string   `json:"twitter_url"`  // The twitter url associated with the school
+	Website     string   `json:"website"`      // The website associated with the school, could include subdomains
+	Domain      string   `json:"domain"`       // The website associated with the school
+	Raw         []string `json:"raw"`          // Raw school names
+	Summary     *string  `json:"summary"`      // User-inputted summary of education
+}
+
+type Location struct {
+	Name          string `json:"name"`           // The canonical location name associated with the company HQ
+	Locality      string `json:"locality"`       // Company locality
+	Region        string `json:"region"`         // Company region
+	Metro         string `json:"metro"`          // Company metro area
+	Country       string `json:"country"`        // Company country
+	Continent     string `json:"continent"`      // The continent associated with the company HQ
+	StreetAddress string `json:"street_address"` // Company HQ address
+	AddressLine2  string `json:"address_line_2"` // The adress line 2 associated with the company HQ
+	PostalCode    string `json:"postal_code"`    // The postal code associated with the company HQ
+	Geo           string `json:"geo"`            // The geo code associated with the company HQ
 }

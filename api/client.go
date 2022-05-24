@@ -69,6 +69,7 @@ func WithTimeout(timeout time.Duration) ClientOptions {
 
 // TODO: WithLogLevel
 
+// TODO: add docs
 func WithAPIVersion(version string) ClientOptions {
 	return func(client *Client) {
 		client.apiVersion = version
