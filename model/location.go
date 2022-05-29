@@ -12,5 +12,5 @@ type CleanLocationParams struct {
 
 type CleanLocationResponse struct {
 	Status int `json:"status"`
-	//Location
+	Location
 }

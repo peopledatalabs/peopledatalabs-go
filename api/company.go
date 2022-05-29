@@ -9,7 +9,7 @@ import (
 const (
 	companyEnrichPath = "/company/enrich"
 	companySearchPath = "/company/search"
-	companyCleanPath  = "/company/enrich"
+	companyCleanPath  = "/company/clean"
 )
 
 type Company struct {

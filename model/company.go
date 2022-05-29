@@ -45,6 +45,7 @@ type CleanCompanyParams struct {
 	//TitleCase        bool   `json:"titlecase" url:"titlecase,omitempty"`                   // Setting titlecase to true will titlecase the response data in 200 responses.
 }
 type CleanCompanyResponse struct {
+	Status int `json:"status"`
 	Company
 	FuzzyMatch bool `json:"fuzzy_match"`
 }

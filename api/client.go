@@ -11,6 +11,8 @@ import (
 	"runtime"
 	"time"
 
+	"github.com/peopledatalabs/peopledatalabs-go/model"
+
 	"github.com/google/go-querystring/query"
 )
 
@@ -106,9 +108,10 @@ func (cli Client) Post(ctx context.Context, path string, params interface{}, out
 	}
 
 	req := apiRequest{
-		method: http.MethodGet,
-		path:   path,
-		body:   bytes.NewBuffer(body),
+		method:  http.MethodGet,
+		path:    path,
+		body:    bytes.NewBuffer(body),
+		headers: http.Header{},
 	}
 	req.headers.Set("Content-Type", "application/json")
 
@@ -121,11 +124,10 @@ func (cli Client) makeRequest(ctx context.Context, libReq apiRequest, out interf
 		return fmt.Errorf("makeRequest: %w", err)
 	}
 	urlStruct.RawQuery = libReq.params
-	fmt.Println("URL:", urlStruct.String())
 
 	// TODO: Verbose
 	//	if Debug {
-	//		fmt.Println(r.curlString(req, payload))
+	//      fmt.Println("URL:", urlStruct.String()) // payload
 	//	}
 
 	req, err := http.NewRequestWithContext(ctx, libReq.method, urlStruct.String(), libReq.body)
@@ -149,25 +151,20 @@ func (cli Client) makeRequest(ctx context.Context, libReq apiRequest, out interf
 		//}
 		return fmt.Errorf("makeRequest: error making HTTP request: %w", err)
 	}
+	defer resp.Body.Close()
 
-	// TODO: Add custom error handling (errors.errorResponse)
-	//switch {
-	//case resp.StatusCode >= 400:
-	//	//err = &HTTPError{}
-	//	//if decodeErr := json.NewDecoder(resp.Body).Decode(err); decodeErr != nil {
-	//	//	err = fmt.Errorf(decodeErr, "error decoding the response for an HTTP error code: "+strconv.Itoa(res.StatusCode))
-	//	//	return nil, err
-	//	//}
-	//
-	//	return err
-	//}
-	if resp.StatusCode != 200 {
-		return fmt.Errorf("makeRequest: error making HTTP request: %w", err)
+	if resp.StatusCode >= http.StatusBadRequest {
+		var restError model.RestError
+		if decodeErr := json.NewDecoder(resp.Body).Decode(&restError); decodeErr != nil {
+			return fmt.Errorf("status: %d - Error: error decoding the response for an HTTP error: %w", resp.StatusCode, decodeErr)
+		}
+		return restError
 	}
 
-	defer resp.Body.Close()
-	if err = json.NewDecoder(resp.Body).Decode(out); err != nil {
-		return fmt.Errorf("makeRequest: error while reading response body: %w", err)
+	if out != nil {
+		if err = json.NewDecoder(resp.Body).Decode(out); err != nil {
+			return fmt.Errorf("makeRequest: error while reading response body: %w", err)
+		}
 	}
 
 	return nil
