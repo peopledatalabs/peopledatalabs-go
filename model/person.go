@@ -1,5 +1,7 @@
 package model
 
+import "errors"
+
 type PersonParams struct {
 	Name          []string `json:"name,omitempty" url:"name,omitempty"`                     // The person's full name, at least first and last
 	FirstName     []string `json:"first_name,omitempty" url:"first_name,omitempty"`         // The person's first name
@@ -25,19 +27,71 @@ type EnrichPersonParams struct {
 	BaseParams
 	PersonParams
 	AdditionalParams
-	// TODO: Add validations of min params
 }
+
+func (params EnrichPersonParams) Validate() error {
+	return params.PersonParams.Validate()
+}
+
+func (params PersonParams) Validate() error {
+	if len(params.Profile) != 0 {
+		return nil
+	}
+	if len(params.Email) != 0 {
+		return nil
+	}
+	if len(params.Phone) != 0 {
+		return nil
+	}
+	if len(params.EmailHash) != 0 {
+		return nil
+	}
+	if len(params.Lid) == 0 {
+		return nil
+	}
+
+	if (len(params.FirstName) != 0 && len(params.LastName) != 0) || len(params.Name) != 0 {
+		if params.Locality != "" || params.Region != "" || len(params.Company) != 0 || len(params.School) == 0 || len(params.Location) == 0 || len(params.PostalCode) == 0 {
+			return nil
+		}
+	}
+
+	return errors.New("person enrich: you must provide 'profile OR email OR phone OR email_hash OR lid OR (((first_name AND last_name) OR name) AND (locality OR region OR company OR school OR location OR postal_code))'")
+}
+
 type EnrichPersonResponse struct {
 	Status     int    `json:"status"`
 	Likelihood int    `json:"likelihood"`
 	Data       Person `json:"data"`
 }
 
+type BulkEnrichPersonParams struct {
+	Required string                         `json:"required"`
+	Requests []BulkEnrichSinglePersonParams `json:"requests"`
+}
+
+func (params BulkEnrichPersonParams) Validate() error {
+	for _, request := range params.Requests {
+		if err := request.Params.Validate(); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+type BulkEnrichSinglePersonParams struct {
+	Params   PersonParams   `json:"params"` // The ID of a person
+	Metadata PersonMetadata `json:"metadata"`
+}
+type BulkEnrichPersonResponse struct {
+	EnrichPersonResponse
+	Metadata PersonMetadata `json:"metadata"`
+}
+
 type IdentifyPersonParams struct {
 	BaseParams
 	PersonParams
 	AdditionalParams
-	// TODO: Add validations of min params
 }
 type IdentifyPersonResponse struct {
 	Status  int `json:"status"`
@@ -51,8 +105,15 @@ type IdentifyPersonResponse struct {
 type RetrievePersonParams struct {
 	BaseParams
 	PersonID string `json:"-" url:"-"` // The ID of a person
-	// TODO: Add validation of PersonID != ""
 }
+
+func (params RetrievePersonParams) Validate() error {
+	if params.PersonID == "" {
+		return errors.New("person retrieve: you must provide a person ID")
+	}
+	return nil
+}
+
 type RetrievePersonResponse struct {
 	Status int    `json:"status"`
 	Data   Person `json:"data"`
@@ -62,13 +123,35 @@ type RetrievePersonResponse struct {
 type BulkRetrievePersonParams struct {
 	BaseParams
 	Requests []BulkRetrieveSinglePersonParams `json:"requests"`
-	// TODO: Add validation limit of requests to 100 (min 1)
 }
+
+func (params BulkRetrievePersonParams) Validate() error {
+	if len(params.Requests) == 0 {
+		return errors.New("person bulk retrieve: You must provide at least one person request")
+	}
+	if len(params.Requests) > 100 {
+		return errors.New("person bulk retrieve: You can retrieve up to 100 persons")
+	}
+	for _, request := range params.Requests {
+		if err := request.Validate(); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
 type BulkRetrieveSinglePersonParams struct {
-	PersonID string         `json:"person_id"` // The ID of a person
+	ID       string         `json:"id"` // The ID of a person
 	Metadata PersonMetadata `json:"metadata"`
-	// TODO: Add validation PersonID != ""
 }
+
+func (params BulkRetrieveSinglePersonParams) Validate() error {
+	if params.ID == "" {
+		return errors.New("person bulk retrieve: request must have an ID")
+	}
+	return nil
+}
+
 type BulkRetrievePersonResponse struct {
 	Status   int            `json:"status"`
 	Data     Person         `json:"data"`

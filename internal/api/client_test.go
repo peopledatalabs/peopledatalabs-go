@@ -2,12 +2,10 @@ package api
 
 import (
 	"context"
+	"github.com/peopledatalabs/peopledatalabs-go/model"
 	"net/http"
 	"strings"
 	"testing"
-	"time"
-
-	"github.com/peopledatalabs/peopledatalabs-go/model"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -20,7 +18,7 @@ func TestClient_RestError(t *testing.T) {
 	params := model.EnrichPersonParams{
 		PersonParams: model.PersonParams{Name: []string{"not existing name"}},
 	}
-	err := client.Get(context.Background(), "/person/enrich", params, nil)
+	err := client.get(context.Background(), "/person/enrich", params, nil)
 
 	assert.Error(t, err)
 	if assert.IsType(t, model.RestError{}, err) {
@@ -37,7 +35,7 @@ func TestClient_GenericError(t *testing.T) {
 	params := model.EnrichPersonParams{
 		PersonParams: model.PersonParams{Name: []string{"sean"}},
 	}
-	err := client.Get(context.Background(), "/new-endpoint", params, nil)
+	err := client.get(context.Background(), "/new-endpoint", params, nil)
 
 	assert.Error(t, err)
 	_, isRestErrorType := err.(model.RestError)
@@ -53,15 +51,7 @@ func TestClient_ErrorUnmarshall(t *testing.T) {
 		PersonParams: model.PersonParams{Name: []string{"sean"}},
 	}
 	var out model.EnrichPersonResponse
-	err := client.Get(context.Background(), "/error-json-response", params, &out)
+	err := client.get(context.Background(), "/error-json-response", params, &out)
 
 	assert.True(t, strings.HasPrefix(err.Error(), "makeRequest: error while reading response body"))
-}
-
-func TestNewClient_CustomParams(t *testing.T) {
-	var options []ClientOptions
-	options = append(options, WithTimeout(30*time.Second))
-	options = append(options, WithAPIVersion("v5"))
-	options = append(options, WithHTTPClient(http.DefaultClient))
-	_ = NewClient("api_key", "1", options...)
 }

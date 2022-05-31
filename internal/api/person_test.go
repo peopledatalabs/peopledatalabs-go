@@ -1,11 +1,12 @@
 package api
 
 import (
-	"context"
-	"github.com/peopledatalabs/peopledatalabs-go/model"
-	"github.com/stretchr/testify/assert"
 	"net/http"
 	"testing"
+
+	"github.com/peopledatalabs/peopledatalabs-go/model"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestPerson_Enrich(t *testing.T) {
@@ -19,7 +20,7 @@ func TestPerson_Enrich(t *testing.T) {
 		PersonParams:     model.PersonParams{Profile: []string{"http://linkedin.com/in/seanthorne"}},
 		AdditionalParams: model.AdditionalParams{MinLikelihood: 6},
 	}
-	resp, err := person.Enrich(context.Background(), params)
+	resp, err := person.Enrich(params)
 
 	// assertions
 	assert.NoError(t, err)
@@ -42,7 +43,7 @@ func TestPerson_Identify(t *testing.T) {
 			Company:   []string{"people data labs"},
 		},
 	}
-	resp, err := person.Identify(context.Background(), params)
+	resp, err := person.Identify(params)
 
 	// assertions
 	assert.NoError(t, err)
@@ -66,7 +67,7 @@ func TestPerson_Search(t *testing.T) {
 			SQL: "SELECT * FROM person WHERE location_country='mexico' AND job_title_role='health' AND phone_numbers IS NOT NULL;",
 		},
 	}
-	resp, err := person.Search(context.Background(), params)
+	resp, err := person.Search(params)
 
 	// assertions
 	assert.NoError(t, err)
@@ -84,7 +85,7 @@ func TestPerson_Retrieve(t *testing.T) {
 
 	// test
 	params := model.RetrievePersonParams{PersonID: id}
-	resp, err := person.Retrieve(context.Background(), params)
+	resp, err := person.Retrieve(params)
 
 	// assertions
 	assert.NoError(t, err)
@@ -104,11 +105,11 @@ func TestPerson_BulkRetrieve(t *testing.T) {
 	// test
 	params := model.BulkRetrievePersonParams{
 		Requests: []model.BulkRetrieveSinglePersonParams{
-			{PersonID: id1},
-			{PersonID: id2},
+			{ID: id1},
+			{ID: id2},
 		},
 	}
-	resp, err := person.BulkRetrieve(context.Background(), params)
+	resp, err := person.BulkRetrieve(params)
 
 	// assertions
 	assert.NoError(t, err)

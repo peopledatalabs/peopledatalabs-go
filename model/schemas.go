@@ -70,27 +70,13 @@ type Person struct {
 		LastSeen   *string `json:"last_seen"`   // The date when this email was last associated to this record
 		NumSources *int    `json:"num_sources"` // The number of sources that have contributed to the association of this email to this record
 	} `json:"emails"` // Emails associated with this person profile
-	Interests       []string `json:"interests"`      // Interests associated with the profile
-	Skills          []string `json:"skills"`         // Skills associated with the profile
-	LocationNames   []string `json:"location_names"` // List of all canonical location names associated with the person
-	Regions         []string `json:"regions"`        // List of regions associated with the person
-	Countries       []string `json:"countries"`      // List of countries associated with a person
-	StreetAddresses []struct {
-		StreetAddress string  `json:"street_address"` // The street address associated with the location object
-		AddressLine2  string  `json:"address_line_2"` // The secondary street address associated with the location object
-		Name          string  `json:"name"`           // A string that appends location fields together to create a standard location field
-		Locality      string  `json:"locality"`       // The administrative locality associated with the location object
-		Metro         string  `json:"metro"`          // The metro area associated with the location object
-		Region        string  `json:"region"`         // The administrative region associated with the location object
-		PostalCode    string  `json:"postal_code"`    // The postal code associated with the location object
-		Country       string  `json:"country"`        // The country associated with the location object
-		Geo           string  `json:"geo"`            // The geolocation associated with the location object in latitude, longitude format
-		Continent     string  `json:"continent"`      // The continent associated with the country in the location object
-		FirstSeen     *string `json:"first_seen"`     // The date when this street address was first associated to this record
-		LastSeen      *string `json:"last_seen"`      // The date when this street address was last associated to this record
-		NumSources    *int    `json:"num_sources"`    // The number of sources that have contributed to the association of this street address to this record
-	} `json:"street_addresses"` // List of full parsed addresses associated with the person
-	Experience []struct {
+	Interests       []string  `json:"interests"`        // Interests associated with the profile
+	Skills          []string  `json:"skills"`           // Skills associated with the profile
+	LocationNames   []string  `json:"location_names"`   // List of all canonical location names associated with the person
+	Regions         []string  `json:"regions"`          // List of regions associated with the person
+	Countries       []string  `json:"countries"`        // List of countries associated with a person
+	StreetAddresses []Address `json:"street_addresses"` // List of full parsed addresses associated with the person
+	Experience      []struct {
 		Company struct {
 			Name        string   `json:"name"`         // The name associated with the company
 			Size        string   `json:"size"`         // The size range of the company
@@ -132,40 +118,19 @@ type Person struct {
 		Minors    []string `json:"minors"`     // A list of minors associated with this education object
 		Raw       []string `json:"raw"`        // Raw education input information. Parsed into the degrees/majors/minors fields
 	} `json:"education"` // Education objects associated with this person profile
-	Profiles []struct {
-		Network    string  `json:"network"`     // The network the profile exists on
-		Id         string  `json:"id"`          // The persistent id related to this social profile (varies by social network)
-		Url        string  `json:"url"`         // The url of the social profile
-		Username   string  `json:"username"`    // The username associated with the profile
-		FirstSeen  *string `json:"first_seen"`  // The date when this profile was first associated to this record
-		LastSeen   *string `json:"last_seen"`   // The date when this profile was last associated to this record
-		NumSources *int    `json:"num_sources"` // The number of sources that have contributed to the association of this profile to this record
-	} `json:"profiles"` // Social media profiles associated with this person profile
-	Phones []struct {
-		Number     string `json:"number"`      // An individual phone number associated with this record
-		FirstSeen  string `json:"first_seen"`  // The date when this phone number was first associated to this record
-		LastSeen   string `json:"last_seen"`   // The date when this phone number was last associated to this record
-		NumSources int    `json:"num_sources"` // The number of sources that have contributed to the association of this phone number to this record
-	} `json:"phones"` // A list of the phone numbers known to be associated with this record
-	LinkedinConnections *int     `json:"linkedin_connections"` // The number of linkedin connections the person has
-	FacebookFriends     *int     `json:"facebook_friends"`     // The number of facebook friends the person has
-	NameAliases         []string `json:"name_aliases"`         // Any additional associated names or aliases beyond the primary one currently displayed in the name field
+	Profiles            []Profile `json:"profiles"`             // Social media profiles associated with this person profile
+	Phones              []Phone   `json:"phones"`               // A list of the phone numbers known to be associated with this record
+	LinkedinConnections *int      `json:"linkedin_connections"` // The number of linkedin connections the person has
+	FacebookFriends     *int      `json:"facebook_friends"`     // The number of facebook friends the person has
+	NameAliases         []string  `json:"name_aliases"`         // Any additional associated names or aliases beyond the primary one currently displayed in the name field
 	PossibleEmails      []struct {
 	} `json:"possible_emails"` // Any additional associated emails to this person record with a lower level of confidence than the currently-displayed ones in the emails array
-	PossiblePhones []struct {
-		// TODO: change type after extracting phones struct
-	} `json:"possible_phones"` // Any additional associated phones to the person record with a lower level of confidence to the currently-displayed ones in the phone_numbers array
-	PossibleProfiles []struct {
-		// TODO: change type after extracting profiles struct
-	} `json:"possible_profiles"` // Any additional associated profiles to the person record w/ a lower level of confidence to the currently-displayed ones in the profiles
-	PossibleStreetAddresses []struct {
-		// TODO: change type after extracting addresses struct
-	} `json:"possible_street_addresses"` // Any additional associated addresses to the person record with a lower level of confidence to the currently-displayed ones in the street_addresses array
-	//PossibleBirthDates []struct {
-	//	// TODO: change type after extracting locations struct
-	//} `json:"possible_birth_dates"` // Any additional associated birth dates to the person record with a lower level of confidence to the currently-displayed one in the birth_date field
-	PossibleLocationNames []string `json:"possible_location_names"` // Inferred potential locations the person has lived in based on phone area codes, university location, other associations
-	JobHistory            []struct {
+	PossiblePhones          []Phone   `json:"possible_phones"`           // Any additional associated phones to the person record with a lower level of confidence to the currently-displayed ones in the phone_numbers array
+	PossibleProfiles        []Profile `json:"possible_profiles"`         // Any additional associated profiles to the person record w/ a lower level of confidence to the currently-displayed ones in the profiles
+	PossibleStreetAddresses []Address `json:"possible_street_addresses"` // Any additional associated addresses to the person record with a lower level of confidence to the currently-displayed ones in the street_addresses array
+	PossibleBirthDates      []string  `json:"possible_birth_dates"`      // Any additional associated birth dates to the person record with a lower level of confidence to the currently-displayed one in the birth_date field
+	PossibleLocationNames   []string  `json:"possible_location_names"`   // Inferred potential locations the person has lived in based on phone area codes, university location, other associations
+	JobHistory              []struct {
 		FirstSeen string `json:"first_seen"` // The date when this professional position was first associated to this record in our data
 		LastSeen  string `json:"last_seen"`  // The date when this professional position was last associated to this record in our data
 	} `json:"job_history"` // Any additional professional positions associated to this person record beyond the ones we currently display in the experience array. Usually these are positions that have been removed or changed on resumes
@@ -304,4 +269,37 @@ type Location struct {
 	AddressLine2  string `json:"address_line_2"` // The adress line 2 associated with the company HQ
 	PostalCode    string `json:"postal_code"`    // The postal code associated with the company HQ
 	Geo           string `json:"geo"`            // The geo code associated with the company HQ
+}
+
+type Phone struct {
+	Number     string `json:"number"`      // An individual phone number associated with this record
+	FirstSeen  string `json:"first_seen"`  // The date when this phone number was first associated to this record
+	LastSeen   string `json:"last_seen"`   // The date when this phone number was last associated to this record
+	NumSources int    `json:"num_sources"` // The number of sources that have contributed to the association of this phone number to this record
+}
+
+type Profile struct {
+	Network    string  `json:"network"`     // The network the profile exists on
+	Id         string  `json:"id"`          // The persistent id related to this social profile (varies by social network)
+	Url        string  `json:"url"`         // The url of the social profile
+	Username   string  `json:"username"`    // The username associated with the profile
+	FirstSeen  *string `json:"first_seen"`  // The date when this profile was first associated to this record
+	LastSeen   *string `json:"last_seen"`   // The date when this profile was last associated to this record
+	NumSources *int    `json:"num_sources"` // The number of sources that have contributed to the association of this profile to this record
+}
+
+type Address struct {
+	StreetAddress string  `json:"street_address"` // The street address associated with the location object
+	AddressLine2  string  `json:"address_line_2"` // The secondary street address associated with the location object
+	Name          string  `json:"name"`           // A string that appends location fields together to create a standard location field
+	Locality      string  `json:"locality"`       // The administrative locality associated with the location object
+	Metro         string  `json:"metro"`          // The metro area associated with the location object
+	Region        string  `json:"region"`         // The administrative region associated with the location object
+	PostalCode    string  `json:"postal_code"`    // The postal code associated with the location object
+	Country       string  `json:"country"`        // The country associated with the location object
+	Geo           string  `json:"geo"`            // The geolocation associated with the location object in latitude, longitude format
+	Continent     string  `json:"continent"`      // The continent associated with the country in the location object
+	FirstSeen     *string `json:"first_seen"`     // The date when this street address was first associated to this record
+	LastSeen      *string `json:"last_seen"`      // The date when this street address was last associated to this record
+	NumSources    *int    `json:"num_sources"`    // The number of sources that have contributed to the association of this street address to this record
 }

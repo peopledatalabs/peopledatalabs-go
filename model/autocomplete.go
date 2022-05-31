@@ -1,15 +1,25 @@
 package model
 
+import (
+	"errors"
+)
+
 type AutocompleteBaseParams struct {
 	Field AutocompleteType `json:"field" url:"field"`                   // Field that autocomplete will be calculated for
 	Text  string           `json:"text,omitempty" url:"text,omitempty"` // Text that is used as the seed for autocompletion
-	// TODO: Add validation required: Field
 }
 
 type AutocompleteParams struct {
 	BaseParams
 	AutocompleteBaseParams
 	AdditionalParams
+}
+
+func (params AutocompleteParams) Validate() error {
+	if params.Field == "" {
+		return errors.New("autocomplete: 'Field' para must not be empty")
+	}
+	return nil
 }
 
 type AutocompleteResponse struct {

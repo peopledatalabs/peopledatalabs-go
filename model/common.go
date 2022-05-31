@@ -1,8 +1,10 @@
 package model
 
+import "errors"
+
 type BaseParams struct {
 	Pretty bool `json:"pretty,omitempty" url:"pretty,omitempty"` // Whether the output should have human-readable indentation.
-	Size   int  `json:"size,omitempty" url:"size,omitempty"`     // The number of matched records to return for this query if they exist*. Must be between 1 and 1000 (inclusive) // TODO: restrict size 1-100
+	Size   int  `json:"size,omitempty" url:"size,omitempty"`     // The number of matched records to return for this query if they exist*. Must be between 1 and 1000 (inclusive)
 }
 
 type AdditionalParams struct {
@@ -26,5 +28,11 @@ type SearchParams struct {
 	BaseParams
 	SearchBaseParams
 	AdditionalParams
-	// TODO: Add validations of min params
+}
+
+func (params SearchParams) Validate() error {
+	if (params.Query == nil && params.SQL == "") || (params.Query != nil && params.SQL != "") {
+		return errors.New("search: you must provide either a query or an sql parameter (but not both)")
+	}
+	return nil
 }

@@ -11,33 +11,35 @@ import (
 	"runtime"
 	"time"
 
+	"github.com/peopledatalabs/peopledatalabs-go/logger"
 	"github.com/peopledatalabs/peopledatalabs-go/model"
 
 	"github.com/google/go-querystring/query"
 )
 
 const (
-	defaultAPIVersion = "v5"
-	defaultBaseURL    = "https://api.peopledatalabs.com/v5"
+	DefaultTimeout    = 5 * time.Second
+	defaultBaseURL    = "https://api.peopledatalabs.com/"
+	defaultApiVersion = "v5"
 )
 
 type Client struct {
-	apiKey     string
-	baseURL    string
-	httpClient *http.Client
-	apiVersion string
-	//loggerLevel       // TODO
-	//logger log.Logger // TODO: https://github.com/aws/aws-sdk-go/blob/107e8360115ce55fe47a88929a58eabe54849e29/aws/logger.go#L87
-	libVersion string
+	ApiKey     string
+	BaseURL    string
+	ApiVersion string
+	HttpClient *http.Client
+	Logger     logger.Logger
+	LibVersion string
 }
 
 func NewClient(apiKey, libVersion string, opts ...ClientOptions) Client {
 	c := Client{
-		apiKey:     apiKey,
-		baseURL:    defaultBaseURL,
-		apiVersion: defaultAPIVersion,
-		libVersion: libVersion,
-		httpClient: defaultHTTPClient(),
+		ApiKey:     apiKey,
+		BaseURL:    defaultBaseURL,
+		ApiVersion: defaultApiVersion,
+		LibVersion: libVersion,
+		HttpClient: defaultHTTPClient(),
+		Logger:     logger.NewDefaultLogger(),
 	}
 
 	for _, opt := range opts {
@@ -49,34 +51,11 @@ func NewClient(apiKey, libVersion string, opts ...ClientOptions) Client {
 
 func defaultHTTPClient() *http.Client {
 	return &http.Client{
-		Timeout: 5 * time.Second,
+		Timeout: DefaultTimeout,
 	}
 }
 
 type ClientOptions func(*Client)
-
-// TODO: add docs
-func WithHTTPClient(httpCli *http.Client) ClientOptions {
-	return func(client *Client) {
-		client.httpClient = httpCli
-	}
-}
-
-// TODO: add docs
-func WithTimeout(timeout time.Duration) ClientOptions {
-	return func(client *Client) {
-		client.httpClient.Timeout = timeout
-	}
-}
-
-// TODO: WithLogLevel
-
-// TODO: add docs
-func WithAPIVersion(version string) ClientOptions {
-	return func(client *Client) {
-		client.apiVersion = version
-	}
-}
 
 type apiRequest struct {
 	method  string
@@ -86,7 +65,7 @@ type apiRequest struct {
 	body    io.Reader
 }
 
-func (cli Client) Get(ctx context.Context, path string, params interface{}, out interface{}) error {
+func (cli Client) get(ctx context.Context, path string, params interface{}, out interface{}) error {
 	queryParams, err := query.Values(params)
 	if err != nil {
 		return fmt.Errorf("makeRequest: could not generate params query: %w", err)
@@ -101,14 +80,14 @@ func (cli Client) Get(ctx context.Context, path string, params interface{}, out 
 	return cli.makeRequest(ctx, req, out)
 }
 
-func (cli Client) Post(ctx context.Context, path string, params interface{}, out interface{}) error {
+func (cli Client) post(ctx context.Context, path string, params interface{}, out interface{}) error {
 	body, err := json.Marshal(params)
 	if err != nil {
 		return fmt.Errorf("makeRequest: could not marshal JSON: %w", err)
 	}
 
 	req := apiRequest{
-		method:  http.MethodGet,
+		method:  http.MethodPost,
 		path:    path,
 		body:    bytes.NewBuffer(body),
 		headers: http.Header{},
@@ -119,32 +98,29 @@ func (cli Client) Post(ctx context.Context, path string, params interface{}, out
 }
 
 func (cli Client) makeRequest(ctx context.Context, libReq apiRequest, out interface{}) error {
-	urlStruct, err := url.Parse(cli.baseURL + libReq.path)
+	urlStruct, err := url.Parse(fmt.Sprintf("%s%s%s", cli.BaseURL, cli.ApiVersion, libReq.path))
 	if err != nil {
 		return fmt.Errorf("makeRequest: %w", err)
 	}
 	urlStruct.RawQuery = libReq.params
 
-	// TODO: Verbose
-	//	if Debug {
-	//      fmt.Println("URL:", urlStruct.String()) // payload
-	//	}
+	cli.Logger.Debug("URL:", urlStruct.String()) // TODO: payload
 
 	req, err := http.NewRequestWithContext(ctx, libReq.method, urlStruct.String(), libReq.body)
 	if err != nil {
 		return err
 	}
 
-	userAgent := fmt.Sprintf("peopledatalabs-go/%s (%s %s) go/%s", cli.libVersion, runtime.GOOS, runtime.GOARCH, runtime.Version())
+	userAgent := fmt.Sprintf("peopledatalabs-go/%s (%s %s) go/%s", cli.LibVersion, runtime.GOOS, runtime.GOARCH, runtime.Version())
 
 	req.Header.Add("User-Agent", userAgent)
-	req.Header.Add("X-Api-Key", cli.apiKey)
+	req.Header.Add("X-Api-Key", cli.ApiKey)
 	req.Header.Add("Accept", "application/json")
 	for k, v := range libReq.headers {
 		req.Header.Add(k, fmt.Sprint(v))
 	}
 
-	resp, err := cli.httpClient.Do(req)
+	resp, err := cli.HttpClient.Do(req)
 	if err != nil {
 		//if Verbose {
 		//	log

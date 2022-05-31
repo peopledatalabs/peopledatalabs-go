@@ -1,7 +1,6 @@
 package api
 
 import (
-	"context"
 	"net/http"
 	"testing"
 
@@ -20,7 +19,7 @@ func TestSchool_Clean(t *testing.T) {
 	params := model.CleanSchoolParams{
 		SchoolParams: model.SchoolParams{Profile: "linkedin.com/school/ucla"},
 	}
-	resp, err := school.Clean(context.Background(), params)
+	resp, err := school.Clean(params)
 
 	// assertions
 	assert.NoError(t, err)

@@ -41,6 +41,7 @@ func customMockServer(responseStatus int, responseBody string) *httptest.Server 
 
 func mockClient(server *httptest.Server) Client {
 	c := NewClient("api_key", "1")
-	c.baseURL = server.URL
+	c.BaseURL = server.URL
+	c.ApiVersion = ""
 	return c
 }
