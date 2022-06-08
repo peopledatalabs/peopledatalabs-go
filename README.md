@@ -30,7 +30,7 @@
     go get github.com/peopledatalabs/peopledatalabs-go
     ```
 2. Sign up for a [free PDL API key](https://www.peopledatalabs.com/signup).
-3. [Recomendation] Set your API key as a environment variable.
+3. Set your API key as a environment variable.
 
 ## 🚀 Usage <a name="usage"></a>
 
@@ -47,9 +47,9 @@ import (
 
 func main() {
     apiKey := "YOUR_API_KEY_HERE"
-    // Recomended: Set API KEY as env variable
+    // Set API KEY as env variable
     // apiKey := os.Getenv("API_KEY")
-    
+
     client := pdl.New(apiKey)
 }
 ```
@@ -88,8 +88,8 @@ params := pdlmodel.BulkEnrichPersonParams{
         },
         {
             Params: pdlmodel.PersonParams{
-                Profile:   []string{"https://www.linkedin.com/in/haydenconrad/"}, 
-                FirstName: []string{"Hayden"}, 
+                Profile:   []string{"https://www.linkedin.com/in/haydenconrad/"},
+                FirstName: []string{"Hayden"},
                 LastName:  []string{"Conrad"},
             },
         },
@@ -106,7 +106,7 @@ elasticSearchQuery := map[string]interface{}{
     "query": map[string]interface{}{
         "bool": map[string]interface{}{
             "must": []map[string]interface{}{
-                {"term": map[string]interface{}{"location_country": "mexico"}}, 
+                {"term": map[string]interface{}{"location_country": "mexico"}},
                 {"term": map[string]interface{}{"job_title_role": "health"}},
             },
         },
@@ -116,9 +116,9 @@ elasticSearchQuery := map[string]interface{}{
 params := pdlmodel.SearchParams{
     BaseParams: pdlmodel.BaseParams{
         Size: 10,
-    }, 
+    },
     SearchBaseParams: pdlmodel.SearchBaseParams{
-        Query:   elasticSearchQuery, 
+        Query:   elasticSearchQuery,
         Dataset: "phone,mobile_phone",
     },
 }
@@ -136,9 +136,9 @@ sqlQuery := "SELECT * FROM person" +
 params := pdlmodel.SearchParams{
     BaseParams: pdlmodel.BaseParams{
         Size: 10,
-    }, 
+    },
     SearchBaseParams: pdlmodel.SearchBaseParams{
-        SQL:     sqlQuery, 
+        SQL:     sqlQuery,
         Dataset: "phone,mobile_phone",
     },
 }
@@ -202,7 +202,7 @@ elasticSearchQuery := map[string]interface{}{
 }
 
 params := pdlmodel.SearchParams{
-    BaseParams:       pdlmodel.BaseParams{Size: 10}, 
+    BaseParams:       pdlmodel.BaseParams{Size: 10},
     SearchBaseParams: pdlmodel.SearchBaseParams{Query: elasticSearchQuery},
 }
 
@@ -218,7 +218,7 @@ sqlQuery := "SELECT * FROM company" +
     " AND location.country='united states';"
 
 params := pdlmodel.SearchParams{
-    BaseParams:       pdlmodel.BaseParams{Size: 10}, 
+    BaseParams:       pdlmodel.BaseParams{Size: 10},
     SearchBaseParams: pdlmodel.SearchBaseParams{SQL: sqlQuery},
 }
 
@@ -232,7 +232,7 @@ result, err := client.Company.Search(params)
 
 ```go
 params := pdlmodel.AutocompleteParams{
-    BaseParams:             pdlmodel.BaseParams{Size: 10}, 
+    BaseParams:             pdlmodel.BaseParams{Size: 10},
     AutocompleteBaseParams: pdlmodel.AutocompleteBaseParams{Field: "title", Text: "full"},
 }
 
@@ -299,7 +299,7 @@ result, err := client.School.Clean(params)
 | [School Cleaner API](https://docs.peopledatalabs.com/docs/cleaner-apis#schoolclean)     | `client.School.Clean(params)`   |
 
 Each method has it's own _WithContext(...)_ version where you can provide your own `context.Context`
-For example: `client.Person.Identify(params)` => `client.Person.IdentifyWithContext(ctx, params)` 
+For example: `client.Person.Identify(params)` => `client.Person.IdentifyWithContext(ctx, params)`
 
 ## 📘 Documentation <a name="documentation"></a>
 
