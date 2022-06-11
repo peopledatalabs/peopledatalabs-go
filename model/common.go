@@ -8,11 +8,11 @@ type BaseParams struct {
 }
 
 type AdditionalParams struct {
-	MinLikelihood    int32  `json:"min_likelihood,omitempty" url:"min_likelihood,omitempty"` // The minimum likelihood score a response must possess in order to return a 200
-	Required         string `json:"required,omitempty" url:"required,omitempty"`             // Parameter specifying the fields and data points a response must have to return a 200
-	TitleCase        bool   `json:"titlecase,omitempty" url:"titlecase,omitempty"`           // Setting titlecase to true will titlecase the person data in 200 responses.
-	DataInclude      string `json:"data_include,omitempty" url:"data_include,omitempty"`     // A comma-separated string of fields that you would like the response to include. eg. "names.clean,emails.address". Begin the string with a - if you would instead like to exclude the specified fields. If you would like to exclude all data from being returned, use dataInclude="".
-	IncludeIfMatched bool   `json:"include_if_matched" url:"include_if_matched,omitempty"`   // If set to true, includes a top-level (alongside "data", "status", etc) field "matched" which includes a value for each queried field parameter that was "matched-on" during our internal query.
+	MinLikelihood    int32  `json:"min_likelihood,omitempty" url:"min_likelihood,omitempty"`         // The minimum likelihood score a response must possess in order to return a 200
+	Required         string `json:"required,omitempty" url:"required,omitempty"`                     // Parameter specifying the fields and data points a response must have to return a 200
+	TitleCase        bool   `json:"titlecase,omitempty" url:"titlecase,omitempty"`                   // Setting titlecase to true will titlecase the person data in 200 responses.
+	DataInclude      string `json:"data_include,omitempty" url:"data_include,omitempty"`             // A comma-separated string of fields that you would like the response to include. eg. "names.clean,emails.address". Begin the string with a - if you would instead like to exclude the specified fields. If you would like to exclude all data from being returned, use dataInclude="".
+	IncludeIfMatched bool   `json:"include_if_matched,omitempty" url:"include_if_matched,omitempty"` // If set to true, includes a top-level (alongside "data", "status", etc) field "matched" which includes a value for each queried field parameter that was "matched-on" during our internal query.
 }
 
 type SearchBaseParams struct {
