@@ -2,6 +2,7 @@ package api
 
 import (
 	"net/http"
+	"os"
 	"testing"
 
 	"github.com/peopledatalabs/peopledatalabs-go/model"
@@ -11,9 +12,7 @@ import (
 
 func TestCompany_Enrich(t *testing.T) {
 	// setup
-	server := mockServer()
-	defer server.Close()
-	company := Company{Client: mockClient(server)}
+	company := Company{Client: NewClient(os.Getenv("PDL_API_KEY"), "1.0.0")}
 
 	// test
 	params := model.EnrichCompanyParams{
@@ -29,31 +28,25 @@ func TestCompany_Enrich(t *testing.T) {
 
 func TestCompany_Clean(t *testing.T) {
 	// setup
-	server := mockServer()
-	defer server.Close()
-	company := Company{Client: mockClient(server)}
+	company := Company{Client: NewClient(os.Getenv("PDL_API_KEY"), "1.0.0")}
 
 	// test
-	params := model.CleanCompanyParams{Name: "UCLA"}
+	params := model.CleanCompanyParams{Website: "apple.com"}
 	resp, err := company.Clean(params)
 
 	// assertions
 	assert.NoError(t, err)
-	assert.Equal(t, "university of california, los angeles", resp.Name)
+	assert.Equal(t, "apple", resp.Name)
 }
 
 func TestCompany_Search(t *testing.T) {
 	// setup
-	server := mockServer()
-	defer server.Close()
-	company := Company{Client: mockClient(server)}
+	company := Company{Client: NewClient(os.Getenv("PDL_API_KEY"), "1.0.0")}
 
 	// test
 	params := model.SearchParams{
-		SearchBaseParams: model.SearchBaseParams{
-			SQL:  "SELECT * FROM company WHERE name='people data labs'",
-			From: 100,
-		},
+		BaseParams:       model.BaseParams{Size: 100},
+		SearchBaseParams: model.SearchBaseParams{SQL: "SELECT * FROM company WHERE name='people data labs'"},
 	}
 	resp, err := company.Search(params)
 

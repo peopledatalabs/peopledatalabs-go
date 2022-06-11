@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	autocompletePath = "/Autocomplete"
+	autocompletePath = "/autocomplete"
 )
 
 type Autocomplete struct {

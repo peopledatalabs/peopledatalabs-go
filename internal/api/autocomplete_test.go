@@ -2,6 +2,7 @@ package api
 
 import (
 	"net/http"
+	"os"
 	"testing"
 
 	"github.com/peopledatalabs/peopledatalabs-go/model"
@@ -11,9 +12,7 @@ import (
 
 func TestAutocomplete(t *testing.T) {
 	// setup
-	server := mockServer()
-	defer server.Close()
-	auto := Autocomplete{Client: mockClient(server)}
+	auto := Autocomplete{Client: NewClient(os.Getenv("PDL_API_KEY"), "1.0.0")}
 
 	// test
 	params := model.AutocompleteParams{

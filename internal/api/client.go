@@ -5,10 +5,10 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"io"
 	"net/http"
 	"net/url"
 	"runtime"
+	"strings"
 	"time"
 
 	"github.com/peopledatalabs/peopledatalabs-go/logger"
@@ -62,7 +62,7 @@ type apiRequest struct {
 	path    string
 	headers http.Header
 	params  string
-	body    io.Reader
+	body    []byte
 }
 
 func (cli Client) get(ctx context.Context, path string, params interface{}, out interface{}) error {
@@ -89,7 +89,7 @@ func (cli Client) post(ctx context.Context, path string, params interface{}, out
 	req := apiRequest{
 		method:  http.MethodPost,
 		path:    path,
-		body:    bytes.NewBuffer(body),
+		body:    body,
 		headers: http.Header{},
 	}
 	req.headers.Set("Content-Type", "application/json")
@@ -103,10 +103,11 @@ func (cli Client) makeRequest(ctx context.Context, libReq apiRequest, out interf
 		return fmt.Errorf("makeRequest: %w", err)
 	}
 	urlStruct.RawQuery = libReq.params
+	URL := urlStruct.String()
 
-	cli.Logger.Debug("URL:", urlStruct.String()) // TODO: payload
+	cli.Logger.Debug(requestLog(URL, libReq))
 
-	req, err := http.NewRequestWithContext(ctx, libReq.method, urlStruct.String(), libReq.body)
+	req, err := http.NewRequestWithContext(ctx, libReq.method, URL, bytes.NewReader(libReq.body))
 	if err != nil {
 		return err
 	}
@@ -129,6 +130,14 @@ func (cli Client) makeRequest(ctx context.Context, libReq apiRequest, out interf
 	}
 	defer resp.Body.Close()
 
+	if resp.StatusCode == http.StatusNotFound {
+		var nfError model.NotFoundError
+		if decodeErr := json.NewDecoder(resp.Body).Decode(&nfError); decodeErr != nil {
+			return fmt.Errorf("status: %d - Error: error decoding the response for an HTTP error: %w", resp.StatusCode, decodeErr)
+		}
+		return nfError
+	}
+
 	if resp.StatusCode >= http.StatusBadRequest {
 		var restError model.RestError
 		if decodeErr := json.NewDecoder(resp.Body).Decode(&restError); decodeErr != nil {
@@ -144,4 +153,25 @@ func (cli Client) makeRequest(ctx context.Context, libReq apiRequest, out interf
 	}
 
 	return nil
+}
+
+func requestLog(url string, libReq apiRequest) string {
+	var log strings.Builder
+	log.WriteString("URL: ")
+	log.WriteString(fmt.Sprintf("'%s'", url))
+	log.WriteRune('\n')
+	log.WriteString("Method: ")
+	log.WriteString(libReq.method)
+	log.WriteRune('\n')
+	log.WriteString("Body: ")
+	log.WriteString(libReq.method)
+	log.WriteRune('\n')
+	log.WriteString("Headers: \n")
+	for k, v := range libReq.headers {
+		log.WriteString(k)
+		log.WriteString(strings.Join(v, ","))
+		log.WriteRune('\n')
+	}
+
+	return log.String()
 }

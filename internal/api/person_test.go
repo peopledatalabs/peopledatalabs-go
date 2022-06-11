@@ -2,6 +2,7 @@ package api
 
 import (
 	"net/http"
+	"os"
 	"testing"
 
 	"github.com/peopledatalabs/peopledatalabs-go/model"
@@ -11,9 +12,7 @@ import (
 
 func TestPerson_Enrich(t *testing.T) {
 	// setup
-	server := mockServer()
-	defer server.Close()
-	person := Person{Client: mockClient(server)}
+	person := Person{Client: NewClient(os.Getenv("PDL_API_KEY"), "1.0.0")}
 
 	// test
 	params := model.EnrichPersonParams{
@@ -31,9 +30,7 @@ func TestPerson_Enrich(t *testing.T) {
 
 func TestPerson_Identify(t *testing.T) {
 	// setup
-	server := mockServer()
-	defer server.Close()
-	person := Person{Client: mockClient(server)}
+	person := Person{Client: NewClient(os.Getenv("PDL_API_KEY"), "1.0.0")}
 
 	// test
 	params := model.IdentifyPersonParams{
@@ -55,9 +52,7 @@ func TestPerson_Identify(t *testing.T) {
 
 func TestPerson_Search(t *testing.T) {
 	// setup
-	server := mockServer()
-	defer server.Close()
-	person := Person{Client: mockClient(server)}
+	person := Person{Client: NewClient(os.Getenv("PDL_API_KEY"), "1.0.0")}
 	numResults := 3
 
 	// test
@@ -78,9 +73,7 @@ func TestPerson_Search(t *testing.T) {
 
 func TestPerson_Retrieve(t *testing.T) {
 	// setup
-	server := customMockServer(http.StatusOK, mockResponses[personRetrievePath])
-	defer server.Close()
-	person := Person{Client: mockClient(server)}
+	person := Person{Client: NewClient(os.Getenv("PDL_API_KEY"), "1.0.0")}
 	id := "qEnOZ5Oh0poWnQ1luFBfVw_0000"
 
 	// test
@@ -96,11 +89,9 @@ func TestPerson_Retrieve(t *testing.T) {
 
 func TestPerson_BulkRetrieve(t *testing.T) {
 	// setup
-	server := mockServer()
-	defer server.Close()
-	person := Person{Client: mockClient(server)}
+	person := Person{Client: NewClient(os.Getenv("PDL_API_KEY"), "1.0.0")}
 	id1 := "qEnOZ5Oh0poWnQ1luFBfVw_0000"
-	id2 := "qEnOZ5Oh0poWnQ1luFBfVw_0000"
+	id2 := "cw-SqoatIeBOuwMBstZCEg_0000"
 
 	// test
 	params := model.BulkRetrievePersonParams{
@@ -117,5 +108,5 @@ func TestPerson_BulkRetrieve(t *testing.T) {
 	assert.Equal(t, http.StatusOK, resp[0].Status)
 	assert.Equal(t, "sean thorne", resp[0].Data.FullName)
 	assert.Equal(t, http.StatusOK, resp[1].Status)
-	assert.Equal(t, "hayden conrad", resp[1].Data.FullName)
+	assert.Equal(t, "andrew nichol", resp[1].Data.FullName)
 }
