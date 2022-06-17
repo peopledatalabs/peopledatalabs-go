@@ -123,6 +123,7 @@ type RetrievePersonResponse struct {
 type BulkRetrievePersonParams struct {
 	BaseParams
 	Requests []BulkRetrieveSinglePersonParams `json:"requests"`
+	AdditionalParams
 }
 
 func (params BulkRetrievePersonParams) Validate() error {
