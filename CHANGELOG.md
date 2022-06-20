@@ -9,5 +9,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [1.0.1] - 2022-06-19
 - Incremented default timeout from 5 seconds to 10 seconds
-- Addded `AditionalParams` to Bulk Person Retrieve params
+- Added `AdditionalParams` to Bulk Person Retrieve params
  
