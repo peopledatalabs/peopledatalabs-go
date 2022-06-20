@@ -18,7 +18,7 @@ import (
 )
 
 const (
-	DefaultTimeout    = 5 * time.Second
+	DefaultTimeout    = 10 * time.Second
 	defaultBaseURL    = "https://api.peopledatalabs.com/"
 	defaultApiVersion = "v5"
 )
