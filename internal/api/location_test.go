@@ -1,6 +1,7 @@
 package api
 
 import (
+	"context"
 	"net/http"
 	"os"
 	"testing"
@@ -18,7 +19,7 @@ func TestLocation_Clean(t *testing.T) {
 	params := model.CleanLocationParams{
 		LocationParams: model.LocationParams{Location: "portland"},
 	}
-	resp, err := location.Clean(params)
+	resp, err := location.Clean(context.Background(), params)
 
 	// assertions
 	assert.NoError(t, err)

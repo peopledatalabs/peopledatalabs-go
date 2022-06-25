@@ -1,6 +1,7 @@
 package api
 
 import (
+	"context"
 	"net/http"
 	"os"
 	"testing"
@@ -18,7 +19,7 @@ func TestCompany_Enrich(t *testing.T) {
 	params := model.EnrichCompanyParams{
 		CompanyParams: model.CompanyParams{Name: "Google, Inc."},
 	}
-	resp, err := company.Enrich(params)
+	resp, err := company.Enrich(context.Background(), params)
 
 	// assertions
 	assert.NoError(t, err)
@@ -32,7 +33,7 @@ func TestCompany_Clean(t *testing.T) {
 
 	// test
 	params := model.CleanCompanyParams{Website: "apple.com"}
-	resp, err := company.Clean(params)
+	resp, err := company.Clean(context.Background(), params)
 
 	// assertions
 	assert.NoError(t, err)
@@ -48,7 +49,7 @@ func TestCompany_Search(t *testing.T) {
 		BaseParams:       model.BaseParams{Size: 100},
 		SearchBaseParams: model.SearchBaseParams{SQL: "SELECT * FROM company WHERE name='people data labs'"},
 	}
-	resp, err := company.Search(params)
+	resp, err := company.Search(context.Background(), params)
 
 	// assertions
 	assert.NoError(t, err)

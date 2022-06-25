@@ -22,10 +22,7 @@ type Person struct {
 
 // Enrich a person record on a variety of fields
 // docs: https://docs.peopledatalabs.com/docs/reference-person-enrichment-api
-func (p Person) Enrich(params model.EnrichPersonParams) (model.EnrichPersonResponse, error) {
-	return p.EnrichWithContext(context.Background(), params)
-}
-func (p Person) EnrichWithContext(ctx context.Context, params model.EnrichPersonParams) (model.EnrichPersonResponse, error) {
+func (p Person) Enrich(ctx context.Context, params model.EnrichPersonParams) (model.EnrichPersonResponse, error) {
 	if err := params.Validate(); err != nil {
 		return model.EnrichPersonResponse{}, err
 	}
@@ -35,10 +32,7 @@ func (p Person) EnrichWithContext(ctx context.Context, params model.EnrichPerson
 
 // BulkEnrich allows to enrich up to 100 persons in a single HTTP request
 // docs: https://docs.peopledatalabs.com/docs/bulk-enrichment-api
-func (p Person) BulkEnrich(params model.BulkEnrichPersonParams) ([]model.BulkEnrichPersonResponse, error) {
-	return p.BulkEnrichWithContext(context.Background(), params)
-}
-func (p Person) BulkEnrichWithContext(ctx context.Context, params model.BulkEnrichPersonParams) ([]model.BulkEnrichPersonResponse, error) {
+func (p Person) BulkEnrich(ctx context.Context, params model.BulkEnrichPersonParams) ([]model.BulkEnrichPersonResponse, error) {
 	if err := params.Validate(); err != nil {
 		return nil, err
 	}
@@ -48,10 +42,7 @@ func (p Person) BulkEnrichWithContext(ctx context.Context, params model.BulkEnri
 
 // Identify recovers all related profiles for an identity
 // docs: https://docs.peopledatalabs.com/docs/identify-api
-func (p Person) Identify(params model.IdentifyPersonParams) (model.IdentifyPersonResponse, error) {
-	return p.IdentifyWithContext(context.Background(), params)
-}
-func (p Person) IdentifyWithContext(ctx context.Context, params model.IdentifyPersonParams) (model.IdentifyPersonResponse, error) {
+func (p Person) Identify(ctx context.Context, params model.IdentifyPersonParams) (model.IdentifyPersonResponse, error) {
 	var response model.IdentifyPersonResponse
 	return response, p.Client.get(ctx, personIdentifyPath, params, &response)
 }
@@ -59,10 +50,7 @@ func (p Person) IdentifyWithContext(ctx context.Context, params model.IdentifyPe
 // Search is perfect for finding specific segments of people that you need to power your projects and products.
 // It gives you direct access to our full API dataset.
 // docs: https://docs.peopledatalabs.com/docs/person-search-api
-func (p Person) Search(params model.SearchParams) (model.SearchPersonResponse, error) {
-	return p.SearchWithContext(context.Background(), params)
-}
-func (p Person) SearchWithContext(ctx context.Context, params model.SearchParams) (model.SearchPersonResponse, error) {
+func (p Person) Search(ctx context.Context, params model.SearchParams) (model.SearchPersonResponse, error) {
 	if err := params.Validate(); err != nil {
 		return model.SearchPersonResponse{}, err
 	}
@@ -72,10 +60,7 @@ func (p Person) SearchWithContext(ctx context.Context, params model.SearchParams
 
 // Retrieve allows you to use a PDL Person ID to return data associated with that ID
 // docs: https://docs.peopledatalabs.com/docs/person-retrieve-api
-func (p Person) Retrieve(params model.RetrievePersonParams) (model.RetrievePersonResponse, error) {
-	return p.RetrieveWithContext(context.Background(), params)
-}
-func (p Person) RetrieveWithContext(ctx context.Context, params model.RetrievePersonParams) (model.RetrievePersonResponse, error) {
+func (p Person) Retrieve(ctx context.Context, params model.RetrievePersonParams) (model.RetrievePersonResponse, error) {
 	if err := params.Validate(); err != nil {
 		return model.RetrievePersonResponse{}, err
 	}
@@ -86,10 +71,7 @@ func (p Person) RetrieveWithContext(ctx context.Context, params model.RetrievePe
 
 // BulkRetrieve allows to retrieve up to 100 persons in a single HTTP request
 // docs: https://docs.peopledatalabs.com/docs/bulk-person-retrieve
-func (p Person) BulkRetrieve(params model.BulkRetrievePersonParams) ([]model.BulkRetrievePersonResponse, error) {
-	return p.BulkRetrieveWithContext(context.Background(), params)
-}
-func (p Person) BulkRetrieveWithContext(ctx context.Context, params model.BulkRetrievePersonParams) ([]model.BulkRetrievePersonResponse, error) {
+func (p Person) BulkRetrieve(ctx context.Context, params model.BulkRetrievePersonParams) ([]model.BulkRetrievePersonResponse, error) {
 	if err := params.Validate(); err != nil {
 		return nil, err
 	}

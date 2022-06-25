@@ -66,7 +66,7 @@ params := pdlmodel.EnrichPersonParams{
     },
 }
 
-result, err := client.Person.Enrich(params)
+result, err := client.Person.Enrich(ctx, params)
 
 if err == nil {
     fmt.Printf("Status: %d, FullName: %s\n", result.Status, result.Data.FullName)
@@ -96,7 +96,7 @@ params := pdlmodel.BulkEnrichPersonParams{
     },
 }
 
-result, err := client.Person.BulkEnrich(params)
+result, err := client.Person.BulkEnrich(ctx, params)
 ```
 
 #### Search (Elasticsearch)
@@ -122,7 +122,7 @@ params := pdlmodel.SearchParams{
         Dataset: "phone,mobile_phone",
     },
 }
-result, err := client.Person.Search(params)
+result, err := client.Person.Search(ctx, params)
 ```
 
 #### Search (SQL)
@@ -142,7 +142,7 @@ params := pdlmodel.SearchParams{
         Dataset: "phone,mobile_phone",
     },
 }
-result, err := client.Person.Search(params)
+result, err := client.Person.Search(ctx, params)
 ```
 
 #### `PDL_ID` (Retrieve API)
@@ -150,7 +150,7 @@ result, err := client.Person.Search(params)
 ```go
 params := pdlmodel.RetrievePersonParams{PersonID: "qEnOZ5Oh0poWnQ1luFBfVw_0000"}
 
-result, err := client.Person.Retrieve(params)
+result, err := client.Person.Retrieve(ctx, params)
 ```
 
 #### Bulk Retrieve API
@@ -163,7 +163,7 @@ params := pdlmodel.BulkRetrievePersonParams{
     }
 }
 
-result, err := client.Person.BulkRetrieve(params)
+result, err := client.Person.BulkRetrieve(ctx, params)
 ```
 
 #### Fuzzy Enrichment (Identify API)
@@ -171,7 +171,7 @@ result, err := client.Person.BulkRetrieve(params)
 ```go
 params := pdlmodel.IdentifyPersonParams{PersonParams: pdlmodel.PersonParams{Name: []string{"sean thorne"}}}
 
-result, err := client.Person.Identify(params)
+result, err := client.Person.Identify(ctx, params)
 ```
 
 ### Company Data
@@ -183,7 +183,7 @@ params := pdlmodel.EnrichCompanyParams{
     CompanyParams: pdlmodel.CompanyParams{Website: "peopledatalabs.com"},
 }
 
-result, err := client.Company.Enrich(params)
+result, err := client.Company.Enrich(ctx, params)
 ```
 
 #### Search (Elasticsearch)
@@ -206,7 +206,7 @@ params := pdlmodel.SearchParams{
     SearchBaseParams: pdlmodel.SearchBaseParams{Query: elasticSearchQuery},
 }
 
-result, err := client.Company.Search(params)
+result, err := client.Company.Search(ctx, params)
 ```
 
 #### Search (SQL)
@@ -222,7 +222,7 @@ params := pdlmodel.SearchParams{
     SearchBaseParams: pdlmodel.SearchBaseParams{SQL: sqlQuery},
 }
 
-result, err := client.Company.Search(params)
+result, err := client.Company.Search(ctx, params)
 
 ```
 
@@ -236,7 +236,7 @@ params := pdlmodel.AutocompleteParams{
     AutocompleteBaseParams: pdlmodel.AutocompleteBaseParams{Field: "title", Text: "full"},
 }
 
-result, err := client.Autocomplete(params)
+result, err := client.Autocomplete(ctx, params)
 ```
 
 #### Clean Raw Company Strings
@@ -244,7 +244,7 @@ result, err := client.Autocomplete(params)
 ```go
 params := pdlmodel.CleanCompanyParams{Name: "peOple DaTa LabS"}
 
-result, err := client.Company.Clean(params)
+result, err := client.Company.Clean(ctx, params)
 ```
 
 #### Clean Raw Location Strings
@@ -256,7 +256,7 @@ params := pdlmodel.CleanLocationParams{
     },
 }
 
-result, err := client.Location.Clean(params)
+result, err := client.Location.Clean(ctx, params)
 ```
 
 #### Clean Raw School Strings
@@ -266,7 +266,7 @@ params := pdlmodel.CleanSchoolParams{
     SchoolParams: pdlmodel.SchoolParams{Name: "university of oregon"},
 }
 
-result, err := client.School.Clean(params)
+result, err := client.School.Clean(ctx, params)
 ```
 
 ## 🌐 Endpoints <a name="endpoints"></a>
@@ -297,9 +297,6 @@ result, err := client.School.Clean(params)
 | [Company Cleaner API](https://docs.peopledatalabs.com/docs/cleaner-apis#companyclean)   | `client.Company.Clean(params)`  |
 | [Location Cleaner API](https://docs.peopledatalabs.com/docs/cleaner-apis#locationclean) | `client.Location.Clean(params)` |
 | [School Cleaner API](https://docs.peopledatalabs.com/docs/cleaner-apis#schoolclean)     | `client.School.Clean(params)`   |
-
-Each method has it's own _WithContext(...)_ version where you can provide your own `context.Context`
-For example: `client.Person.Identify(params)` => `client.Person.IdentifyWithContext(ctx, params)`
 
 ## 📘 Documentation <a name="documentation"></a>
 

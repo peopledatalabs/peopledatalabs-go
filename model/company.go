@@ -35,22 +35,9 @@ type EnrichCompanyResponse struct {
 }
 
 type CleanCompanyParams struct {
-	BaseParams
 	Name    string `json:"name,omitempty" url:"name,omitempty"`       // The name of the company
 	Website string `json:"website,omitempty" url:"website,omitempty"` // A website the company uses
 	Profile string `json:"profile,omitempty" url:"profile,omitempty"` // A social profile of the company (linkedin/facebook/twitter/crunchbase)
-
-	//Ticker        string   `json:"ticker,omitempty" url:"ticker,omitempty"`                 // Company stock ticker
-	//Location      []string `json:"location,omitempty" url:"location,omitempty"`             // Complete or partial company location
-	//Locality      string   `json:"locality,omitempty" url:"locality,omitempty"`             //	Company locality
-	//Region        string   `json:"region,omitempty" url:"region,omitempty"`                 //	Company region
-	//Country       string   `json:"country,omitempty" url:"country,omitempty"`               //	Company country
-	//Address string   `json:"street_address,omitempty" url:"street_address,omitempty"` //	Company address
-	//PostalCode    string   `json:"postal_code,omitempty" url:"postal_code,omitempty"`       //	Company postal code
-
-	// TODO: Check if we can use AdditionalParams (missing DataInclude, MinLikelihood, Required, IncludeIfMatched)
-	// TODO: Check if we can use TitleCase
-	//TitleCase        bool   `json:"titlecase" url:"titlecase,omitempty"`                   // Setting titlecase to true will titlecase the response data in 200 responses.
 }
 
 func (params CleanCompanyParams) Validate() error {
