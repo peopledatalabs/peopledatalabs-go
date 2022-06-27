@@ -4,15 +4,14 @@ import (
 	"github.com/peopledatalabs/peopledatalabs-go/internal/api"
 )
 
-const Version = "1.0.1"
+const Version = "1.1.0"
 
 type pld struct {
-	Person                  api.Person
-	Company                 api.Company
-	Location                api.Location
-	School                  api.School
-	Autocomplete            api.AutocompleteFunc
-	AutocompleteWithContext api.AutocompleteWitchContextFunc
+	Person       api.Person
+	Company      api.Company
+	Location     api.Location
+	School       api.School
+	Autocomplete api.AutocompleteFunc
 }
 
 // New returns a new People Data Labs Client
@@ -25,11 +24,10 @@ func New(apiKey string, opts ...api.ClientOptions) *pld {
 
 	autocompleteClient := api.Autocomplete{Client: client}
 	return &pld{
-		Person:                  api.Person{Client: client},
-		Company:                 api.Company{Client: client},
-		Location:                api.Location{Client: client},
-		School:                  api.School{Client: client},
-		Autocomplete:            autocompleteClient.Autocomplete,
-		AutocompleteWithContext: autocompleteClient.AutocompleteWithContext,
+		Person:       api.Person{Client: client},
+		Company:      api.Company{Client: client},
+		Location:     api.Location{Client: client},
+		School:       api.School{Client: client},
+		Autocomplete: autocompleteClient.Autocomplete,
 	}
 }

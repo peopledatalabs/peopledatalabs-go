@@ -1,6 +1,7 @@
 package api
 
 import (
+	"context"
 	"net/http"
 	"os"
 	"testing"
@@ -19,7 +20,7 @@ func TestAutocomplete(t *testing.T) {
 		BaseParams:             model.BaseParams{Pretty: true, Size: 10},
 		AutocompleteBaseParams: model.AutocompleteBaseParams{Field: "school", Text: "stanf"},
 	}
-	resp, err := auto.Autocomplete(params)
+	resp, err := auto.Autocomplete(context.Background(), params)
 
 	// assertions
 	assert.NoError(t, err)
