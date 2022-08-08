@@ -1,6 +1,7 @@
 package api
 
 import (
+	"context"
 	"net/http"
 	"os"
 	"testing"
@@ -16,9 +17,10 @@ func TestSkill(t *testing.T) {
 
 	// test
 	params := model.SkillParams{
-		SkillBaseParams: model.SkillBaseParams{Skill: "c++", Pretty: true},
+		BaseParams:             model.BaseParams{Pretty: true},
+		SkillBaseParams: model.SkillBaseParams{Skill: "c++"},
 	}
-	resp, err := auto.Skill()
+	resp, err := auto.Skill(context.Background(), params)
 
 	// assertions
 	assert.NoError(t, err)

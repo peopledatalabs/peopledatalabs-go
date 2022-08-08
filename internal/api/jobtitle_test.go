@@ -1,6 +1,7 @@
 package api
 
 import (
+	"context"
 	"net/http"
 	"os"
 	"testing"
@@ -16,9 +17,10 @@ func TestJobTitle(t *testing.T) {
 
 	// test
 	params := model.JobTitleParams{
-		JobTitleBaseParams: model.JobTitleBaseParams{JobTitle: "data scientist", Pretty: true},
+		BaseParams:             model.BaseParams{Pretty: true},
+		JobTitleBaseParams: model.JobTitleBaseParams{JobTitle: "data scientist"},
 	}
-	resp, err := auto.JobTitle()
+	resp, err := auto.JobTitle(context.Background(), params)
 
 	// assertions
 	assert.NoError(t, err)

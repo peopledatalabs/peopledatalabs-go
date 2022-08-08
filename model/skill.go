@@ -6,10 +6,10 @@ import (
 
 type SkillBaseParams struct {
 	Skill     string   `json:"skill,omitempty" url:"skill,omitempty"` // Skill that is used as the seed for enrichment
-	Pretty    bool     `json:"pretty,omitempty" url:"pretty,omitempty"` // Whether the output should have human-readable indentation.
 }
 
 type SkillParams struct {
+	BaseParams
 	SkillBaseParams
 }
 

@@ -6,10 +6,10 @@ import (
 
 type JobTitleBaseParams struct {
 	JobTitle  string   `json:"job_title,omitempty" url:"job_title,omitempty"` // JobTitle that is used as the seed for enrichment
-	Pretty    bool     `json:"pretty,omitempty" url:"pretty,omitempty"` // Whether the output should have human-readable indentation.
 }
 
 type JobTitleParams struct {
+	BaseParams
 	JobTitleBaseParams
 }
 
