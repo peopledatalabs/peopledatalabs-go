@@ -23,6 +23,10 @@ func (params JobTitleParams) Validate() error {
 
 type JobTitleResponse struct {
 	Status int                  `json:"status"`
+	Data   {}JobTitleResult        `json:"data"`
+}
+
+type JobTitleResult struct {
 	CleanedJobTitle string      `json:"cleaned_job_title"`
 	SimilarJobTitles []string   `json:"similar_job_titles"`
 	RelevantSkills []string     `json:"relevant_skills"`
