@@ -12,8 +12,8 @@ type pld struct {
 	Location     api.Location
 	School       api.School
 	Autocomplete api.AutocompleteFunc
-	Skill		 api.Skill
-	JobTitle	 api.JobTitle
+	Skill		 api.SkillFunc
+	JobTitle	 api.JobTitleFunc
 }
 
 // New returns a new People Data Labs Client

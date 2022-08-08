@@ -5,7 +5,7 @@ import (
 )
 
 type SkillBaseParams struct {
-	Skill  string           `json:"skill,omitempty" url:"jobskill_title,omitempty"` // Skill that is used as the seed for enrichment
+	Skill  string           `json:"skill,omitempty" url:"skill,omitempty"` // Skill that is used as the seed for enrichment
 }
 
 type SkillParams struct {
