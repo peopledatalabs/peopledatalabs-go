@@ -12,6 +12,8 @@ type pld struct {
 	Location     api.Location
 	School       api.School
 	Autocomplete api.AutocompleteFunc
+	Skill		 api.Skill
+	JobTitle	 api.JobTitle
 }
 
 // New returns a new People Data Labs Client
@@ -23,11 +25,15 @@ func New(apiKey string, opts ...api.ClientOptions) *pld {
 	client := api.NewClient(apiKey, Version, opts...)
 
 	autocompleteClient := api.Autocomplete{Client: client}
+	skillClient := api.Skill{Client: client}
+	jobTitleClient := api.JobTitle{Client: client}
 	return &pld{
 		Person:       api.Person{Client: client},
 		Company:      api.Company{Client: client},
 		Location:     api.Location{Client: client},
 		School:       api.School{Client: client},
 		Autocomplete: autocompleteClient.Autocomplete,
+		Skill:        skillClient.Skill,
+		JobTitle:     jobTitleClient.JobTitle,
 	}
 }
