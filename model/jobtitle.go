@@ -11,7 +11,6 @@ type JobTitleBaseParams struct {
 
 type JobTitleParams struct {
 	JobTitleBaseParams
-	AdditionalParams
 }
 
 func (params JobTitleParams) Validate() error {

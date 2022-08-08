@@ -11,7 +11,6 @@ type SkillBaseParams struct {
 
 type SkillParams struct {
 	SkillBaseParams
-	AdditionalParams
 }
 
 func (params SkillParams) Validate() error {
