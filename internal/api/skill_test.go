@@ -18,7 +18,7 @@ func TestSkill(t *testing.T) {
 	params := model.SkillParams{
 		SkillBaseParams: model.SkillBaseParams{Skill: "c++", Pretty: true},
 	}
-	resp, err := auto.Skill(params)
+	resp, err := auto.Skill()
 
 	// assertions
 	assert.NoError(t, err)

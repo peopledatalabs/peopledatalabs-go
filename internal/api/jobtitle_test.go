@@ -18,7 +18,7 @@ func TestJobTitle(t *testing.T) {
 	params := model.JobTitleParams{
 		JobTitleBaseParams: model.JobTitleBaseParams{JobTitle: "data scientist", Pretty: true},
 	}
-	resp, err := auto.JobTitle(params)
+	resp, err := auto.JobTitle()
 
 	// assertions
 	assert.NoError(t, err)
