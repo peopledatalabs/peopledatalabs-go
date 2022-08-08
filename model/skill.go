@@ -23,10 +23,10 @@ func (params SkillParams) Validate() error {
 
 type SkillResponse struct {
 	Status int                  `json:"status"`
-	Data   {}SkillResult        `json:"data"`
+	Data   SkillResult          `json:"data"`
 }
 
-type AutocompleteResult struct {
+type SkillResult struct {
 	CleanedSkill string         `json:"cleaned_skill"`
 	SimilarSkills []string   `json:"similar_skills"`
 	RelevantJobTitles []string  `json:"relevant_job_titles"`
