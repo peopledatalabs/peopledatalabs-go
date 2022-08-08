@@ -27,6 +27,6 @@ type SkillResponse struct {
 
 type SkillResult struct {
 	CleanedSkill string         `json:"cleaned_skill"`
-	SimilarSkills []string   `json:"similar_skills"`
+	SimilarSkills []string      `json:"similar_skills"`
 	RelevantJobTitles []string  `json:"relevant_job_titles"`
 }
