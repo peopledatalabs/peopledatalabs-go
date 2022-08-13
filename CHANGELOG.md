@@ -14,6 +14,3 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [1.1.0] - 2022-06-25
 - Removed methods that allow no context to be provided
 - Removed commented parameters on Company Cleaner endpoint
-
-## [2.0.0] - 2022-08-13
-- Add Support for Sandbox, Job Title Enrich and Skill Enrich Endpoints
