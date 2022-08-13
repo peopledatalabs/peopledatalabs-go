@@ -269,6 +269,28 @@ params := pdlmodel.CleanSchoolParams{
 result, err := client.School.Clean(ctx, params)
 ```
 
+#### Enrich Job Title
+
+```go
+params := model.JobTitleParams{
+    BaseParams:             model.BaseParams{Pretty: true},
+    JobTitleBaseParams:     model.JobTitleBaseParams{JobTitle: "data scientist"},
+}
+
+result, err := client.JobTitle(ctx, params)
+```
+
+#### Enrich Skill
+
+```go
+params := model.SkillParams{
+    BaseParams:             model.BaseParams{Pretty: true},
+    SkillBaseParams:        model.SkillBaseParams{Skill: "c++"},
+}
+
+result, err := client.Skill(ctx, params)
+```
+
 ## 🌐 Endpoints <a name="endpoints"></a>
 
 **Person Endpoints**
@@ -297,6 +319,8 @@ result, err := client.School.Clean(ctx, params)
 | [Company Cleaner API](https://docs.peopledatalabs.com/docs/cleaner-apis#companyclean)   | `client.Company.Clean(params)`  |
 | [Location Cleaner API](https://docs.peopledatalabs.com/docs/cleaner-apis#locationclean) | `client.Location.Clean(params)` |
 | [School Cleaner API](https://docs.peopledatalabs.com/docs/cleaner-apis#schoolclean)     | `client.School.Clean(params)`   |
+| [Job Title Enrichment API](https://docs.peopledatalabs.com/docs/job-title-enrichment-api) | `client.JobTitle(params)` |
+| [Skill Enrichment API](https://docs.peopledatalabs.com/docs/skill-enrichment-api) | `client.Skill(params)` |
 
 ## 📘 Documentation <a name="documentation"></a>
 
