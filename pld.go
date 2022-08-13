@@ -4,7 +4,7 @@ import (
 	"github.com/peopledatalabs/peopledatalabs-go/internal/api"
 )
 
-const Version = "1.2.0"
+const Version = "2.0.0"
 
 type pld struct {
 	Person       api.Person
@@ -12,8 +12,8 @@ type pld struct {
 	Location     api.Location
 	School       api.School
 	Autocomplete api.AutocompleteFunc
-	Skill		 api.SkillFunc
-	JobTitle	 api.JobTitleFunc
+	Skill        api.SkillFunc
+	JobTitle     api.JobTitleFunc
 }
 
 // New returns a new People Data Labs Client
