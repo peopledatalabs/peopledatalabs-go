@@ -13,8 +13,9 @@ import (
 
 func TestPerson_Enrich_Sandbox(t *testing.T) {
 	// setup
-	person := Person{Client: NewClient(os.Getenv("PDL_API_KEY"), "1.0.0")}
-	person.Sandbox = true
+	client := NewClient(os.Getenv("PDL_API_KEY"), "1.0.0")
+	client.Sandbox = true
+	person := Person{Client: client}
 
 	// test
 	params := model.EnrichPersonParams{
@@ -32,8 +33,9 @@ func TestPerson_Enrich_Sandbox(t *testing.T) {
 
 func TestPerson_Identify_Sandbox(t *testing.T) {
 	// setup
-	person := Person{Client: NewClient(os.Getenv("PDL_API_KEY"), "1.0.0")}
-	person.Sandbox = true
+	client := NewClient(os.Getenv("PDL_API_KEY"), "1.0.0")
+	client.Sandbox = true
+	person := Person{Client: client}
 
 	// test
 	params := model.IdentifyPersonParams{
@@ -53,8 +55,9 @@ func TestPerson_Identify_Sandbox(t *testing.T) {
 
 func TestPerson_Search_Sandbox(t *testing.T) {
 	// setup
-	person := Person{Client: NewClient(os.Getenv("PDL_API_KEY"), "1.0.0")}
-	person.Sandbox = true
+	client := NewClient(os.Getenv("PDL_API_KEY"), "1.0.0")
+	client.Sandbox = true
+	person := Person{Client: client}
 	numResults := 3
 
 	// test
