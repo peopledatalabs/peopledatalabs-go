@@ -23,38 +23,37 @@ const (
 	defaultApiVersion = "v5"
 	defaultSandbox    = false
 	defaultSandboxURL = "https://sandbox.api.peopledatalabs.com/"
-
 )
 
 type Client struct {
-	ApiKey           string
-	BaseURL          string
-	ApiVersion       string
-	HttpClient       *http.Client
-	Logger           logger.Logger
-	LibVersion       string
-	Sandbox	         bool
-	SandboxBaseURL   string
+	ApiKey         string
+	BaseURL        string
+	ApiVersion     string
+	HttpClient     *http.Client
+	Logger         logger.Logger
+	LibVersion     string
+	Sandbox        bool
+	SandboxBaseURL string
 }
 
 func NewClient(apiKey, libVersion string, opts ...ClientOptions) Client {
 	c := Client{
-		ApiKey:     apiKey,
-		BaseURL:    defaultBaseURL,
-		ApiVersion: defaultApiVersion,
-		LibVersion: libVersion,
-		HttpClient: defaultHTTPClient(),
-		Logger:     logger.NewDefaultLogger(),
-		Sandbox:    defaultSandbox,
+		ApiKey:         apiKey,
+		BaseURL:        defaultBaseURL,
+		ApiVersion:     defaultApiVersion,
+		LibVersion:     libVersion,
+		HttpClient:     defaultHTTPClient(),
+		Logger:         logger.NewDefaultLogger(),
+		Sandbox:        defaultSandbox,
 		SandboxBaseURL: defaultSandboxURL,
-	}
-
-	if c.Sandbox {
-		c.BaseURL = c.SandboxBaseURL
 	}
 
 	for _, opt := range opts {
 		opt(&c)
+	}
+
+	if c.Sandbox {
+		c.BaseURL = c.SandboxBaseURL
 	}
 
 	return c

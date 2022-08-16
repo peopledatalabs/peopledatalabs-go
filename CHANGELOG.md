@@ -17,3 +17,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [1.2.0] - 2022-08-13
 - Add Support for Sandbox, Job Title Enrich and Skill Enrich Endpoints
+
+## [1.2.1] - 2022-08-13
+- Add Documentation and tests for Sandbox
