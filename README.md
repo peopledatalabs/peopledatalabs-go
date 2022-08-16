@@ -295,8 +295,9 @@ result, err := client.Skill(ctx, params)
 ## 🏝 Sandbox Usage <a name="sandbox"></a>
 ```go
 # To enable sandbox usage, use the following flag
-client := NewClient(os.Getenv("PDL_API_KEY"), "1.0.0")
-client.Sandbox = true
+client := NewClient(os.Getenv("PDL_API_KEY"), "1.0.0", ClientOptions(func(c *Client) {
+    c.Sandbox = true
+}))
 person := Person{Client: client}
 ```
 

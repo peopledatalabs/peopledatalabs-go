@@ -13,8 +13,9 @@ import (
 
 func TestPerson_Enrich_Sandbox(t *testing.T) {
 	// setup
-	client := NewClient(os.Getenv("PDL_API_KEY"), "1.0.0")
-	client.Sandbox = true
+	client := NewClient(os.Getenv("PDL_API_KEY"), "1.0.0", ClientOptions(func(c *Client) {
+		c.Sandbox = true
+	}))
 	person := Person{Client: client}
 
 	// test
@@ -33,8 +34,9 @@ func TestPerson_Enrich_Sandbox(t *testing.T) {
 
 func TestPerson_Identify_Sandbox(t *testing.T) {
 	// setup
-	client := NewClient(os.Getenv("PDL_API_KEY"), "1.0.0")
-	client.Sandbox = true
+	client := NewClient(os.Getenv("PDL_API_KEY"), "1.0.0", ClientOptions(func(c *Client) {
+		c.Sandbox = true
+	}))
 	person := Person{Client: client}
 
 	// test
@@ -49,14 +51,15 @@ func TestPerson_Identify_Sandbox(t *testing.T) {
 	assert.NoError(t, err)
 	assert.Equal(t, http.StatusOK, resp.Status)
 	if assert.Greater(t, len(resp.Matches), 1) {
-		assert.Greater(t, resp.Matches[0].MatchScore, resp.Matches[1].MatchScore)
+		assert.GreaterOrEqual(t, resp.Matches[0].MatchScore, resp.Matches[1].MatchScore)
 	}
 }
 
 func TestPerson_Search_Sandbox(t *testing.T) {
 	// setup
-	client := NewClient(os.Getenv("PDL_API_KEY"), "1.0.0")
-	client.Sandbox = true
+	client := NewClient(os.Getenv("PDL_API_KEY"), "1.0.0", ClientOptions(func(c *Client) {
+		c.Sandbox = true
+	}))
 	person := Person{Client: client}
 	numResults := 3
 
