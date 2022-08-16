@@ -20,6 +20,7 @@
 
 - [🔧 Installation](#installation)
 - [🚀 Usage](#usage)
+- [🏝 Sandbox Usage](#sandbox)
 - [🌐 Endpoints](#endpoints)
 - [📘 Documentation](#documentation)
 
@@ -289,6 +290,13 @@ params := model.SkillParams{
 }
 
 result, err := client.Skill(ctx, params)
+```
+
+## 🏝 Sandbox Usage <a name="sandbox"></a>
+```go
+# To enable sandbox usage, use the following flag
+person := Person{Client: NewClient(os.Getenv("PDL_API_KEY"), "1.0.0")}
+person.Sandbox = true
 ```
 
 ## 🌐 Endpoints <a name="endpoints"></a>
