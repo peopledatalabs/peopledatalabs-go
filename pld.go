@@ -1,10 +1,10 @@
 package peopledatalabs_go
 
 import (
-	"github.com/peopledatalabs/peopledatalabs-go/internal/api"
+	"github.com/peopledatalabs/peopledatalabs-go/api"
 )
 
-const Version = "1.2.1"
+const Version = "1.2.2"
 
 type pld struct {
 	Person       api.Person

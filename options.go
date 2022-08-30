@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/peopledatalabs/peopledatalabs-go/internal/api"
+	"github.com/peopledatalabs/peopledatalabs-go/api"
 	"github.com/peopledatalabs/peopledatalabs-go/logger"
 )
 
