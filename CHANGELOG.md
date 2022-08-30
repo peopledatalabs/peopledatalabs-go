@@ -23,3 +23,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [1.2.2] - 2022-08-30
 - Move API config public
+
+## [1.2.3] - 2022-08-30
+- Update Docs
