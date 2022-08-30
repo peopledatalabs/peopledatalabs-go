@@ -9,7 +9,7 @@
     <img src="https://img.shields.io/badge/repo%20status-Active-limegreen" alt="Repo Status">
   </a>&nbsp;
   <a href="https://pkg.go.dev/github.com/peopledatalabs/peopledatalabs-go">
-    <img src="https://img.shields.io/github/go-mod/go-version/peopledatalabs/peopledatalabs-go" alt="Go 1.2.2" />
+    <img src="https://img.shields.io/github/go-mod/go-version/peopledatalabs/peopledatalabs-go" alt="Go 1.2.3" />
   </a>&nbsp;
   <a href="https://github.com/peopledatalabs/peopledatalabs-go/actions/workflows/test.yaml">
     <img src="https://github.com/peopledatalabs/peopledatalabs-go/actions/workflows/test.yaml/badge.svg" alt="Tests Status" />
@@ -294,11 +294,17 @@ result, err := client.Skill(ctx, params)
 
 ## 🏝 Sandbox Usage <a name="sandbox"></a>
 ```go
-# To enable sandbox usage, use the following flag
-client := NewClient(os.Getenv("PDL_API_KEY"), "1.0.0", ClientOptions(func(c *Client) {
+# To enable sandbox usage, use the following
+
+import (
+    pdl "github.com/peopledatalabs/peopledatalabs-go"
+    "github.com/peopledatalabs/peopledatalabs-go/api"
+    pdlmodel "github.com/peopledatalabs/peopledatalabs-go/model"
+)
+
+client := pdl.New(apiKey, api.ClientOptions(func(c *api.Client) {
     c.Sandbox = true
 }))
-person := Person{Client: client}
 ```
 
 ## 🌐 Endpoints <a name="endpoints"></a>
