@@ -3,6 +3,7 @@ package model
 import "errors"
 
 type PersonParams struct {
+	Id            []string `json:"pdl_id,omitempty" url:"pdl_id,omitempty"`                 // The pdl_id of a person
 	Name          []string `json:"name,omitempty" url:"name,omitempty"`                     // The person's full name, at least first and last
 	FirstName     []string `json:"first_name,omitempty" url:"first_name,omitempty"`         // The person's first name
 	LastName      []string `json:"last_name,omitempty" url:"last_name,omitempty"`           // The person's last name

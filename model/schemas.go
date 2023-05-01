@@ -23,6 +23,7 @@ type Person struct {
 	GithubUsername                  string   `json:"github_username"`                     // Main github profile username for this record based on source agreement
 	WorkEmail                       string   `json:"work_email"`                          // Current Professional email
 	PersonalEmails                  []string `json:"personal_emails"`                     // List of all emails tagged as type = personal
+	RecommendedPersonalEmail        string   `json:"recommended_personal_email"`          // Highly confident personal email associated with this person
 	MobilePhone                     string   `json:"mobile_phone"`                        // Highly confident direct dial mobile phone associated with this person
 	Industry                        string   `json:"industry"`                            // The most relevant industry for this record based primarily on their tagged personal industries and secondarily on the industries of the companies that they have worked for
 	JobTitle                        string   `json:"job_title"`                           // A person's current job title
