@@ -29,3 +29,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [1.2.4] - 2022-04-28
 - Add Support for pdl_id
+
+## [1.2.5] - 2022-05-09
+- Dependency Updates
