@@ -92,7 +92,7 @@ func TestPerson_BulkRetrieve(t *testing.T) {
 	// setup
 	person := Person{Client: NewClient(os.Getenv("PDL_API_KEY"), "1.0.0")}
 	id1 := "qEnOZ5Oh0poWnQ1luFBfVw_0000"
-	id2 := "cw-SqoatIeBOuwMBstZCEg_0000"
+	id2 := "9Grd31hT3RFKVzsyecBGPg_0000"
 
 	// test
 	params := model.BulkRetrievePersonParams{
@@ -109,5 +109,5 @@ func TestPerson_BulkRetrieve(t *testing.T) {
 	assert.Equal(t, http.StatusOK, resp[0].Status)
 	assert.Equal(t, "sean thorne", resp[0].Data.FullName)
 	assert.Equal(t, http.StatusOK, resp[1].Status)
-	assert.Equal(t, "andrew nichol", resp[1].Data.FullName)
+	assert.Equal(t, "varun villait", resp[1].Data.FullName)
 }
