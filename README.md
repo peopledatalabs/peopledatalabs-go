@@ -9,7 +9,7 @@
     <img src="https://img.shields.io/badge/repo%20status-Active-limegreen" alt="Repo Status">
   </a>&nbsp;
   <a href="https://pkg.go.dev/github.com/peopledatalabs/peopledatalabs-go">
-    <img src="https://img.shields.io/github/go-mod/go-version/peopledatalabs/peopledatalabs-go" alt="Go 1.2.5" />
+    <img src="https://img.shields.io/github/go-mod/go-version/peopledatalabs/peopledatalabs-go" alt="Go 1.3.0" />
   </a>&nbsp;
   <a href="https://github.com/peopledatalabs/peopledatalabs-go/actions/workflows/test.yaml">
     <img src="https://github.com/peopledatalabs/peopledatalabs-go/actions/workflows/test.yaml/badge.svg" alt="Tests Status" />
@@ -292,6 +292,17 @@ params := model.SkillParams{
 result, err := client.Skill(ctx, params)
 ```
 
+#### Enrich IP
+
+```go
+params := model.IPParams{
+    BaseParams:             model.BaseParams{Pretty: true},
+    IPBaseParams:           model.IPBaseParams{IP: "72.212.42.169"},
+}
+
+result, err := client.IP(ctx, params)
+```
+
 ## 🏝 Sandbox Usage <a name="sandbox"></a>
 ```go
 # To enable sandbox usage, use the following
@@ -337,6 +348,7 @@ client := pdl.New(apiKey, api.ClientOptions(func(c *api.Client) {
 | [School Cleaner API](https://docs.peopledatalabs.com/docs/cleaner-apis#schoolclean)     | `client.School.Clean(params)`   |
 | [Job Title Enrichment API](https://docs.peopledatalabs.com/docs/job-title-enrichment-api) | `client.JobTitle(params)` |
 | [Skill Enrichment API](https://docs.peopledatalabs.com/docs/skill-enrichment-api) | `client.Skill(params)` |
+| [IP Enrichment API](https://docs.peopledatalabs.com/docs/ip-enrichment-api) | `client.IP(params)` |
 
 ## 📘 Documentation <a name="documentation"></a>
 
