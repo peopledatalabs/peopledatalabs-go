@@ -5,7 +5,10 @@ import (
 )
 
 type IPBaseParams struct {
-	IP string `json:"ip,omitempty" url:"ip,omitempty"` // IP that is used as the seed for enrichment
+	IP               string `json:"ip,omitempty" url:"ip,omitempty"`                                 // IP that is used as the seed for enrichment
+	ReturnIPLocation bool   `json:"return_ip_location,omitempty" url:"return_ip_location,omitempty"` // If true, the response will include the location of the IP
+	ReturnIPMetadata bool   `json:"return_ip_metadata,omitempty" url:"return_ip_metadata,omitempty"` // If true, the response will include the metadata of the IP
+	ReturnPerson     bool   `json:"return_person,omitempty" url:"return_person,omitempty"`           // If true, the response will include the person fields
 }
 
 type IPParams struct {
@@ -21,11 +24,8 @@ func (params IPParams) Validate() error {
 }
 
 type IPResponse struct {
-	Status           int      `json:"status"`
-	Data             IPResult `json:"data"`
-	ReturnIPLocation bool     `json:"return_ip_location"`
-	ReturnIPMetadata bool     `json:"return_ip_metadata"`
-	ReturnPerson     bool     `json:"return_person"`
+	Status int      `json:"status"`
+	Data   IPResult `json:"data"`
 }
 
 type IPResult struct {
