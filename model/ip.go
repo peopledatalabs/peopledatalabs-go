@@ -5,10 +5,11 @@ import (
 )
 
 type IPBaseParams struct {
-	IP               string `json:"ip,omitempty" url:"ip,omitempty"`                                 // IP that is used as the seed for enrichment
-	ReturnIPLocation bool   `json:"return_ip_location,omitempty" url:"return_ip_location,omitempty"` // If true, the response will include the location of the IP
-	ReturnIPMetadata bool   `json:"return_ip_metadata,omitempty" url:"return_ip_metadata,omitempty"` // If true, the response will include the metadata of the IP
-	ReturnPerson     bool   `json:"return_person,omitempty" url:"return_person,omitempty"`           // If true, the response will include the person fields
+	IP                string `json:"ip,omitempty" url:"ip,omitempty"`                                   // IP that is used as the seed for enrichment
+	ReturnIPLocation  bool   `json:"return_ip_location,omitempty" url:"return_ip_location,omitempty"`   // If true, the response will include the location of the IP
+	ReturnIPMetadata  bool   `json:"return_ip_metadata,omitempty" url:"return_ip_metadata,omitempty"`   // If true, the response will include the metadata of the IP
+	ReturnPerson      bool   `json:"return_person,omitempty" url:"return_person,omitempty"`             // If true, the response will include the person fields
+	ReturnIfUnmatched bool   `json:"return_if_unmatched,omitempty" url:"return_if_unmatched,omitempty"` // If true, the response will return metadata/location even if no company is found
 }
 
 type IPParams struct {

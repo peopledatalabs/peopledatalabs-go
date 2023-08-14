@@ -46,3 +46,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [1.3.0] - 2023-08-01
 
 - Add Support for IP Enrichment
+
+## [1.3.1] - 2023-08-13
+
+- Add return_if_unmatched to IP enrichment
