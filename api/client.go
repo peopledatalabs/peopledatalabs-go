@@ -102,7 +102,6 @@ func (cli Client) post(ctx context.Context, path string, params interface{}, out
 		body:    body,
 		headers: http.Header{},
 	}
-	req.headers.Set("Content-Type", "application/json")
 
 	return cli.makeRequest(ctx, req, out)
 }
@@ -127,6 +126,7 @@ func (cli Client) makeRequest(ctx context.Context, libReq apiRequest, out interf
 	req.Header.Add("User-Agent", userAgent)
 	req.Header.Add("X-Api-Key", cli.ApiKey)
 	req.Header.Add("Accept", "application/json")
+	req.Header.Add("Content-Type", "application/json")
 	for k, v := range libReq.headers {
 		req.Header.Add(k, fmt.Sprint(v))
 	}
