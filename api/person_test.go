@@ -29,6 +29,36 @@ func TestPerson_Enrich(t *testing.T) {
 	assert.GreaterOrEqual(t, resp.Likelihood, 6)
 }
 
+func TestPerson_BulkEnrich(t *testing.T) {
+	// setup
+	person := Person{Client: NewClient(os.Getenv("PDL_API_KEY"), "1.0.0")}
+
+	// test
+	params := model.BulkEnrichPersonParams{
+		Required: "emails AND profiles",
+		Requests: []model.BulkEnrichSinglePersonParams{
+			{
+				Params: model.PersonParams{
+					Profile: []string{"linkedin.com/in/seanthorne"},
+				},
+			},
+			{
+				Params: model.PersonParams{
+					Profile: []string{"https://www.linkedin.com/in/haydenconrad/"},
+				},
+			},
+		},
+	}
+	resp, err := person.BulkEnrich(context.Background(), params)
+
+	// assertions
+	assert.NoError(t, err)
+	assert.Equal(t, http.StatusOK, resp[0].Status)
+	assert.Equal(t, http.StatusOK, resp[1].Status)
+	assert.Equal(t, "sean thorne", resp[0].Data.FullName)
+	assert.Equal(t, "hayden conrad", resp[1].Data.FullName)
+}
+
 func TestPerson_Identify(t *testing.T) {
 	// setup
 	person := Person{Client: NewClient(os.Getenv("PDL_API_KEY"), "1.0.0")}

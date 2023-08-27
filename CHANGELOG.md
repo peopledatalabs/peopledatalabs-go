@@ -50,3 +50,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [1.3.1] - 2023-08-13
 
 - Add return_if_unmatched to IP enrichment
+
+## [1.3.2] - 2023-08-26
+
+- Fix Bulk Person Enrichment 415 Error
