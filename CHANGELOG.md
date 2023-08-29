@@ -58,3 +58,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [1.3.3] - 2023-08-28
 
 - Fix Bulk Person Enrichment to Support Base and Additional Params
+
+## [1.3.4] - 2023-08-28
+
+- Add Id to Company Enrichment

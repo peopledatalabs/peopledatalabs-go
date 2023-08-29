@@ -3,6 +3,7 @@ package model
 import "errors"
 
 type CompanyParams struct {
+	Id            []string `json:"pdl_id,omitempty" url:"pdl_id,omitempty"`                 // The pdl_id of a company
 	Name          string   `json:"name,omitempty" url:"name,omitempty"`                     // The name of the company
 	Website       string   `json:"website,omitempty" url:"website,omitempty"`               // A website the company uses
 	Profile       string   `json:"profile,omitempty" url:"profile,omitempty"`               // A social profile of the company (linkedin/facebook/twitter/crunchbase)
