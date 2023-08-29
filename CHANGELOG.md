@@ -54,3 +54,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [1.3.2] - 2023-08-26
 
 - Fix Bulk Person Enrichment 415 Error
+
+## [1.3.3] - 2023-08-28
+
+- Fix Bulk Person Enrichment to Support Base and Additional Params

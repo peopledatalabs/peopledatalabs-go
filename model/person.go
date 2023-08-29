@@ -67,7 +67,8 @@ type EnrichPersonResponse struct {
 }
 
 type BulkEnrichPersonParams struct {
-	Required string                         `json:"required"`
+	BaseParams
+	AdditionalParams
 	Requests []BulkEnrichSinglePersonParams `json:"requests"`
 }
 

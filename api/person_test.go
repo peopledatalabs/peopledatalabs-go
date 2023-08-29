@@ -35,7 +35,8 @@ func TestPerson_BulkEnrich(t *testing.T) {
 
 	// test
 	params := model.BulkEnrichPersonParams{
-		Required: "emails AND profiles",
+		BaseParams:       model.BaseParams{Pretty: true},
+		AdditionalParams: model.AdditionalParams{MinLikelihood: 6, IncludeIfMatched: true, Required: "full_name"},
 		Requests: []model.BulkEnrichSinglePersonParams{
 			{
 				Params: model.PersonParams{
