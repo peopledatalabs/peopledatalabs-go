@@ -62,3 +62,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [1.3.4] - 2023-08-28
 
 - Add Id to Company Enrichment
+
+## [1.4.0] - 2023-11-20
+
+- Add Support for Beta AutoComplete Endpoint
