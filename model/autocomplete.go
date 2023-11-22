@@ -7,6 +7,7 @@ import (
 type AutocompleteBaseParams struct {
 	Field AutocompleteType `json:"field" url:"field"`                   // Field that autocomplete will be calculated for
 	Text  string           `json:"text,omitempty" url:"text,omitempty"` // Text that is used as the seed for autocompletion
+	Beta  bool             `json:"beta,omitempty" url:"beta,omitempty"` // Whether to use the beta version of the autocomplete API
 }
 
 type AutocompleteParams struct {
@@ -48,4 +49,5 @@ const (
 	AutocompleteTypeSchool                    = "school"   // School names
 	AutocompleteTypeSkill                     = "skill"    // Skills
 	AutocompleteTypeTitle                     = "title"    // Job titles
+	AutocompleteTypeWebsite                   = "website"  // Websites
 )
