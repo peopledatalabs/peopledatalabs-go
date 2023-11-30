@@ -256,7 +256,7 @@ type Company struct {
 	FundingStages              []string                  `json:"funding_stages"`                 // The funding stages the company has raised
 	FundingDetails             []struct {
 		FundingRoundDate     string   `json:"funding_round_date"`    // The date of the funding round
-		FundingRaised        int      `json:"funding_raised"`        // The amount of funding raised in the funding round
+		FundingRaised        float64  `json:"funding_raised"`        // The amount of funding raised in the funding round
 		FundingCurrency      string   `json:"funding_currency"`      // The currency of the funding round
 		FundingType          string   `json:"funding_type"`          // The type of funding round
 		InvestingCompanies   []string `json:"investing_companies"`   // The companies that invested in the funding round
