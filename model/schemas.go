@@ -53,7 +53,7 @@ type Person struct {
 	JobCompanyEmployeeCount         int      `json:"job_company_employee_count"`            // A person's current company's employee count
 	JobCompanyInferredRevenue       string   `json:"job_company_inferred_revenue"`          // A person's current company's inferred revenue
 	JobCompanyMonthGrowthRate       float64  `json:"job_company_12mo_employee_growth_rate"` // A person's current company's 12 month employee growth rate
-	JobCompanyTotalFundingRaised    int      `json:"job_company_total_funding_raised"`      // A person's current company's total funding raised
+	JobCompanyTotalFundingRaised    float64  `json:"job_company_total_funding_raised"`      // A person's current company's total funding raised
 	JobLastUpdated                  string   `json:"job_last_updated"`                      // YYYY-MM-DD Indicates the timestamp of the most recent source that agrees with this information
 	JobStartDate                    string   `json:"job_start_date"`                        // YYYY-MM-DD Indicates the start period of the object. Can be accurate to the day (YYYY-MM-DD), month (YYYY-MM) or year (YYYY)
 	LocationName                    string   `json:"location_name"`                         // the current canonical location of the person
@@ -249,7 +249,7 @@ type Company struct {
 	} `json:"recent_exec_departures"` // The profiles of all of CXOs, owners and VPs that have left the company in the last 3 months.
 	TopPreviousEmployersByRole map[string]map[string]int `json:"top_previous_employers_by_role"` // The top 10 previous companies employees worked for and how many current employees were previously employed by them.
 	TopNextEmployersByRole     map[string]map[string]int `json:"top_next_employers_by_role"`     // The top 10 companies employees moved to and how many employees moved there.
-	TotalFundingRaised         int                       `json:"total_funding_raised"`           // The total amount of funding raised by the company
+	TotalFundingRaised         float64                   `json:"total_funding_raised"`           // The total amount of funding raised by the company
 	LatestFundingStage         string                    `json:"latest_funding_stage"`           // The latest funding stage of the company
 	LastFundingDate            string                    `json:"last_funding_date"`              // The date of the latest funding round
 	NumberFundingRounds        int                       `json:"number_funding_rounds"`          // The number of funding rounds the company has raised
