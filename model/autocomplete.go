@@ -39,15 +39,15 @@ type AutocompleteType string
 
 const (
 	AutocompleteTypeCompany  AutocompleteType = "company"  // Company names
-	AutocompleteTypeCountry                   = "country"  // Country names
-	AutocompleteTypeIndustry                  = "industry" // Industries
-	AutocompleteTypeLocation                  = "location" // Location names
-	AutocompleteTypeMajor                     = "major"    // Educational majors (field of study)
-	AutocompleteTypeRegion                    = "region"   // Region name (e.g. states for the US)
-	AutocompleteTypeRole                      = "role"     // Job roles
-	AutocompleteTypeSubRole                   = "sub_role" // Job sub roles
-	AutocompleteTypeSchool                    = "school"   // School names
-	AutocompleteTypeSkill                     = "skill"    // Skills
-	AutocompleteTypeTitle                     = "title"    // Job titles
-	AutocompleteTypeWebsite                   = "website"  // Websites
+	AutocompleteTypeCountry  AutocompleteType = "country"  // Country names
+	AutocompleteTypeIndustry AutocompleteType = "industry" // Industries
+	AutocompleteTypeLocation AutocompleteType = "location" // Location names
+	AutocompleteTypeMajor    AutocompleteType = "major"    // Educational majors (field of study)
+	AutocompleteTypeRegion   AutocompleteType = "region"   // Region name (e.g. states for the US)
+	AutocompleteTypeRole     AutocompleteType = "role"     // Job roles
+	AutocompleteTypeSubRole  AutocompleteType = "sub_role" // Job sub roles
+	AutocompleteTypeSchool   AutocompleteType = "school"   // School names
+	AutocompleteTypeSkill    AutocompleteType = "skill"    // Skills
+	AutocompleteTypeTitle    AutocompleteType = "title"    // Job titles
+	AutocompleteTypeWebsite  AutocompleteType = "website"  // Websites
 )

@@ -69,6 +69,7 @@ type IPCompany struct {
 	ID              string            `json:"id"`
 	Domain          string            `json:"domain"`
 	Name            string            `json:"name"`
+	DisplayName     string            `json:"display_name"`
 	Location        IPCompanyLocation `json:"location"`
 	Size            string            `json:"size"`
 	Industry        string            `json:"industry"`
