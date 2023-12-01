@@ -66,3 +66,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [1.4.0] - 2023-11-20
 
 - Add Support for Beta AutoComplete Endpoint
+
+## [1.4.1] - 2023-11-20
+
+- Update Models for Company and Autocomplete Endpoints
