@@ -70,3 +70,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [1.4.1] - 2023-11-20
 
 - Update Models for Company and Autocomplete Endpoints
+
+## [1.4.2] - 2024-01-09
+
+- Add Support for Bulk Company Enrichment
+- Add LinkedIn Slug to Company Response
+- Add Size to Company Enrichment Params

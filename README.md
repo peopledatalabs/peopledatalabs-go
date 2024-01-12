@@ -9,7 +9,7 @@
     <img src="https://img.shields.io/badge/repo%20status-Active-limegreen" alt="Repo Status">
   </a>&nbsp;
   <a href="https://pkg.go.dev/github.com/peopledatalabs/peopledatalabs-go">
-    <img src="https://img.shields.io/github/go-mod/go-version/peopledatalabs/peopledatalabs-go" alt="Go 1.4.1" />
+    <img src="https://img.shields.io/github/go-mod/go-version/peopledatalabs/peopledatalabs-go" alt="Go 1.4.2" />
   </a>&nbsp;
   <a href="https://github.com/peopledatalabs/peopledatalabs-go/actions/workflows/test.yaml">
     <img src="https://github.com/peopledatalabs/peopledatalabs-go/actions/workflows/test.yaml/badge.svg" alt="Tests Status" />
@@ -188,6 +188,28 @@ params := pdlmodel.EnrichCompanyParams{
 result, err := client.Company.Enrich(ctx, params)
 ```
 
+#### Bulk Enrichment
+
+```go
+params := pdlmodel.BulkEnrichCompanyParams{
+    BaseParams:       model.BaseParams{Pretty: true},
+    Requests: []pdlmodel.BulkEnrichSingleCompanyParams{
+        {
+            Params: pdlmodel.CompanyParams{
+                Profile:  "linkedin.com/company/peopledatalabs",
+            },
+        },
+        {
+            Params: pdlmodel.CompanyParams{
+                Profile:   "https://www.linkedin.com/company/apple/",
+            },
+        },
+    },
+}
+
+result, err := client.Company.BulkEnrich(ctx, params)
+```
+
 #### Search (Elasticsearch)
 
 ```go
@@ -334,10 +356,11 @@ client := pdl.New(apiKey, api.ClientOptions(func(c *api.Client) {
 
 **Company Endpoints**
 
-| API Endpoint                                                                          | SDK Function                    |
-| ------------------------------------------------------------------------------------- |---------------------------------|
-| [Company Enrichment API](https://docs.peopledatalabs.com/docs/company-enrichment-api) | `client.Company.Enrich(params)` |
-| [Company Search API](https://docs.peopledatalabs.com/docs/company-search-api)         | `client.Company.Search(params)` |
+| API Endpoint                                                                                    | SDK Function                    |
+| ----------------------------------------------------------------------------------------------- |---------------------------------|
+| [Company Enrichment API](https://docs.peopledatalabs.com/docs/company-enrichment-api)           | `client.Company.Enrich(params)` |
+| [Company Bulk Enrichment API](https://docs.peopledatalabs.com/docs/bulk-company-enrichment-api) | `client.Company.BulkEnrich(params)`   |
+| [Company Search API](https://docs.peopledatalabs.com/docs/company-search-api)                   | `client.Company.Search(params)` |
 
 **Supporting Endpoints**
 
