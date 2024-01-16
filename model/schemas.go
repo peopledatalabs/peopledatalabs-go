@@ -176,6 +176,7 @@ type Company struct {
 	Id                    string   `json:"id"`                      // PDL company ID. This is currently non-persistent and generated from the company's primary linkedin username
 	Founded               int      `json:"founded"`                 // The founded year of the company
 	Industry              string   `json:"industry"`                // Self reported industry
+	LinkedInSlug          string   `json:"linkedin_slug"`           // The company's main linkedin slug
 	LinkedinId            string   `json:"linkedin_id"`             // Main LinkedIn profile ID for the company
 	LinkedinUrl           string   `json:"linkedin_url"`            // Main LinkedIn profile URL for the company
 	FacebookUrl           string   `json:"facebook_url"`            // Main Facebook profile URL for the company
