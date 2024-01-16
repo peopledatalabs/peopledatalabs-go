@@ -37,8 +37,8 @@ func (params CompanyParams) Validate() error {
 }
 
 type EnrichCompanyResponse struct {
-	Status     int     `json:"status"`
-	Likelihood int     `json:"likelihood"`
+	Status     int `json:"status"`
+	Likelihood int `json:"likelihood"`
 	Company
 }
 
