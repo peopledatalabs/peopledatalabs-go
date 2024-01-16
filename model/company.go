@@ -37,14 +37,12 @@ func (params CompanyParams) Validate() error {
 }
 
 type EnrichCompanyResponse struct {
-	Status     int `json:"status"`
-	Likelihood int `json:"likelihood"`
+	Status     int     `json:"status"`
+	Likelihood int     `json:"likelihood"`
 	Company
 }
 
 type BulkEnrichCompanyParams struct {
-	BaseParams
-	AdditionalParams
 	Requests []BulkEnrichSingleCompanyParams `json:"requests"`
 }
 
@@ -58,14 +56,8 @@ func (params BulkEnrichCompanyParams) Validate() error {
 }
 
 type BulkEnrichSingleCompanyParams struct {
-	Params   CompanyParams   `json:"params"` // The ID of a person
-	Metadata CompanyMetadata `json:"metadata"`
+	Params CompanyParams `json:"params"` // The ID of a person
 }
-type BulkEnrichCompanyResponse struct {
-	EnrichCompanyResponse
-	Metadata CompanyMetadata `json:"metadata"`
-}
-type CompanyMetadata map[string]string
 
 type CleanCompanyParams struct {
 	Name    string `json:"name,omitempty" url:"name,omitempty"`       // The name of the company

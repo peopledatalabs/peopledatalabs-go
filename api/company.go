@@ -29,11 +29,11 @@ func (c Company) Enrich(ctx context.Context, params model.EnrichCompanyParams) (
 
 // BulkEnrich allows to enrich up to 100 companies in a single HTTP request
 // docs: https://docs.peopledatalabs.com/docs/bulk-company-enrichment-api
-func (c Company) BulkEnrich(ctx context.Context, params model.BulkEnrichCompanyParams) ([]model.BulkEnrichCompanyResponse, error) {
+func (c Company) BulkEnrich(ctx context.Context, params model.BulkEnrichCompanyParams) ([]model.EnrichCompanyResponse, error) {
 	if err := params.Validate(); err != nil {
 		return nil, err
 	}
-	var response []model.BulkEnrichCompanyResponse
+	var response []model.EnrichCompanyResponse
 	return response, c.Client.post(ctx, companyBulkEnrichPath, params, &response)
 }
 

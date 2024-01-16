@@ -34,29 +34,27 @@ func TestCompany_BulkEnrich(t *testing.T) {
 
 	// test
 	params := model.BulkEnrichCompanyParams{
-		BaseParams: model.BaseParams{Pretty: true},
 		Requests: []model.BulkEnrichSingleCompanyParams{
 			{
 				Params: model.CompanyParams{
-					Profile: "linkedin.com/company/peopledatalabs/",
+					Profile: "linkedin.com/company/walmart",
 				},
 			},
 			{
 				Params: model.CompanyParams{
-					Profile: "https://www.linkedin.com/company/apple/",
+					Website: "google.com",
 				},
 			},
 		},
 	}
 	resp, err := company.BulkEnrich(context.Background(), params)
 
-	fmt.Println(resp)
 	// assertions
 	assert.NoError(t, err)
 	assert.Equal(t, http.StatusOK, resp[0].Status)
 	assert.Equal(t, http.StatusOK, resp[1].Status)
-	assert.Equal(t, "People Data Labs", resp[0].DisplayName)
-	assert.Equal(t, "Apple", resp[1].DisplayName)
+	assert.Equal(t, "Walmart", resp[0].Company.DisplayName)
+	assert.Equal(t, "Google", resp[1].Company.DisplayName)
 }
 
 func TestCompany_Clean(t *testing.T) {
