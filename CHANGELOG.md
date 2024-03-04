@@ -76,3 +76,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Add Support for Bulk Company Enrichment
 - Add LinkedIn Slug to Company Response
 - Add Size to Company Enrichment Params
+
+## [1.4.3] - 2024-03-04
+
+- Update Dependencies
