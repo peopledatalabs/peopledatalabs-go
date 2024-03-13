@@ -80,3 +80,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [1.4.3] - 2024-03-04
 
 - Update Dependencies
+
+## [1.4.4] - 2024-03-04
+
+- Remove beta from AutoComplete Endpoint
