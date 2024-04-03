@@ -3,7 +3,7 @@ package api
 import (
 	"context"
 
-	"github.com/peopledatalabs/peopledatalabs-go/model"
+	"github.com/peopledatalabs/peopledatalabs-go/v2/model"
 )
 
 const locationCleanPath = "/location/clean"

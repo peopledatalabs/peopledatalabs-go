@@ -6,7 +6,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/peopledatalabs/peopledatalabs-go/model"
+	"github.com/peopledatalabs/peopledatalabs-go/v2/model"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -17,7 +17,7 @@ func TestSkill(t *testing.T) {
 
 	// test
 	params := model.SkillParams{
-		BaseParams:             model.BaseParams{Pretty: true},
+		BaseParams:      model.BaseParams{Pretty: true},
 		SkillBaseParams: model.SkillBaseParams{Skill: "python"},
 	}
 	resp, err := auto.Skill(context.Background(), params)
