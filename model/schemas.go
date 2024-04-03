@@ -8,7 +8,7 @@ type Person struct {
 	MiddleName                      string   `json:"middle_name"`                           // A person's middle name
 	LastInitial                     string   `json:"last_initial"`                          // The first letter of a person's last name
 	LastName                        string   `json:"last_name"`                             // A person's last name
-	Gender                          string   `json:"gender"`                                // The person's gender
+	Sex                             string   `json:"sex"`                                   // The person's sex
 	BirthYear                       int      `json:"birth_year"`                            // Approximated birth date associated with this person profile. If a profile has a birth_date, the birth_year field will match
 	BirthDate                       string   `json:"birth_date"`                            // Date string in YYYY-mm-dd format. Can be accurate to the day (YYYY-MM-DD), month (YYYY-MM) or year (YYYY). If this exists, birth_year will agree with this
 	LinkedinUrl                     string   `json:"linkedin_url"`                          // Main linkedin profile for this record based on source agreement
@@ -55,6 +55,8 @@ type Person struct {
 	JobCompanyMonthGrowthRate       float64  `json:"job_company_12mo_employee_growth_rate"` // A person's current company's 12 month employee growth rate
 	JobCompanyTotalFundingRaised    float64  `json:"job_company_total_funding_raised"`      // A person's current company's total funding raised
 	JobLastUpdated                  string   `json:"job_last_updated"`                      // YYYY-MM-DD Indicates the timestamp of the most recent source that agrees with this information
+	JobLastChanged                  string   `json:"job_last_changed"`                      // YYYY-MM-DD Indicates the timestamp of the timestamp that reflects when the top-level job information changed
+	JobLastVerified                 string   `json:"job_last_verified"`                     // YYYY-MM-DD Indicates the timestamp that reflects when the top level job information was last validated by a data source
 	JobStartDate                    string   `json:"job_start_date"`                        // YYYY-MM-DD Indicates the start period of the object. Can be accurate to the day (YYYY-MM-DD), month (YYYY-MM) or year (YYYY)
 	LocationName                    string   `json:"location_name"`                         // the current canonical location of the person
 	LocationLocality                string   `json:"location_locality"`                     // the current locality of the person

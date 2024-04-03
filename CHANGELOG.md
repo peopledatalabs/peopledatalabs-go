@@ -84,3 +84,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [1.4.4] - 2024-03-04
 
 - Remove beta from AutoComplete Endpoint
+
+## [2.0.0] - 2024-04-02
+
+- Change gender to sex in Person Schema
+- Add job_last_changed to Person Schema
+- Add job_last_verified to Person Schema
