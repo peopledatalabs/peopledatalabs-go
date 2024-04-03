@@ -1,7 +1,7 @@
 package peopledatalabs_go
 
 import (
-	"github.com/peopledatalabs/peopledatalabs-go/api"
+	"github.com/peopledatalabs/peopledatalabs-go/v2/api"
 )
 
 const Version = "2.0.0"

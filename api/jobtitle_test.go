@@ -6,7 +6,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/peopledatalabs/peopledatalabs-go/model"
+	"github.com/peopledatalabs/peopledatalabs-go/v2/model"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -17,7 +17,7 @@ func TestJobTitle(t *testing.T) {
 
 	// test
 	params := model.JobTitleParams{
-		BaseParams:             model.BaseParams{Pretty: true},
+		BaseParams:         model.BaseParams{Pretty: true},
 		JobTitleBaseParams: model.JobTitleBaseParams{JobTitle: "data scientist"},
 	}
 	resp, err := auto.JobTitle(context.Background(), params)
