@@ -4,7 +4,7 @@ import (
 	"github.com/peopledatalabs/peopledatalabs-go/v2/api"
 )
 
-const Version = "2.0.0"
+const Version = "2.0.1"
 
 type pld struct {
 	Person       api.Person
