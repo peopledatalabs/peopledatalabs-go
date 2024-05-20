@@ -90,3 +90,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Change gender to sex in Person Schema
 - Add job_last_changed to Person Schema
 - Add job_last_verified to Person Schema
+
+## [2.0.1] - 2024-05-13
+
+- Add DatasetVersion to Company Schema
+- Add DatasetVersion to IP Schema

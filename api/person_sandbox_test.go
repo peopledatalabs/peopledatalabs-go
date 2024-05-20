@@ -20,7 +20,7 @@ func TestPerson_Enrich_Sandbox(t *testing.T) {
 
 	// test
 	params := model.EnrichPersonParams{
-		PersonParams:     model.PersonParams{Email: []string{"fletcherveronica@example.com"}},
+		PersonParams:     model.PersonParams{Email: []string{"reneewillis74@aol.com"}},
 		AdditionalParams: model.AdditionalParams{MinLikelihood: 6},
 	}
 	resp, err := person.Enrich(context.Background(), params)
@@ -28,7 +28,7 @@ func TestPerson_Enrich_Sandbox(t *testing.T) {
 	// assertions
 	assert.NoError(t, err)
 	assert.Equal(t, http.StatusOK, resp.Status)
-	assert.Equal(t, "twitter.com/omarmendez", resp.Data.TwitterUrl)
+	assert.Equal(t, "twitter.com/rc1994", resp.Data.TwitterUrl)
 	assert.GreaterOrEqual(t, resp.Likelihood, 6)
 }
 
@@ -42,7 +42,7 @@ func TestPerson_Identify_Sandbox(t *testing.T) {
 	// test
 	params := model.IdentifyPersonParams{
 		PersonParams: model.PersonParams{
-			Company: []string{"walmart"},
+			Company: []string{"adams group"},
 		},
 	}
 	resp, err := person.Identify(context.Background(), params)
@@ -67,7 +67,7 @@ func TestPerson_Search_Sandbox(t *testing.T) {
 	params := model.SearchParams{
 		BaseParams: model.BaseParams{Size: numResults},
 		SearchBaseParams: model.SearchBaseParams{
-			SQL: "SELECT * FROM person WHERE location_country='mexico';",
+			SQL: "SELECT * FROM person WHERE location_country='united states';",
 		},
 	}
 	resp, err := person.Search(context.Background(), params)

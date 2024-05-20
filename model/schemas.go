@@ -176,6 +176,7 @@ type Company struct {
 	EmployeeCount         int      `json:"employee_count"`          // The current number of employees working at the company based on number of PDL profiles.
 	LinkedInEmployeeCount int      `json:"linkedin_employee_count"` // The current number of employees working at the company based on number of LinkedIn profiles.
 	Id                    string   `json:"id"`                      // PDL company ID. This is currently non-persistent and generated from the company's primary linkedin username
+	DatasetVersion        string   `json:"dataset_version"`         // Explains the current major or minor release number.
 	Founded               int      `json:"founded"`                 // The founded year of the company
 	Industry              string   `json:"industry"`                // Self reported industry
 	LinkedInSlug          string   `json:"linkedin_slug"`           // The company's main linkedin slug

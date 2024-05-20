@@ -19,7 +19,7 @@ type IPParams struct {
 
 func (params IPParams) Validate() error {
 	if params.IP == "" {
-		return errors.New("ip: 'IP' para must not be empty")
+		return errors.New("ip: 'IP' parameter must not be empty")
 	}
 	return nil
 }
@@ -30,9 +30,10 @@ type IPResponse struct {
 }
 
 type IPResult struct {
-	IP      IPInfo    `json:"ip"`
-	Company IPCompany `json:"company"`
-	Person  IPPerson  `json:"person"`
+	IP             IPInfo    `json:"ip"`
+	Company        IPCompany `json:"company"`
+	Person         IPPerson  `json:"person"`
+	DatasetVersion string    `json:"dataset_version"` // Explains the release number.
 }
 
 type IPInfo struct {
@@ -42,14 +43,15 @@ type IPInfo struct {
 }
 
 type IPMetadata struct {
-	Version int  `json:"version"`
-	Mobile  bool `json:"mobile"`
-	Hosting bool `json:"hosting"`
-	Proxy   bool `json:"proxy"`
-	Tor     bool `json:"tor"`
-	VPN     bool `json:"vpn"`
-	Relay   bool `json:"relay"`
-	Service bool `json:"service"`
+	Version   int    `json:"version"`
+	Mobile    bool   `json:"mobile"`
+	Hosting   bool   `json:"hosting"`
+	Proxy     bool   `json:"proxy"`
+	Tor       bool   `json:"tor"`
+	VPN       bool   `json:"vpn"`
+	Relay     bool   `json:"relay"`
+	Service   bool   `json:"service"`
+	ASNDomain string `json:"asn_domain"`
 }
 
 type IPLocation struct {
