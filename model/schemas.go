@@ -54,7 +54,6 @@ type Person struct {
 	JobCompanyInferredRevenue       string   `json:"job_company_inferred_revenue"`          // A person's current company's inferred revenue
 	JobCompanyMonthGrowthRate       float64  `json:"job_company_12mo_employee_growth_rate"` // A person's current company's 12 month employee growth rate
 	JobCompanyTotalFundingRaised    float64  `json:"job_company_total_funding_raised"`      // A person's current company's total funding raised
-	JobLastUpdated                  string   `json:"job_last_updated"`                      // YYYY-MM-DD Indicates the timestamp of the most recent source that agrees with this information
 	JobLastChanged                  string   `json:"job_last_changed"`                      // YYYY-MM-DD Indicates the timestamp of the timestamp that reflects when the top-level job information changed
 	JobLastVerified                 string   `json:"job_last_verified"`                     // YYYY-MM-DD Indicates the timestamp that reflects when the top level job information was last validated by a data source
 	JobStartDate                    string   `json:"job_start_date"`                        // YYYY-MM-DD Indicates the start period of the object. Can be accurate to the day (YYYY-MM-DD), month (YYYY-MM) or year (YYYY)
@@ -174,7 +173,8 @@ type Company struct {
 	Name                  string   `json:"name"`                    // The company's main common name
 	Size                  string   `json:"size"`                    // A range representing the number of people working at the company
 	EmployeeCount         int      `json:"employee_count"`          // The current number of employees working at the company based on number of PDL profiles.
-	LinkedInEmployeeCount int      `json:"linkedin_employee_count"` // The current number of employees working at the company based on number of LinkedIn profiles.
+	LinkedInEmployeeCount int      `json:"linkedin_employee_count"` // The current number of employees on the LinkedIn profile.
+	LinkedInFollowerCount int      `json:"linkedin_follower_count"` // The current number of followers on the LinkedIn profile.
 	Id                    string   `json:"id"`                      // PDL company ID. This is currently non-persistent and generated from the company's primary linkedin username
 	DatasetVersion        string   `json:"dataset_version"`         // Explains the current major or minor release number.
 	Founded               int      `json:"founded"`                 // The founded year of the company
