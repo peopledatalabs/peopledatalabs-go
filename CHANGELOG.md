@@ -95,3 +95,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Add DatasetVersion to Company Schema
 - Add DatasetVersion to IP Schema
+
+## [3.0.0] - 2024-07-14
+
+- Remove job_last_updated from Person Schema
+- Add linkedin_follower_count to Company Schema
