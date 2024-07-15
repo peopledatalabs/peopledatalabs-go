@@ -42,7 +42,7 @@ package main
 
 import (
     pdl "github.com/peopledatalabs/peopledatalabs-go/v2"
-    pdlmodel "github.com/peopledatalabs/peopledatalabs-go/v2/model"
+    pdlmodel "github.com/peopledatalabs/peopledatalabs-go/v3/model"
 )
 
 
@@ -332,8 +332,8 @@ result, err := client.IP(ctx, params)
 
 import (
     pdl "github.com/peopledatalabs/peopledatalabs-go/v2"
-    "github.com/peopledatalabs/peopledatalabs-go/v2/api"
-    pdlmodel "github.com/peopledatalabs/peopledatalabs-go/v2/model"
+    "github.com/peopledatalabs/peopledatalabs-go/v3/api"
+    pdlmodel "github.com/peopledatalabs/peopledatalabs-go/v3/model"
 )
 
 client := pdl.New(apiKey, api.ClientOptions(func(c *api.Client) {

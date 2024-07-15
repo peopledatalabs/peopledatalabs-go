@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/peopledatalabs/peopledatalabs-go/v2/model"
+	"github.com/peopledatalabs/peopledatalabs-go/v3/model"
 )
 
 const (

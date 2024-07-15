@@ -6,7 +6,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/peopledatalabs/peopledatalabs-go/v2/model"
+	"github.com/peopledatalabs/peopledatalabs-go/v3/model"
 
 	"github.com/stretchr/testify/assert"
 )
