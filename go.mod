@@ -1,4 +1,4 @@
-module github.com/peopledatalabs/peopledatalabs-go/v2
+module github.com/peopledatalabs/peopledatalabs-go/v3
 
 go 1.18
 

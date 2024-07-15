@@ -28,7 +28,7 @@
 
 1. To use _peopledatalabs-go_ SDK in your project initialize go modules then run:
     ```bash
-    go get github.com/peopledatalabs/peopledatalabs-go/v2
+    go get github.com/peopledatalabs/peopledatalabs-go/v3
     ```
 2. Sign up for a [free PDL API key](https://www.peopledatalabs.com/signup).
 3. Set your API key as a environment variable.
@@ -41,7 +41,7 @@ First, create the PeopleDataLabs client:
 package main
 
 import (
-    pdl "github.com/peopledatalabs/peopledatalabs-go/v2"
+    pdl "github.com/peopledatalabs/peopledatalabs-go/v3"
     pdlmodel "github.com/peopledatalabs/peopledatalabs-go/v3/model"
 )
 
@@ -331,7 +331,7 @@ result, err := client.IP(ctx, params)
 # To enable sandbox usage, use the following
 
 import (
-    pdl "github.com/peopledatalabs/peopledatalabs-go/v2"
+    pdl "github.com/peopledatalabs/peopledatalabs-go/v3"
     "github.com/peopledatalabs/peopledatalabs-go/v3/api"
     pdlmodel "github.com/peopledatalabs/peopledatalabs-go/v3/model"
 )
