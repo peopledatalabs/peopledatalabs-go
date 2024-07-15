@@ -4,8 +4,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/peopledatalabs/peopledatalabs-go/v2/api"
-	"github.com/peopledatalabs/peopledatalabs-go/v2/logger"
+	"github.com/peopledatalabs/peopledatalabs-go/v3/api"
+	"github.com/peopledatalabs/peopledatalabs-go/v3/logger"
 )
 
 // WithHTTPClient sets a custom HTTP Client
