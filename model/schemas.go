@@ -123,6 +123,7 @@ type Person struct {
 		Majors    []string `json:"majors"`     // A list of majors associated with this education object
 		Minors    []string `json:"minors"`     // A list of minors associated with this education object
 		Raw       []string `json:"raw"`        // Raw education input information. Parsed into the degrees/majors/minors fields
+		Summary   *string  `json:"summary"`    // User-inputted summary of education
 	} `json:"education"` // Education objects associated with this person profile
 	Profiles            []Profile `json:"profiles"`             // Social media profiles associated with this person profile
 	Phones              []Phone   `json:"phones"`               // A list of the phone numbers known to be associated with this record
@@ -280,7 +281,6 @@ type School struct {
 	Website     string   `json:"website"`      // The website associated with the school, could include subdomains
 	Domain      string   `json:"domain"`       // The website associated with the school
 	Raw         []string `json:"raw"`          // Raw school names
-	Summary     *string  `json:"summary"`      // User-inputted summary of education
 }
 
 type Location struct {

@@ -100,3 +100,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Remove job_last_updated from Person Schema
 - Add linkedin_follower_count to Company Schema
+
+## [3.0.1] - 2024-08-05
+
+- Fix Education Schema to include summary
