@@ -75,7 +75,8 @@ func (params CleanCompanyParams) Validate() error {
 type CleanCompanyResponse struct {
 	Status int `json:"status"`
 	Company
-	FuzzyMatch bool `json:"fuzzy_match"`
+	FuzzyMatch bool    `json:"fuzzy_match"`
+	Score      float64 `json:"score"`
 }
 
 type SearchCompanyResponse struct {
