@@ -108,3 +108,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [3.0.2] - 2024-08-08
 
 - Add Score to company cleaner response
+
+## [3.1.0] - 2024-08-14
+
+- Add UltimateParentTicker to Company Schema
+- Add UltimateParentMicExchange to Company Schema
+- Add MicExchange to Company Schema

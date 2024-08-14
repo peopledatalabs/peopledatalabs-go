@@ -170,34 +170,37 @@ type Person struct {
 }
 
 type Company struct {
-	DisplayName           string   `json:"display_name"`            // The company's main display name
-	Name                  string   `json:"name"`                    // The company's main common name
-	Size                  string   `json:"size"`                    // A range representing the number of people working at the company
-	EmployeeCount         int      `json:"employee_count"`          // The current number of employees working at the company based on number of PDL profiles.
-	LinkedInEmployeeCount int      `json:"linkedin_employee_count"` // The current number of employees on the LinkedIn profile.
-	LinkedInFollowerCount int      `json:"linkedin_follower_count"` // The current number of followers on the LinkedIn profile.
-	Id                    string   `json:"id"`                      // PDL company ID. This is currently non-persistent and generated from the company's primary linkedin username
-	DatasetVersion        string   `json:"dataset_version"`         // Explains the current major or minor release number.
-	Founded               int      `json:"founded"`                 // The founded year of the company
-	Industry              string   `json:"industry"`                // Self reported industry
-	LinkedInSlug          string   `json:"linkedin_slug"`           // The company's main linkedin slug
-	LinkedinId            string   `json:"linkedin_id"`             // Main LinkedIn profile ID for the company
-	LinkedinUrl           string   `json:"linkedin_url"`            // Main LinkedIn profile URL for the company
-	FacebookUrl           string   `json:"facebook_url"`            // Main Facebook profile URL for the company
-	TwitterUrl            string   `json:"twitter_url"`             // Main Twitter profile URL for the company
-	Profiles              []string `json:"profiles"`                // List of all known social profile URLs for the company
-	Website               string   `json:"website"`                 // Primary company website
-	Ticker                string   `json:"ticker"`                  // The company ticker (only for public companies).
-	Type                  string   `json:"type"`                    // The company type.
-	Summary               string   `json:"summary"`                 // A description of the company.
-	Tags                  []string `json:"tags"`                    // Tags associated with the company.
-	Headline              string   `json:"headline"`                // The company’s headline summary.
-	DisplayNameHistory    []string `json:"display_name_history"`    // A list of all known display names for the company.
-	AlternativeNames      []string `json:"alternative_names"`       // A list of names associated with this company.
-	AlternativeDomains    []string `json:"alternative_domains"`     // A list of alternate domains associated with this company.
-	AffiliatedProfiles    []string `json:"affiliated_profiles"`     // Company IDs that are affiliated with the queried company (parents & subsidiaries).
-	Location              Location `json:"location"`                // Location of the company’s current HQ.
-	NAICS                 []struct {
+	DisplayName               string   `json:"display_name"`                 // The company's main display name
+	Name                      string   `json:"name"`                         // The company's main common name
+	Size                      string   `json:"size"`                         // A range representing the number of people working at the company
+	EmployeeCount             int      `json:"employee_count"`               // The current number of employees working at the company based on number of PDL profiles.
+	LinkedInEmployeeCount     int      `json:"linkedin_employee_count"`      // The current number of employees on the LinkedIn profile.
+	LinkedInFollowerCount     int      `json:"linkedin_follower_count"`      // The current number of followers on the LinkedIn profile.
+	Id                        string   `json:"id"`                           // PDL company ID. This is currently non-persistent and generated from the company's primary linkedin username
+	DatasetVersion            string   `json:"dataset_version"`              // Explains the current major or minor release number.
+	Founded                   int      `json:"founded"`                      // The founded year of the company
+	Industry                  string   `json:"industry"`                     // Self reported industry
+	LinkedInSlug              string   `json:"linkedin_slug"`                // The company's main linkedin slug
+	LinkedinId                string   `json:"linkedin_id"`                  // Main LinkedIn profile ID for the company
+	LinkedinUrl               string   `json:"linkedin_url"`                 // Main LinkedIn profile URL for the company
+	FacebookUrl               string   `json:"facebook_url"`                 // Main Facebook profile URL for the company
+	TwitterUrl                string   `json:"twitter_url"`                  // Main Twitter profile URL for the company
+	Profiles                  []string `json:"profiles"`                     // List of all known social profile URLs for the company
+	Website                   string   `json:"website"`                      // Primary company website
+	Ticker                    string   `json:"ticker"`                       // The company ticker (only for public companies).
+	UltimateParentTicker      string   `json:"ultimate_parent_ticker"`       // The company ticker of the ultimate parent company (only for public companies).
+	MicExchange               string   `json:"mic_exchange"`                 // The MIC Exchange code of the company (only for public companies).
+	UltimateParentMicExchange string   `json:"ultimate_parent_mic_exchange"` // The MIC Exchange code of the ultimate parent company (only for public companies).
+	Type                      string   `json:"type"`                         // The company type.
+	Summary                   string   `json:"summary"`                      // A description of the company.
+	Tags                      []string `json:"tags"`                         // Tags associated with the company.
+	Headline                  string   `json:"headline"`                     // The company’s headline summary.
+	DisplayNameHistory        []string `json:"display_name_history"`         // A list of all known display names for the company.
+	AlternativeNames          []string `json:"alternative_names"`            // A list of names associated with this company.
+	AlternativeDomains        []string `json:"alternative_domains"`          // A list of alternate domains associated with this company.
+	AffiliatedProfiles        []string `json:"affiliated_profiles"`          // Company IDs that are affiliated with the queried company (parents & subsidiaries).
+	Location                  Location `json:"location"`                     // Location of the company’s current HQ.
+	NAICS                     []struct {
 		NaicsCode        string `json:"naics_code"`        // The NAICS code associated with a company’s industry classification.
 		Sector           string `json:"sector"`            // The industry classification according to the first 2 digits in the NAICS code.
 		SubSector        string `json:"sub_sector"`        // The industry classification according to the first 3 digits in the NAICS code.
