@@ -190,6 +190,8 @@ type Company struct {
 	Profiles                  []string `json:"profiles"`                     // List of all known social profile URLs for the company
 	Website                   string   `json:"website"`                      // Primary company website
 	Ticker                    string   `json:"ticker"`                       // The company ticker (only for public companies).
+	UltimateParent            string   `json:"ultimate_parent"`              // The company ID of the ultimate parent company.
+	ImmediateParent           string   `json:"immediate_parent"`             // The company ID of the immediate parent company.
 	UltimateParentTicker      string   `json:"ultimate_parent_ticker"`       // The company ticker of the ultimate parent company (only for public companies).
 	MicExchange               string   `json:"mic_exchange"`                 // The MIC Exchange code of the company (only for public companies).
 	UltimateParentMicExchange string   `json:"ultimate_parent_mic_exchange"` // The MIC Exchange code of the ultimate parent company (only for public companies).
@@ -201,6 +203,8 @@ type Company struct {
 	AlternativeNames          []string `json:"alternative_names"`            // A list of names associated with this company.
 	AlternativeDomains        []string `json:"alternative_domains"`          // A list of alternate domains associated with this company.
 	AffiliatedProfiles        []string `json:"affiliated_profiles"`          // Company IDs that are affiliated with the queried company (parents & subsidiaries).
+	DirectSubsidiaries        []string `json:"direct_subsidiaries"`          // Company IDs that are subsidiaries of the queried company.
+	AllSubsidiaries           []string `json:"all_subsidiaries"`             // Company IDs that are subsidiaries of the queried company.
 	Location                  Location `json:"location"`                     // Location of the company’s current HQ.
 	NAICS                     []struct {
 		NaicsCode        string `json:"naics_code"`        // The NAICS code associated with a company’s industry classification.
@@ -226,12 +230,14 @@ type Company struct {
 		CurrentHeadcount int     `json:"current_headcount"`    // Number of employees in the metro
 		MonthGrowthRate  float64 `json:"12_month_growth_rate"` // Growth rate in the metro over the last 12 months, precise to 4th decimal place
 	} `json:"top_us_employee_metros"` // The top 10 US metros where employees are based.
-	EmployeeCountByMonth        map[string]int            `json:"employee_count_by_month"`          // The number of employees at the end of each month.
-	GrossAdditionsByMonth       map[string]int            `json:"gross_additions_by_month"`         // The total number of profiles that joined the company each month.
-	GrossDeparturesByMonth      map[string]int            `json:"gross_departures_by_month"`        // The total number of profiles that left the company each month.
-	EmployeeCountByMonthByRole  map[string]map[string]int `json:"employee_count_by_month_by_role"`  // The number of employees at the end of each month, broken down by job role.
-	EmployeeCountByMonthByLevel map[string]map[string]int `json:"employee_count_by_month_by_level"` // The number of employees at the end of each month, broken down by job level.
-	RecentExecHires             []struct {
+	EmployeeCountByMonth            map[string]int            `json:"employee_count_by_month"`               // The number of employees at the end of each month.
+	GrossAdditionsByMonth           map[string]int            `json:"gross_additions_by_month"`              // The total number of profiles that joined the company each month.
+	GrossDeparturesByMonth          map[string]int            `json:"gross_departures_by_month"`             // The total number of profiles that left the company each month.
+	EmployeeCountByMonthByRole      map[string]map[string]int `json:"employee_count_by_month_by_role"`       // The number of employees at the end of each month, broken down by job role.
+	EmployeeCountByMonthByLevel     map[string]map[string]int `json:"employee_count_by_month_by_level"`      // The number of employees at the end of each month, broken down by job level.
+	EmployeeGrowthRate12MonthByRole map[string]float64        `json:"employee_growth_rate_12_month_by_role"` // The percentage increase in total headcount from N months prior, broken down by job role.
+	EmployeeCountByRole             map[string]int            `json:"employee_count_by_role"`                // The number of employees at the end of each month, broken down by job role.
+	RecentExecHires                 []struct {
 		JoinedDate                     string   `json:"joined_date"`                         // The month the Exec joined the company
 		PdlId                          string   `json:"pdl_id"`                              // ID of the Exec in our Person dataset
 		JobTitle                       string   `json:"job_title"`                           // Exec's current job title at the company
