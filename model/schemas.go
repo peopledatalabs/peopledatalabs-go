@@ -29,6 +29,7 @@ type Person struct {
 	JobTitle                        string   `json:"job_title"`                             // A person's current job title
 	JobTitleRole                    string   `json:"job_title_role"`                        // A person's current job title derived role
 	JobTitleSubRole                 string   `json:"job_title_sub_role"`                    // A person's job title derived subrole. Each subrole maps to a role
+	JobTitleClass                   string   `json:"job_title_class"`                       // A person's current job title derived class
 	JobTitleLevels                  []string `json:"job_title_levels"`                      // A person's current job title derived levels
 	JobCompanyId                    string   `json:"job_company_id"`                        // A person's current company's PDL ID
 	JobCompanyName                  string   `json:"job_company_name"`                      // A person's current company's name
@@ -106,6 +107,7 @@ type Person struct {
 			Name    string   `json:"name"`     // The inputted title from our data sources with some basic cleaning and mapping in order to help with merging
 			Role    string   `json:"role"`     // A person's job title derived role
 			SubRole string   `json:"sub_role"` // A person's job title derived subrole. Each subrole maps to a role
+			Class   string   `json:"class"`    // A person's job title derived class
 			Levels  []string `json:"levels"`   // Levels associated with a title
 			Raw     []string `json:"raw"`      // Raw titles
 		} `json:"title"` // A dictionary object that provides a canonicalized title, role and level
