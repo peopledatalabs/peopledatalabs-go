@@ -114,3 +114,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Add UltimateParentTicker to Company Schema
 - Add UltimateParentMicExchange to Company Schema
 - Add MicExchange to Company Schema
+
+## [3.2.0] - 2024-09-09
+
+- Add Support for Updated Title Roles
+- Update Person Schema to include job_title_roles and title.class
+- Add Support for Min Confidence in IP Enrichment
