@@ -120,3 +120,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Add Support for Updated Title Roles
 - Update Person Schema to include job_title_roles and title.class
 - Add Support for Min Confidence in IP Enrichment
+
+## [3.2.1] - 2024-11-28
+
+- Add Headline to Person Schema
+- Update Readme
