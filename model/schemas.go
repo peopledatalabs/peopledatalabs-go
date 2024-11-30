@@ -168,7 +168,8 @@ type Person struct {
 		Name        string `json:"name"`        // Name of the canonical language the person inputted
 		Proficiency int    `json:"proficiency"` // Self-identified proficiency score 1 (limited) - 5 (fluent)
 	} `json:"languages"` // Self-identified languages spoken
-	Summary *string `json:"summary"` // Self-written summaries tied to person profile (often linkedin summaries)
+	Summary  *string `json:"summary"`  // Self-written summaries tied to the person
+	Headline *string `json:"headline"` // Self-written headlines tied to the person
 }
 
 type Company struct {
