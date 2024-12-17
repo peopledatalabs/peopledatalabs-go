@@ -37,6 +37,7 @@ type AutocompleteResult struct {
 type AutocompleteType string
 
 const (
+	AutocompleteTypeClass    AutocompleteType = "class"    // Job title classes
 	AutocompleteTypeCompany  AutocompleteType = "company"  // Company names
 	AutocompleteTypeCountry  AutocompleteType = "country"  // Country names
 	AutocompleteTypeIndustry AutocompleteType = "industry" // Industries
