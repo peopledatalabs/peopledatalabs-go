@@ -9,7 +9,7 @@
     <img src="https://img.shields.io/badge/repo%20status-Active-limegreen" alt="Repo Status">
   </a>&nbsp;
   <a href="https://pkg.go.dev/github.com/peopledatalabs/peopledatalabs-go">
-    <img src="https://img.shields.io/github/go-mod/go-version/peopledatalabs/peopledatalabs-go" alt="Go 3.3.0" />
+    <img src="https://img.shields.io/github/go-mod/go-version/peopledatalabs/peopledatalabs-go" alt="Go 3.4.0" />
   </a>&nbsp;
   <a href="https://github.com/peopledatalabs/peopledatalabs-go/actions/workflows/test.yaml">
     <img src="https://github.com/peopledatalabs/peopledatalabs-go/actions/workflows/test.yaml/badge.svg" alt="Tests Status" />

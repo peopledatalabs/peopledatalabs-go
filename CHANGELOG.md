@@ -125,3 +125,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Add Headline to Person Schema
 - Update Readme
+
+## [3.4.0] - 2024-11-28
+
+- Add Support for Class and Updated Title Roles in Autocomplete
