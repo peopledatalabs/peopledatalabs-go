@@ -129,3 +129,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [3.4.0] - 2024-11-28
 
 - Add Support for Class and Updated Title Roles in Autocomplete
+
+## [4.0.0] - 2025-02-21
+
+- Remove Support for Updated Title Roles

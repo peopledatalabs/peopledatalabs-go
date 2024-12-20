@@ -3,9 +3,8 @@ package model
 import "errors"
 
 type BaseParams struct {
-	Pretty            bool `json:"pretty,omitempty" url:"pretty,omitempty"`                           // Whether the output should have human-readable indentation.
-	Size              int  `json:"size,omitempty" url:"size,omitempty"`                               // The number of matched records to return for this query if they exist*. Must be between 1 and 1000 (inclusive)
-	UpdatedTitleRoles bool `json:"updated_title_roles,omitempty" url:"updated_title_roles,omitempty"` // If set to true, replaces the job title tags with the new taxonomy and adds the job_title_class/class field.
+	Pretty bool `json:"pretty,omitempty" url:"pretty,omitempty"` // Whether the output should have human-readable indentation.
+	Size   int  `json:"size,omitempty" url:"size,omitempty"`     // The number of matched records to return for this query if they exist*. Must be between 1 and 1000 (inclusive)
 }
 
 type AdditionalParams struct {
