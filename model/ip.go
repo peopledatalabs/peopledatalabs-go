@@ -10,7 +10,6 @@ type IPBaseParams struct {
 	ReturnIPMetadata  bool   `json:"return_ip_metadata,omitempty" url:"return_ip_metadata,omitempty"`   // If true, the response will include the metadata of the IP
 	ReturnPerson      bool   `json:"return_person,omitempty" url:"return_person,omitempty"`             // If true, the response will include the person fields
 	ReturnIfUnmatched bool   `json:"return_if_unmatched,omitempty" url:"return_if_unmatched,omitempty"` // If true, the response will return metadata/location even if no company is found
-	UpdatedTitleRoles bool   `json:"updated_title_roles,omitempty" url:"updated_title_roles,omitempty"` // If set to true, replaces the job title tags with the new taxonomy and adds the job_title_class field.
 	MinConfidence     string `json:"min_confidence,omitempty" url:"min_confidence,omitempty"`           // The minimum confidence score a response must possess in order to return a 200
 }
 

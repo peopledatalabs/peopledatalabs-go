@@ -34,7 +34,7 @@ func TestAutocompleteClass(t *testing.T) {
 
 	// test
 	params := model.AutocompleteParams{
-		BaseParams:             model.BaseParams{Pretty: true, Size: 10, UpdatedTitleRoles: true},
+		BaseParams:             model.BaseParams{Pretty: true, Size: 10},
 		AutocompleteBaseParams: model.AutocompleteBaseParams{Field: "class", Text: "sale"},
 	}
 	resp, err := auto.Autocomplete(context.Background(), params)
