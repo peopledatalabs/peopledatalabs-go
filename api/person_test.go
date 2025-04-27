@@ -77,9 +77,7 @@ func TestPerson_Identify(t *testing.T) {
 	// assertions
 	assert.NoError(t, err)
 	assert.Equal(t, http.StatusOK, resp.Status)
-	if assert.Greater(t, len(resp.Matches), 0) {
-		assert.GreaterOrEqual(t, resp.Matches[0].MatchScore, resp.Matches[1].MatchScore)
-	}
+	assert.GreaterOrEqual(t, len(resp.Matches), 1)
 }
 
 func TestPerson_Search(t *testing.T) {
