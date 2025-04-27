@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://www.peopledatalabs.com/images/company-logo.png" style="background-color: white; padding: 5px 10px;" width="250" alt="People Data Labs Logo">
+<img src="https://www.peopledatalabs.com/images/logos/company-logo.png" style="background-color: white; padding: 5px 10px;" width="250" alt="People Data Labs Logo">
 </p>
 <h1 align="center">People Data Labs Go Client</h1>
 <p align="center">Official Go client for the People Data Labs API.</p>
@@ -9,7 +9,7 @@
     <img src="https://img.shields.io/badge/repo%20status-Active-limegreen" alt="Repo Status">
   </a>&nbsp;
   <a href="https://pkg.go.dev/github.com/peopledatalabs/peopledatalabs-go">
-    <img src="https://img.shields.io/github/go-mod/go-version/peopledatalabs/peopledatalabs-go" alt="Go 4.0.0" />
+    <img src="https://img.shields.io/github/go-mod/go-version/peopledatalabs/peopledatalabs-go" alt="Go 5.0.0" />
   </a>&nbsp;
   <a href="https://github.com/peopledatalabs/peopledatalabs-go/actions/workflows/test.yaml">
     <img src="https://github.com/peopledatalabs/peopledatalabs-go/actions/workflows/test.yaml/badge.svg" alt="Tests Status" />
@@ -28,7 +28,7 @@
 
 1. To use _peopledatalabs-go_ SDK in your project initialize go modules then run:
     ```bash
-    go get github.com/peopledatalabs/peopledatalabs-go/v3
+    go get github.com/peopledatalabs/peopledatalabs-go/v5
     ```
 2. Sign up for a [free PDL API key](https://www.peopledatalabs.com/signup).
 3. Set your API key as a environment variable.
@@ -41,8 +41,8 @@ First, create the PeopleDataLabs client:
 package main
 
 import (
-    pdl "github.com/peopledatalabs/peopledatalabs-go/v3"
-    pdlmodel "github.com/peopledatalabs/peopledatalabs-go/v3/model"
+    pdl "github.com/peopledatalabs/peopledatalabs-go/v5"
+    pdlmodel "github.com/peopledatalabs/peopledatalabs-go/v5/model"
 )
 
 
@@ -304,17 +304,6 @@ params := model.JobTitleParams{
 result, err := client.JobTitle(ctx, params)
 ```
 
-#### Enrich Skill
-
-```go
-params := model.SkillParams{
-    BaseParams:             model.BaseParams{Pretty: true},
-    SkillBaseParams:        model.SkillBaseParams{Skill: "c++"},
-}
-
-result, err := client.Skill(ctx, params)
-```
-
 #### Enrich IP
 
 ```go
@@ -331,9 +320,9 @@ result, err := client.IP(ctx, params)
 # To enable sandbox usage, use the following
 
 import (
-    pdl "github.com/peopledatalabs/peopledatalabs-go/v3"
-    "github.com/peopledatalabs/peopledatalabs-go/v3/api"
-    pdlmodel "github.com/peopledatalabs/peopledatalabs-go/v3/model"
+    pdl "github.com/peopledatalabs/peopledatalabs-go/v5"
+    "github.com/peopledatalabs/peopledatalabs-go/v5/api"
+    pdlmodel "github.com/peopledatalabs/peopledatalabs-go/v5/model"
 )
 
 client := pdl.New(apiKey, api.ClientOptions(func(c *api.Client) {
@@ -371,7 +360,6 @@ client := pdl.New(apiKey, api.ClientOptions(func(c *api.Client) {
 | [Location Cleaner API](https://docs.peopledatalabs.com/docs/cleaner-apis#locationclean) | `client.Location.Clean(params)` |
 | [School Cleaner API](https://docs.peopledatalabs.com/docs/cleaner-apis#schoolclean)     | `client.School.Clean(params)`   |
 | [Job Title Enrichment API](https://docs.peopledatalabs.com/docs/job-title-enrichment-api) | `client.JobTitle(params)` |
-| [Skill Enrichment API](https://docs.peopledatalabs.com/docs/skill-enrichment-api) | `client.Skill(params)` |
 | [IP Enrichment API](https://docs.peopledatalabs.com/docs/ip-enrichment-api) | `client.IP(params)` |
 
 ## 📘 Documentation <a name="documentation"></a>
