@@ -133,3 +133,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [4.0.0] - 2025-02-21
 
 - Remove Support for Updated Title Roles
+
+## [5.0.0] - 2025-04-28
+
+- Remove Support for Skill Enrichment API

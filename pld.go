@@ -1,10 +1,10 @@
 package peopledatalabs_go
 
 import (
-	"github.com/peopledatalabs/peopledatalabs-go/v3/api"
+	"github.com/peopledatalabs/peopledatalabs-go/v5/api"
 )
 
-const Version = "4.0.0"
+const Version = "5.0.0"
 
 type pld struct {
 	Person       api.Person
@@ -12,7 +12,6 @@ type pld struct {
 	Location     api.Location
 	School       api.School
 	Autocomplete api.AutocompleteFunc
-	Skill        api.SkillFunc
 	JobTitle     api.JobTitleFunc
 	IP           api.IPFunc
 }
@@ -26,7 +25,6 @@ func New(apiKey string, opts ...api.ClientOptions) *pld {
 	client := api.NewClient(apiKey, Version, opts...)
 
 	autocompleteClient := api.Autocomplete{Client: client}
-	skillClient := api.Skill{Client: client}
 	jobTitleClient := api.JobTitle{Client: client}
 	ipClient := api.IP{Client: client}
 	return &pld{
@@ -35,7 +33,6 @@ func New(apiKey string, opts ...api.ClientOptions) *pld {
 		Location:     api.Location{Client: client},
 		School:       api.School{Client: client},
 		Autocomplete: autocompleteClient.Autocomplete,
-		Skill:        skillClient.Skill,
 		JobTitle:     jobTitleClient.JobTitle,
 		IP:           ipClient.IP,
 	}
