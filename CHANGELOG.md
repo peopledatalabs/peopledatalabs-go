@@ -137,3 +137,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [5.0.0] - 2025-04-28
 
 - Remove Support for Skill Enrichment API
+
+## [5.1.0] - 2025-05-29
+
+- Add Support for all_location and location_name in Autocomplete

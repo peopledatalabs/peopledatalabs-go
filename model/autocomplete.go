@@ -37,17 +37,19 @@ type AutocompleteResult struct {
 type AutocompleteType string
 
 const (
-	AutocompleteTypeClass    AutocompleteType = "class"    // Job title classes
-	AutocompleteTypeCompany  AutocompleteType = "company"  // Company names
-	AutocompleteTypeCountry  AutocompleteType = "country"  // Country names
-	AutocompleteTypeIndustry AutocompleteType = "industry" // Industries
-	AutocompleteTypeLocation AutocompleteType = "location" // Location names
-	AutocompleteTypeMajor    AutocompleteType = "major"    // Educational majors (field of study)
-	AutocompleteTypeRegion   AutocompleteType = "region"   // Region name (e.g. states for the US)
-	AutocompleteTypeRole     AutocompleteType = "role"     // Job roles
-	AutocompleteTypeSubRole  AutocompleteType = "sub_role" // Job sub roles
-	AutocompleteTypeSchool   AutocompleteType = "school"   // School names
-	AutocompleteTypeSkill    AutocompleteType = "skill"    // Skills
-	AutocompleteTypeTitle    AutocompleteType = "title"    // Job titles
-	AutocompleteTypeWebsite  AutocompleteType = "website"  // Websites
+	AutocompleteTypeAllLocation  AutocompleteType = "all_location"  // All locations
+	AutocompleteTypeClass        AutocompleteType = "class"         // Job title classes
+	AutocompleteTypeCompany      AutocompleteType = "company"       // Company names
+	AutocompleteTypeCountry      AutocompleteType = "country"       // Country names
+	AutocompleteTypeIndustry     AutocompleteType = "industry"      // Industries
+	AutocompleteTypeLocation     AutocompleteType = "location"      // Localities
+	AutocompleteTypeLocationName AutocompleteType = "location_name" // Location names
+	AutocompleteTypeMajor        AutocompleteType = "major"         // Educational majors (field of study)
+	AutocompleteTypeRegion       AutocompleteType = "region"        // Region name (e.g. states for the US)
+	AutocompleteTypeRole         AutocompleteType = "role"          // Job roles
+	AutocompleteTypeSubRole      AutocompleteType = "sub_role"      // Job sub roles
+	AutocompleteTypeSchool       AutocompleteType = "school"        // School names
+	AutocompleteTypeSkill        AutocompleteType = "skill"         // Skills
+	AutocompleteTypeTitle        AutocompleteType = "title"         // Job titles
+	AutocompleteTypeWebsite      AutocompleteType = "website"       // Websites
 )
