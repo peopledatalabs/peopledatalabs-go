@@ -29,9 +29,9 @@ type AutocompleteResponse struct {
 }
 
 type AutocompleteResult struct {
-	Name  string            `json:"name"`  // The plain text name of this Autocomplete API suggestion. The prefix of this field will match the value of the text input parameter.
-	Count int               `json:"count"` // The number of records in our Person Dataset for this Autocomplete API suggestion. This field is used for sorting elements in the data array.
-	Meta  map[string]string `json:"meta"`  // A set of additional fields returned for each result in the data array. The metadata fields depend on the field input parameter
+	Name  string                 `json:"name"`  // The plain text name of this Autocomplete API suggestion. The prefix of this field will match the value of the text input parameter.
+	Count int                    `json:"count"` // The number of records in our Person Dataset for this Autocomplete API suggestion. This field is used for sorting elements in the data array.
+	Meta  map[string]interface{} `json:"meta"`  // A set of additional fields returned for each result in the data array. The metadata fields depend on the field input parameter
 }
 
 type AutocompleteType string
