@@ -11,8 +11,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/peopledatalabs/peopledatalabs-go/v5/logger"
-	"github.com/peopledatalabs/peopledatalabs-go/v5/model"
+	"github.com/peopledatalabs/peopledatalabs-go/v6/logger"
+	"github.com/peopledatalabs/peopledatalabs-go/v6/model"
 
 	"github.com/google/go-querystring/query"
 )
