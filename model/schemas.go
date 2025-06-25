@@ -207,7 +207,20 @@ type Company struct {
 	DirectSubsidiaries        []string `json:"direct_subsidiaries"`          // Company IDs that are subsidiaries of the queried company.
 	AllSubsidiaries           []string `json:"all_subsidiaries"`             // Company IDs that are subsidiaries of the queried company.
 	Location                  Location `json:"location"`                     // Location of the company’s current HQ.
-	NAICS                     []struct {
+	Locations                 []struct {
+		Name          string `json:"name"`           // The canonical location name
+		Locality      string `json:"locality"`       // The locality of the location
+		Region        string `json:"region"`         // The region of the location
+		Metro         string `json:"metro"`          // The metro area of the location
+		Country       string `json:"country"`        // The country of the location
+		Continent     string `json:"continent"`      // The continent of the location
+		StreetAddress string `json:"street_address"` // The street address of the location
+		AddressLine2  string `json:"address_line_2"` // The address line 2 of the location
+		PostalCode    string `json:"postal_code"`    // The postal code of the location
+		Geo           string `json:"geo"`            // The geo coordinates of the location
+		IsPrimary     bool   `json:"is_primary"`     // Indicates if this is the primary location for the company
+	} `json:"locations"` // A list of all known locations for the company. The primary location is the first one in the list.
+	NAICS []struct {
 		NaicsCode        string `json:"naics_code"`        // The NAICS code associated with a company’s industry classification.
 		Sector           string `json:"sector"`            // The industry classification according to the first 2 digits in the NAICS code.
 		SubSector        string `json:"sub_sector"`        // The industry classification according to the first 3 digits in the NAICS code.
@@ -277,6 +290,7 @@ type Company struct {
 	DeactivatedJobPostingsByMonth   map[string]int              `json:"deactivated_job_postings_by_month"`   // The number of deactivated job postings for the company, broken down by month.
 	TopPreviousEmployers            map[string][]map[string]any `json:"top_previous_employers"`              // The top ten previous companies employees worked for previously, and how many current employees were previously employed by them, across all time periods.
 	TopNextEmployers                map[string][]map[string]any `json:"top_next_employers"`                  // The top ten companies employees moved to, and how many employees moved there, across all time periods.
+	NumTotalLocations               int                         `json:"num_total_locations"`                 // The number of total locations the company has
 	TotalFundingRaised              float64                     `json:"total_funding_raised"`                // The total amount of funding raised by the company
 	LatestFundingStage              string                      `json:"latest_funding_stage"`                // The latest funding stage of the company
 	LastFundingDate                 string                      `json:"last_funding_date"`                   // The date of the latest funding round
