@@ -264,24 +264,24 @@ type Company struct {
 		NewCompanyJobTitleSubRole string   `json:"new_company_job_title_sub_role"` // Exec's current job subrole at the new company. Will be one of the Canonical Job Subroles.
 		NewCompanyJobTitleLevels  []string `json:"new_company_job_title_levels"`   // Exec's current job levels at the new company. Will be in the Canonical Job Levels.
 	} `json:"recent_exec_departures"` // The profiles of all of CXOs, owners and VPs that have left the company in the last 3 months.
-	ActiveJobPostings               float64                             `json:"active_job_postings"`                 // The number of active job postings for the company
-	ActiveJobPostingsByRole         map[string]int                      `json:"active_job_postings_by_role"`         // The number of active job postings for the company, broken down by job role.
-	DeactivatedJobPostingsByRole    map[string]int                      `json:"deactivated_job_postings_by_role"`    // The number of deactivated job postings for the company, broken down by job role.
-	ActiveJobPostingsByClass        map[string]int                      `json:"active_job_postings_by_class"`        // The number of active job postings for the company, broken down by job class.
-	DeactivatedJobPostingsByClass   map[string]int                      `json:"deactivated_job_postings_by_class"`   // The number of deactivated job postings for the company, broken down by job class.
-	ActiveJobPostingsBySubRole      map[string]int                      `json:"active_job_postings_by_subrole"`      // The number of active job postings for the company, broken down by job subrole.
-	DeactivatedJobPostingsBySubRole map[string]int                      `json:"deactivated_job_postings_by_subrole"` // The number of deactivated job postings for the company, broken down by job subrole.
-	ActiveJobPostingsByCountry      map[string]int                      `json:"active_job_postings_by_country"`      // The number of active job postings for the company, broken down by country.
-	ActiveJobPostingsByMetro        map[string]int                      `json:"active_job_postings_by_metro"`        // The number of active job postings for the company, broken down by metro area.
-	ActiveJobPostingsByMonth        map[string]int                      `json:"active_job_postings_by_month"`        // The number of active job postings for the company, broken down by month.
-	DeactivatedJobPostingsByMonth   map[string]int                      `json:"deactivated_job_postings_by_month"`   // The number of deactivated job postings for the company, broken down by month.
-	TopPreviousEmployers            map[string][]map[string]interface{} `json:"top_previous_employers"`              // The top ten previous companies employees worked for previously, and how many current employees were previously employed by them, across all time periods.
-	TopNextEmployers                map[string][]map[string]interface{} `json:"top_next_employers"`                  // The top ten companies employees moved to, and how many employees moved there, across all time periods.
-	TotalFundingRaised              float64                             `json:"total_funding_raised"`                // The total amount of funding raised by the company
-	LatestFundingStage              string                              `json:"latest_funding_stage"`                // The latest funding stage of the company
-	LastFundingDate                 string                              `json:"last_funding_date"`                   // The date of the latest funding round
-	NumberFundingRounds             int                                 `json:"number_funding_rounds"`               // The number of funding rounds the company has raised
-	FundingStages                   []string                            `json:"funding_stages"`                      // The funding stages the company has raised
+	ActiveJobPostings               float64                     `json:"active_job_postings"`                 // The number of active job postings for the company
+	ActiveJobPostingsByRole         map[string]int              `json:"active_job_postings_by_role"`         // The number of active job postings for the company, broken down by job role.
+	DeactivatedJobPostingsByRole    map[string]int              `json:"deactivated_job_postings_by_role"`    // The number of deactivated job postings for the company, broken down by job role.
+	ActiveJobPostingsByClass        map[string]int              `json:"active_job_postings_by_class"`        // The number of active job postings for the company, broken down by job class.
+	DeactivatedJobPostingsByClass   map[string]int              `json:"deactivated_job_postings_by_class"`   // The number of deactivated job postings for the company, broken down by job class.
+	ActiveJobPostingsBySubRole      map[string]int              `json:"active_job_postings_by_subrole"`      // The number of active job postings for the company, broken down by job subrole.
+	DeactivatedJobPostingsBySubRole map[string]int              `json:"deactivated_job_postings_by_subrole"` // The number of deactivated job postings for the company, broken down by job subrole.
+	ActiveJobPostingsByCountry      map[string]int              `json:"active_job_postings_by_country"`      // The number of active job postings for the company, broken down by country.
+	ActiveJobPostingsByMetro        map[string]int              `json:"active_job_postings_by_metro"`        // The number of active job postings for the company, broken down by metro area.
+	ActiveJobPostingsByMonth        map[string]int              `json:"active_job_postings_by_month"`        // The number of active job postings for the company, broken down by month.
+	DeactivatedJobPostingsByMonth   map[string]int              `json:"deactivated_job_postings_by_month"`   // The number of deactivated job postings for the company, broken down by month.
+	TopPreviousEmployers            map[string][]map[string]any `json:"top_previous_employers"`              // The top ten previous companies employees worked for previously, and how many current employees were previously employed by them, across all time periods.
+	TopNextEmployers                map[string][]map[string]any `json:"top_next_employers"`                  // The top ten companies employees moved to, and how many employees moved there, across all time periods.
+	TotalFundingRaised              float64                     `json:"total_funding_raised"`                // The total amount of funding raised by the company
+	LatestFundingStage              string                      `json:"latest_funding_stage"`                // The latest funding stage of the company
+	LastFundingDate                 string                      `json:"last_funding_date"`                   // The date of the latest funding round
+	NumberFundingRounds             int                         `json:"number_funding_rounds"`               // The number of funding rounds the company has raised
+	FundingStages                   []string                    `json:"funding_stages"`                      // The funding stages the company has raised
 	FundingDetails                  []struct {
 		FundingRoundDate     string   `json:"funding_round_date"`    // The date of the funding round
 		FundingRaised        float64  `json:"funding_raised"`        // The amount of funding raised in the funding round
