@@ -152,8 +152,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Added deactivated_job_postings_by_role
 - Added active_job_postings_by_class
 - Added deactivated_job_postings_by_class
-- Added active_job_postings_by_subrole
-- Added deactivated_job_postings_by_subrole
+- Added active_job_postings_by_sub_role
+- Added deactivated_job_postings_by_sub_role
 - Added active_job_postings_by_country
 - Added active_job_postings_by_metro
 - Added active_job_postings_by_month

@@ -96,7 +96,7 @@ type IPCompanyLocation struct {
 
 type IPPerson struct {
 	Confidence      string   `json:"confidence"`
-	JobTitleSubrole string   `json:"job_title_subrole"`
+	JobTitleSubrole string   `json:"job_title_sub_role"`
 	JobTitleRole    string   `json:"job_title_role"`
 	JobTitleClass   string   `json:"job_title_class"`
 	JobTitleLevels  []string `json:"job_title_levels"`
