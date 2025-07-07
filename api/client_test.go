@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/peopledatalabs/peopledatalabs-go/v5/model"
+	"github.com/peopledatalabs/peopledatalabs-go/v6/model"
 
 	"github.com/stretchr/testify/assert"
 )

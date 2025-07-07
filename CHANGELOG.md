@@ -141,3 +141,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [5.1.0] - 2025-05-29
 
 - Add Support for all_location and location_name in Autocomplete
+
+## [6.0.0] - 2025-07-15
+
+- Removed top_next_employers_by_role
+- Removed top_previous_employers_by_role
+- Added active_job_postings
+- Added deactivated_job_postings
+- Added active_job_postings_by_role
+- Added deactivated_job_postings_by_role
+- Added active_job_postings_by_class
+- Added deactivated_job_postings_by_class
+- Added active_job_postings_by_sub_role
+- Added deactivated_job_postings_by_sub_role
+- Added active_job_postings_by_country
+- Added active_job_postings_by_metro
+- Added active_job_postings_by_month
+- Added deactivated_job_postings_by_month
