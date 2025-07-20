@@ -179,10 +179,14 @@ result, err := client.Person.Identify(ctx, params)
 ### Person Changelog
 
 ```go
-params := pdlmodel.ChangelogPersonParams{
-    CurrentVersion:  "31.0",
-    OriginVersion:   "30.2",
-    Type:           "updated",
+currentVersion := "31.0"
+originVersion := "30.2"
+changeType := "updated"
+
+params := model.ChangelogPersonParams{
+    CurrentVersion: currentVersion,
+    OriginVersion:  originVersion,
+    Type:           changeType,
 }
 
 resp, err := client.person.Changelog(ctx, params)
