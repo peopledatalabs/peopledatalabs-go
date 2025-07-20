@@ -158,3 +158,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Added active_job_postings_by_metro
 - Added active_job_postings_by_month
 - Added deactivated_job_postings_by_month
+
+## [6.1.0] - 2025-07-21
+
+- Added support for Person Changelog API
