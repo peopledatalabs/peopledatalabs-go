@@ -173,3 +173,62 @@ type SearchPersonResponse struct {
 	Total       int      `json:"total"`        // Number of records matching a given query or sql input.
 	ScrollToken string   `json:"scroll_token"` // Scroll value used for pagination
 }
+
+type ChangelogPersonParams struct {
+	BaseParams
+	OriginVersion  string   `json:"origin_version,omitempty"`  // The release version of the person data to compare against
+	CurrentVersion string   `json:"current_version,omitempty"` // The release version of the person data to compare with
+	IDs            []string `json:"ids,omitempty"`             // A list of person IDs to compare
+	Type           string   `json:"type,omitempty"`            // The type of changes to include (e.g. "added", "updated", "deleted", "merged")
+	FieldsUpdated  []string `json:"fields_updated,omitempty"`  // A list of fields to filter changes by
+	ScrollToken    string   `json:"scroll_token,omitempty"`    // An offset key for paginating between batches. Can be used for any number of records. Each search API response returns a scroll_token which can be used to fetch the next size records.
+}
+
+func (params ChangelogPersonParams) Validate() error {
+	if params.OriginVersion == "" || params.CurrentVersion == "" {
+		return errors.New("person changelog: you must provide both origin_version and current_version")
+	}
+	if len(params.IDs) == 0 && params.Type == "" {
+		return errors.New("person changelog: you must provide at least one of ids or type")
+	}
+	return nil
+}
+
+type ChangelogPersonResponse struct {
+	Status int `json:"status"` // The status of the response
+	Error  struct {
+		Type               []string `json:"type"`                 // The type of error
+		Message            string   `json:"message"`              // A message describing the error
+		ValidVersions      []string `json:"valid_versions"`       // A list of valid versions for the origin and current version
+		ValidTypes         []string `json:"valid_types"`          // A list of valid types for the changes
+		ValidFieldsUpdated []string `json:"valid_fields_updated"` // A list of valid fields that can be updated
+	} `json:"error"` // An error object containing the type and message of the error
+	Data struct {
+		Type           string `json:"type"`            // The type of changes made to the person data
+		OriginVersion  string `json:"origin_version"`  // The release version of the person data to compare against
+		CurrentVersion string `json:"current_version"` // The release version of the person data to compare with
+		ScrollToken    string `json:"scroll_token"`    // An offset key for paginating between batches
+		Updated        []struct {
+			ID                 string `json:"id"` // The ID of the person that was updated
+			AdditionalMetadata struct {
+				FieldsUpdated []string `json:"fields_updated"` // A list of fields that were updated
+				Contains      []string `json:"contains"`       // A list of the IDs of the persons that were merged into this record
+			} `json:"additional_metadata"` // Additional metadata about the update
+		} `json:"updated"` // A list of records that were updated
+		Added []struct {
+			ID string `json:"id"` // The ID of the person that was added
+		} `json:"added"` // A list of records that were added
+		Deleted []struct {
+			ID string `json:"id"` // The ID of the person that was deleted
+		} `json:"deleted"` // A list of records that were deleted
+		Merged []struct {
+			ID                 string `json:"id"` // The ID of the person that was merged
+			AdditionalMetadata struct {
+				To []string `json:"to"` // A list of the IDs of that this record was merged into
+			} `json:"additional_metadata"` // Additional metadata about the merge
+		} `json:"merged"` // A list of records that were merged
+		OptedOut []struct {
+			ID string `json:"id"` // The ID of the person that opted out
+		} `json:"opted_out"` // A list of records that opted out
+	} `json:"data"` // The data containing the changes made to the person data
+}

@@ -14,6 +14,7 @@ const (
 	personSearchPath       = "/person/search"
 	personRetrievePath     = "/person/retrieve/%s"
 	personBulkRetrievePath = "/person/retrieve/bulk"
+	personChangelogPath    = "/person/changelog"
 )
 
 type Person struct {
@@ -77,4 +78,14 @@ func (p Person) BulkRetrieve(ctx context.Context, params model.BulkRetrievePerso
 	}
 	var response []model.BulkRetrievePersonResponse
 	return response, p.Client.post(ctx, personBulkRetrievePath, params, &response)
+}
+
+// Changelog returns a list of changes made to the person data
+// docs: https://docs.peopledatalabs.com/docs/person-changelog-api
+func (p Person) Changelog(ctx context.Context, params model.ChangelogPersonParams) (model.ChangelogPersonResponse, error) {
+	if err := params.Validate(); err != nil {
+		return model.ChangelogPersonResponse{}, err
+	}
+	var response model.ChangelogPersonResponse
+	return response, p.Client.post(ctx, personChangelogPath, params, &response)
 }
