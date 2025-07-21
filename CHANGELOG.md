@@ -162,3 +162,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [6.1.0] - 2025-07-21
 
 - Added support for Person Changelog API
+
+## [6.2.0] - 2025-08-15
+
+- Added num_active_locations to Company
+- Added is_active to Company Locations
+- Added first_seen to Company Locations
+- Added last_seen to Company Locations
