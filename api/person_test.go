@@ -140,3 +140,23 @@ func TestPerson_BulkRetrieve(t *testing.T) {
 	assert.Equal(t, http.StatusOK, resp[1].Status)
 	assert.Equal(t, "varun villait", resp[1].Data.FullName)
 }
+
+func TestPerson_Changelog(t *testing.T) {
+	// setup
+	person := Person{Client: NewClient(os.Getenv("PDL_API_KEY"), "1.0.0")}
+	currentVersion := "31.0"
+	originVersion := "30.2"
+	changeType := "updated"
+
+	// test
+	params := model.ChangelogPersonParams{
+		CurrentVersion: currentVersion,
+		OriginVersion:  originVersion,
+		Type:           changeType,
+	}
+	resp, err := person.Changelog(context.Background(), params)
+
+	// assertions
+	assert.NoError(t, err)
+	assert.NotEmpty(t, resp.Data.Updated)
+}

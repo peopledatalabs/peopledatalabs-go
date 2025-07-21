@@ -176,6 +176,22 @@ params := pdlmodel.IdentifyPersonParams{PersonParams: pdlmodel.PersonParams{Name
 result, err := client.Person.Identify(ctx, params)
 ```
 
+### Person Changelog
+
+```go
+currentVersion := "31.0"
+originVersion := "30.2"
+changeType := "updated"
+
+params := model.ChangelogPersonParams{
+    CurrentVersion: currentVersion,
+    OriginVersion:  originVersion,
+    Type:           changeType,
+}
+
+resp, err := client.person.Changelog(ctx, params)
+```
+
 ### Company Data
 
 #### Enrichment
@@ -342,6 +358,7 @@ client := pdl.New(apiKey, api.ClientOptions(func(c *api.Client) {
 | [Person Retrieve API](https://docs.peopledatalabs.com/docs/person-retrieve-api)        | `client.Person.Retrieve(params)`     |
 | [Person Bulk Retrieve API](https://docs.peopledatalabs.com/docs/bulk-person-retrieve)  | `client.Person.BulkRetrieve(params)` |
 | [Person Identify API](https://docs.peopledatalabs.com/docs/identify-api)               | `client.Person.Identify(params)`     |
+| [Person Changelog API](https://docs.peopledatalabs.com/docs/person-changelog-api)      | `client.Person.Changelog(params)`    |
 
 **Company Endpoints**
 
