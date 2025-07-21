@@ -208,17 +208,20 @@ type Company struct {
 	AllSubsidiaries           []string `json:"all_subsidiaries"`             // Company IDs that are subsidiaries of the queried company.
 	Location                  Location `json:"location"`                     // Location of the company’s current HQ.
 	Locations                 []struct {
-		Name          string `json:"name"`           // The canonical location name
-		Locality      string `json:"locality"`       // The locality of the location
-		Region        string `json:"region"`         // The region of the location
-		Metro         string `json:"metro"`          // The metro area of the location
-		Country       string `json:"country"`        // The country of the location
-		Continent     string `json:"continent"`      // The continent of the location
-		StreetAddress string `json:"street_address"` // The street address of the location
-		AddressLine2  string `json:"address_line_2"` // The address line 2 of the location
-		PostalCode    string `json:"postal_code"`    // The postal code of the location
-		Geo           string `json:"geo"`            // The geo coordinates of the location
-		IsPrimary     bool   `json:"is_primary"`     // Indicates if this is the primary location for the company
+		Name          string  `json:"name"`           // The canonical location name
+		Locality      string  `json:"locality"`       // The locality of the location
+		Region        string  `json:"region"`         // The region of the location
+		Metro         string  `json:"metro"`          // The metro area of the location
+		Country       string  `json:"country"`        // The country of the location
+		Continent     string  `json:"continent"`      // The continent of the location
+		StreetAddress string  `json:"street_address"` // The street address of the location
+		AddressLine2  string  `json:"address_line_2"` // The address line 2 of the location
+		PostalCode    string  `json:"postal_code"`    // The postal code of the location
+		Geo           string  `json:"geo"`            // The geo coordinates of the location
+		IsPrimary     bool    `json:"is_primary"`     // Indicates if this is the primary location for the company
+		IsActive      bool    `json:"is_active"`      // Indicates if this location is currently active
+		FirstSeen     *string `json:"first_seen"`     // The date when this location was first associated to this record
+		LastSeen      *string `json:"last_seen"`      // The date when this location was last associated to this record
 	} `json:"locations"` // A list of all known locations for the company. The primary location is the first one in the list.
 	NAICS []struct {
 		NaicsCode        string `json:"naics_code"`        // The NAICS code associated with a company’s industry classification.
@@ -291,6 +294,7 @@ type Company struct {
 	TopPreviousEmployers            map[string][]map[string]any `json:"top_previous_employers"`               // The top ten previous companies employees worked for previously, and how many current employees were previously employed by them, across all time periods.
 	TopNextEmployers                map[string][]map[string]any `json:"top_next_employers"`                   // The top ten companies employees moved to, and how many employees moved there, across all time periods.
 	NumTotalLocations               int                         `json:"num_total_locations"`                  // The number of total locations the company has
+	NumActiveLocations              int                         `json:"num_active_locations"`                 // The number of active locations the company has
 	TotalFundingRaised              float64                     `json:"total_funding_raised"`                 // The total amount of funding raised by the company
 	LatestFundingStage              string                      `json:"latest_funding_stage"`                 // The latest funding stage of the company
 	LastFundingDate                 string                      `json:"last_funding_date"`                    // The date of the latest funding round
