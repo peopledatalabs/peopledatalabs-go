@@ -169,3 +169,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Added is_active to Company Locations
 - Added first_seen to Company Locations
 - Added last_seen to Company Locations
+
+## [6.3.0] - 2025-09-01
+
+- Added industry_v2 to Company Schema

@@ -183,6 +183,7 @@ type Company struct {
 	DatasetVersion            string   `json:"dataset_version"`              // Explains the current major or minor release number.
 	Founded                   int      `json:"founded"`                      // The founded year of the company
 	Industry                  string   `json:"industry"`                     // Self reported industry
+	IndustryV2                string   `json:"industry_v2"`                  // Self reported industry (v2)
 	LinkedInSlug              string   `json:"linkedin_slug"`                // The company's main linkedin slug
 	LinkedinId                string   `json:"linkedin_id"`                  // Main LinkedIn profile ID for the company
 	LinkedinUrl               string   `json:"linkedin_url"`                 // Main LinkedIn profile URL for the company
