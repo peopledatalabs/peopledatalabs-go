@@ -173,3 +173,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [6.3.0] - 2025-09-01
 
 - Added industry_v2 to Company Schema
+
+## [6.4.0] - 2025-12-01
+
+- Added sha_256_hash to Emails and Possible Emails in Person Schema
+- Added md5_hash to Emails and Possible Emails in Person Schema
+- Added Affiliated Entities to Company Schema

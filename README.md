@@ -27,9 +27,11 @@
 ## 🔧 Installation <a name="installation"></a>
 
 1. To use _peopledatalabs-go_ SDK in your project initialize go modules then run:
+
     ```bash
     go get github.com/peopledatalabs/peopledatalabs-go/v6
     ```
+
 2. Sign up for a [free PDL API key](https://www.peopledatalabs.com/signup).
 3. Set your API key as a environment variable.
 
@@ -54,6 +56,7 @@ func main() {
     client := pdl.New(apiKey)
 }
 ```
+
 Then, send requests to any PDL API Endpoint.
 
 ### Person Data
@@ -325,13 +328,14 @@ result, err := client.JobTitle(ctx, params)
 ```go
 params := model.IPParams{
     BaseParams:             model.BaseParams{Pretty: true},
-    IPBaseParams:           model.IPBaseParams{IP: "72.212.42.169"},
+    IPBaseParams:           model.IPBaseParams{IP: "72.212.42.228"},
 }
 
 result, err := client.IP(ctx, params)
 ```
 
 ## 🏝 Sandbox Usage <a name="sandbox"></a>
+
 ```go
 # To enable sandbox usage, use the following
 
@@ -381,7 +385,7 @@ client := pdl.New(apiKey, api.ClientOptions(func(c *api.Client) {
 
 ## 📘 Documentation <a name="documentation"></a>
 
-All of our API endpoints are documented at: https://docs.peopledatalabs.com/
+All of our API endpoints are documented at: [https://docs.peopledatalabs.com/](https://docs.peopledatalabs.com/)
 
 These docs describe the supported input parameters, output responses and also provide additional technical context.
 
