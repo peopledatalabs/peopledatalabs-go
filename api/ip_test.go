@@ -18,12 +18,12 @@ func TestIP(t *testing.T) {
 	// test
 	params := model.IPParams{
 		BaseParams:   model.BaseParams{Pretty: true},
-		IPBaseParams: model.IPBaseParams{IP: "72.212.42.169"},
+		IPBaseParams: model.IPBaseParams{IP: "72.212.42.228"},
 	}
 	resp, err := auto.IP(context.Background(), params)
 
 	// assertions
 	assert.NoError(t, err)
 	assert.Equal(t, resp.Status, http.StatusOK)
-	assert.Equal(t, resp.Data.IP.Address, "72.212.42.169")
+	assert.Equal(t, resp.Data.IP.Address, "72.212.42.228")
 }
