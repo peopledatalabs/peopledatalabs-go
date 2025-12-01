@@ -1,89 +1,83 @@
 package model
 
 type Person struct {
-	Id                              string   `json:"id"`                                    // PDL persistent ID
-	FullName                        string   `json:"full_name"`                             // The first and the last name fields appended with a space
-	FirstName                       string   `json:"first_name"`                            // A person's first name
-	MiddleInitial                   string   `json:"middle_initial"`                        // A person's middle initial
-	MiddleName                      string   `json:"middle_name"`                           // A person's middle name
-	LastInitial                     string   `json:"last_initial"`                          // The first letter of a person's last name
-	LastName                        string   `json:"last_name"`                             // A person's last name
-	Sex                             string   `json:"sex"`                                   // The person's sex
-	BirthYear                       int      `json:"birth_year"`                            // Approximated birth date associated with this person profile. If a profile has a birth_date, the birth_year field will match
-	BirthDate                       string   `json:"birth_date"`                            // Date string in YYYY-mm-dd format. Can be accurate to the day (YYYY-MM-DD), month (YYYY-MM) or year (YYYY). If this exists, birth_year will agree with this
-	LinkedinUrl                     string   `json:"linkedin_url"`                          // Main linkedin profile for this record based on source agreement
-	LinkedinUsername                string   `json:"linkedin_username"`                     // Main linkedin username for this record based on source agreement
-	LinkedinId                      string   `json:"linkedin_id"`                           // Main linkedin profile id for this record based on source agreement
-	FacebookUrl                     string   `json:"facebook_url"`                          // facebook profile
-	FacebookUsername                string   `json:"facebook_username"`                     // facebook username
-	FacebookId                      string   `json:"facebook_id"`                           // persistent facebook id associated with a person's facebook profile
-	TwitterUrl                      string   `json:"twitter_url"`                           // Twitter URL
-	TwitterUsername                 string   `json:"twitter_username"`                      // Twitter Username
-	GithubUrl                       string   `json:"github_url"`                            // Main github profile for this record based on source agreement
-	GithubUsername                  string   `json:"github_username"`                       // Main github profile username for this record based on source agreement
-	WorkEmail                       string   `json:"work_email"`                            // Current Professional email
-	PersonalEmails                  []string `json:"personal_emails"`                       // List of all emails tagged as type = personal
-	RecommendedPersonalEmail        string   `json:"recommended_personal_email"`            // Highly confident personal email associated with this person
-	MobilePhone                     string   `json:"mobile_phone"`                          // Highly confident direct dial mobile phone associated with this person
-	Industry                        string   `json:"industry"`                              // The most relevant industry for this record based primarily on their tagged personal industries and secondarily on the industries of the companies that they have worked for
-	JobTitle                        string   `json:"job_title"`                             // A person's current job title
-	JobTitleRole                    string   `json:"job_title_role"`                        // A person's current job title derived role
-	JobTitleSubRole                 string   `json:"job_title_sub_role"`                    // A person's job title derived subrole. Each subrole maps to a role
-	JobTitleClass                   string   `json:"job_title_class"`                       // A person's current job title derived class
-	JobTitleLevels                  []string `json:"job_title_levels"`                      // A person's current job title derived levels
-	JobCompanyId                    string   `json:"job_company_id"`                        // A person's current company's PDL ID
-	JobCompanyName                  string   `json:"job_company_name"`                      // A person's current company's name
-	JobCompanyWebsite               string   `json:"job_company_website"`                   // A person's current company's website
-	JobCompanySize                  string   `json:"job_company_size"`                      // A person's current company's size range
-	JobCompanyFounded               int      `json:"job_company_founded"`                   // A person's current company's founded date
-	JobCompanyIndustry              string   `json:"job_company_industry"`                  // A person's current company's industry
-	JobCompanyLinkedinUrl           string   `json:"job_company_linkedin_url"`              // A person's current company's linkedin url
-	JobCompanyLinkedinId            string   `json:"job_company_linkedin_id"`               // A person's current company's linkedin id
-	JobCompanyFacebookUrl           string   `json:"job_company_facebook_url"`              // A person's current company's facebook url
-	JobCompanyTwitterUrl            string   `json:"job_company_twitter_url"`               // A person's current company's twitter url
-	JobCompanyLocationName          string   `json:"job_company_location_name"`             // A person's current company's HQ canonical location
-	JobCompanyLocationLocality      string   `json:"job_company_location_locality"`         // A person's current company's HQ locality
-	JobCompanyLocationMetro         string   `json:"job_company_location_metro"`            // A person's current company's HQ metro area
-	JobCompanyLocationRegion        string   `json:"job_company_location_region"`           // A person's current company's HQ region
-	JobCompanyLocationGeo           string   `json:"job_company_location_geo"`              // A person's current company's HQ geo
-	JobCompanyLocationStreetAddress string   `json:"job_company_location_street_address"`   // A person's current company's HQ street_address
-	JobCompanyLocationAddressLine2  string   `json:"job_company_location_address_line_2"`   // A person's current company's HQ address line 2
-	JobCompanyLocationPostalCode    string   `json:"job_company_location_postal_code"`      // A person's current company's HQ postal code
-	JobCompanyLocationCountry       string   `json:"job_company_location_country"`          // A person's current company's HQ country
-	JobCompanyLocationContinent     string   `json:"job_company_location_continent"`        // A person's current company's HQ continent
-	JobCompanyEmployeeCount         int      `json:"job_company_employee_count"`            // A person's current company's employee count
-	JobCompanyInferredRevenue       string   `json:"job_company_inferred_revenue"`          // A person's current company's inferred revenue
-	JobCompanyMonthGrowthRate       float64  `json:"job_company_12mo_employee_growth_rate"` // A person's current company's 12 month employee growth rate
-	JobCompanyTotalFundingRaised    float64  `json:"job_company_total_funding_raised"`      // A person's current company's total funding raised
-	JobLastChanged                  string   `json:"job_last_changed"`                      // YYYY-MM-DD Indicates the timestamp of the timestamp that reflects when the top-level job information changed
-	JobLastVerified                 string   `json:"job_last_verified"`                     // YYYY-MM-DD Indicates the timestamp that reflects when the top level job information was last validated by a data source
-	JobStartDate                    string   `json:"job_start_date"`                        // YYYY-MM-DD Indicates the start period of the object. Can be accurate to the day (YYYY-MM-DD), month (YYYY-MM) or year (YYYY)
-	LocationName                    string   `json:"location_name"`                         // the current canonical location of the person
-	LocationLocality                string   `json:"location_locality"`                     // the current locality of the person
-	LocationMetro                   string   `json:"location_metro"`                        // the current MSA of the person
-	LocationRegion                  string   `json:"location_region"`                       // the current region of the person
-	LocationCountry                 string   `json:"location_country"`                      // the current country of the person
-	LocationContinent               string   `json:"location_continent"`                    // the current continent of the person
-	LocationStreetAddress           string   `json:"location_street_address"`               // the current street address of the person
-	LocationAddressLine2            string   `json:"location_address_line_2"`               // the current address line 2 of the person
-	LocationPostalCode              string   `json:"location_postal_code"`                  // the current postal code of the person
-	LocationGeo                     string   `json:"location_geo"`                          // the current geo of the person
-	LocationLastUpdated             string   `json:"location_last_updated"`                 // YYYY-MM-DD Indicates the timestamp of the most recent source that agrees with this information
-	PhoneNumbers                    []string `json:"phone_numbers"`                         // Phone numbers associated with this person profile in E164 format
-	Emails                          []struct {
-		Address    string  `json:"address"`     // The full parsed email
-		Type       string  `json:"type"`        // The type of email either current_professional, professional, personal or null
-		FirstSeen  *string `json:"first_seen"`  // The date when this email was first associated to this record
-		LastSeen   *string `json:"last_seen"`   // The date when this email was last associated to this record
-		NumSources *int    `json:"num_sources"` // The number of sources that have contributed to the association of this email to this record
-	} `json:"emails"` // Emails associated with this person profile
-	Interests       []string  `json:"interests"`        // Interests associated with the profile
-	Skills          []string  `json:"skills"`           // Skills associated with the profile
-	LocationNames   []string  `json:"location_names"`   // List of all canonical location names associated with the person
-	Regions         []string  `json:"regions"`          // List of regions associated with the person
-	Countries       []string  `json:"countries"`        // List of countries associated with a person
-	StreetAddresses []Address `json:"street_addresses"` // List of full parsed addresses associated with the person
-	Experience      []struct {
+	Id                              string    `json:"id"`                                    // PDL persistent ID
+	FullName                        string    `json:"full_name"`                             // The first and the last name fields appended with a space
+	FirstName                       string    `json:"first_name"`                            // A person's first name
+	MiddleInitial                   string    `json:"middle_initial"`                        // A person's middle initial
+	MiddleName                      string    `json:"middle_name"`                           // A person's middle name
+	LastInitial                     string    `json:"last_initial"`                          // The first letter of a person's last name
+	LastName                        string    `json:"last_name"`                             // A person's last name
+	Sex                             string    `json:"sex"`                                   // The person's sex
+	BirthYear                       int       `json:"birth_year"`                            // Approximated birth date associated with this person profile. If a profile has a birth_date, the birth_year field will match
+	BirthDate                       string    `json:"birth_date"`                            // Date string in YYYY-mm-dd format. Can be accurate to the day (YYYY-MM-DD), month (YYYY-MM) or year (YYYY). If this exists, birth_year will agree with this
+	LinkedinUrl                     string    `json:"linkedin_url"`                          // Main linkedin profile for this record based on source agreement
+	LinkedinUsername                string    `json:"linkedin_username"`                     // Main linkedin username for this record based on source agreement
+	LinkedinId                      string    `json:"linkedin_id"`                           // Main linkedin profile id for this record based on source agreement
+	FacebookUrl                     string    `json:"facebook_url"`                          // facebook profile
+	FacebookUsername                string    `json:"facebook_username"`                     // facebook username
+	FacebookId                      string    `json:"facebook_id"`                           // persistent facebook id associated with a person's facebook profile
+	TwitterUrl                      string    `json:"twitter_url"`                           // Twitter URL
+	TwitterUsername                 string    `json:"twitter_username"`                      // Twitter Username
+	GithubUrl                       string    `json:"github_url"`                            // Main github profile for this record based on source agreement
+	GithubUsername                  string    `json:"github_username"`                       // Main github profile username for this record based on source agreement
+	WorkEmail                       string    `json:"work_email"`                            // Current Professional email
+	PersonalEmails                  []string  `json:"personal_emails"`                       // List of all emails tagged as type = personal
+	RecommendedPersonalEmail        string    `json:"recommended_personal_email"`            // Highly confident personal email associated with this person
+	MobilePhone                     string    `json:"mobile_phone"`                          // Highly confident direct dial mobile phone associated with this person
+	Industry                        string    `json:"industry"`                              // The most relevant industry for this record based primarily on their tagged personal industries and secondarily on the industries of the companies that they have worked for
+	JobTitle                        string    `json:"job_title"`                             // A person's current job title
+	JobTitleRole                    string    `json:"job_title_role"`                        // A person's current job title derived role
+	JobTitleSubRole                 string    `json:"job_title_sub_role"`                    // A person's job title derived subrole. Each subrole maps to a role
+	JobTitleClass                   string    `json:"job_title_class"`                       // A person's current job title derived class
+	JobTitleLevels                  []string  `json:"job_title_levels"`                      // A person's current job title derived levels
+	JobCompanyId                    string    `json:"job_company_id"`                        // A person's current company's PDL ID
+	JobCompanyName                  string    `json:"job_company_name"`                      // A person's current company's name
+	JobCompanyWebsite               string    `json:"job_company_website"`                   // A person's current company's website
+	JobCompanySize                  string    `json:"job_company_size"`                      // A person's current company's size range
+	JobCompanyFounded               int       `json:"job_company_founded"`                   // A person's current company's founded date
+	JobCompanyIndustry              string    `json:"job_company_industry"`                  // A person's current company's industry
+	JobCompanyLinkedinUrl           string    `json:"job_company_linkedin_url"`              // A person's current company's linkedin url
+	JobCompanyLinkedinId            string    `json:"job_company_linkedin_id"`               // A person's current company's linkedin id
+	JobCompanyFacebookUrl           string    `json:"job_company_facebook_url"`              // A person's current company's facebook url
+	JobCompanyTwitterUrl            string    `json:"job_company_twitter_url"`               // A person's current company's twitter url
+	JobCompanyLocationName          string    `json:"job_company_location_name"`             // A person's current company's HQ canonical location
+	JobCompanyLocationLocality      string    `json:"job_company_location_locality"`         // A person's current company's HQ locality
+	JobCompanyLocationMetro         string    `json:"job_company_location_metro"`            // A person's current company's HQ metro area
+	JobCompanyLocationRegion        string    `json:"job_company_location_region"`           // A person's current company's HQ region
+	JobCompanyLocationGeo           string    `json:"job_company_location_geo"`              // A person's current company's HQ geo
+	JobCompanyLocationStreetAddress string    `json:"job_company_location_street_address"`   // A person's current company's HQ street_address
+	JobCompanyLocationAddressLine2  string    `json:"job_company_location_address_line_2"`   // A person's current company's HQ address line 2
+	JobCompanyLocationPostalCode    string    `json:"job_company_location_postal_code"`      // A person's current company's HQ postal code
+	JobCompanyLocationCountry       string    `json:"job_company_location_country"`          // A person's current company's HQ country
+	JobCompanyLocationContinent     string    `json:"job_company_location_continent"`        // A person's current company's HQ continent
+	JobCompanyEmployeeCount         int       `json:"job_company_employee_count"`            // A person's current company's employee count
+	JobCompanyInferredRevenue       string    `json:"job_company_inferred_revenue"`          // A person's current company's inferred revenue
+	JobCompanyMonthGrowthRate       float64   `json:"job_company_12mo_employee_growth_rate"` // A person's current company's 12 month employee growth rate
+	JobCompanyTotalFundingRaised    float64   `json:"job_company_total_funding_raised"`      // A person's current company's total funding raised
+	JobLastChanged                  string    `json:"job_last_changed"`                      // YYYY-MM-DD Indicates the timestamp of the timestamp that reflects when the top-level job information changed
+	JobLastVerified                 string    `json:"job_last_verified"`                     // YYYY-MM-DD Indicates the timestamp that reflects when the top level job information was last validated by a data source
+	JobStartDate                    string    `json:"job_start_date"`                        // YYYY-MM-DD Indicates the start period of the object. Can be accurate to the day (YYYY-MM-DD), month (YYYY-MM) or year (YYYY)
+	LocationName                    string    `json:"location_name"`                         // the current canonical location of the person
+	LocationLocality                string    `json:"location_locality"`                     // the current locality of the person
+	LocationMetro                   string    `json:"location_metro"`                        // the current MSA of the person
+	LocationRegion                  string    `json:"location_region"`                       // the current region of the person
+	LocationCountry                 string    `json:"location_country"`                      // the current country of the person
+	LocationContinent               string    `json:"location_continent"`                    // the current continent of the person
+	LocationStreetAddress           string    `json:"location_street_address"`               // the current street address of the person
+	LocationAddressLine2            string    `json:"location_address_line_2"`               // the current address line 2 of the person
+	LocationPostalCode              string    `json:"location_postal_code"`                  // the current postal code of the person
+	LocationGeo                     string    `json:"location_geo"`                          // the current geo of the person
+	LocationLastUpdated             string    `json:"location_last_updated"`                 // YYYY-MM-DD Indicates the timestamp of the most recent source that agrees with this information
+	PhoneNumbers                    []string  `json:"phone_numbers"`                         // Phone numbers associated with this person profile in E164 format
+	Emails                          []Email   `json:"emails"`                                // A list of all emails known to be associated with this record
+	Interests                       []string  `json:"interests"`                             // Interests associated with the profile
+	Skills                          []string  `json:"skills"`                                // Skills associated with the profile
+	LocationNames                   []string  `json:"location_names"`                        // List of all canonical location names associated with the person
+	Regions                         []string  `json:"regions"`                               // List of regions associated with the person
+	Countries                       []string  `json:"countries"`                             // List of countries associated with a person
+	StreetAddresses                 []Address `json:"street_addresses"`                      // List of full parsed addresses associated with the person
+	Experience                      []struct {
 		Company struct {
 			Name        string   `json:"name"`         // The name associated with the company
 			Size        string   `json:"size"`         // The size range of the company
@@ -127,13 +121,12 @@ type Person struct {
 		Raw       []string `json:"raw"`        // Raw education input information. Parsed into the degrees/majors/minors fields
 		Summary   *string  `json:"summary"`    // User-inputted summary of education
 	} `json:"education"` // Education objects associated with this person profile
-	Profiles            []Profile `json:"profiles"`             // Social media profiles associated with this person profile
-	Phones              []Phone   `json:"phones"`               // A list of the phone numbers known to be associated with this record
-	LinkedinConnections *int      `json:"linkedin_connections"` // The number of linkedin connections the person has
-	FacebookFriends     *int      `json:"facebook_friends"`     // The number of facebook friends the person has
-	NameAliases         []string  `json:"name_aliases"`         // Any additional associated names or aliases beyond the primary one currently displayed in the name field
-	PossibleEmails      []struct {
-	} `json:"possible_emails"` // Any additional associated emails to this person record with a lower level of confidence than the currently-displayed ones in the emails array
+	Profiles                []Profile `json:"profiles"`                  // Social media profiles associated with this person profile
+	Phones                  []Phone   `json:"phones"`                    // A list of the phone numbers known to be associated with this record
+	LinkedinConnections     *int      `json:"linkedin_connections"`      // The number of linkedin connections the person has
+	FacebookFriends         *int      `json:"facebook_friends"`          // The number of facebook friends the person has
+	NameAliases             []string  `json:"name_aliases"`              // Any additional associated names or aliases beyond the primary one currently displayed in the name field
+	PossibleEmails          []Email   `json:"possible_emails"`           // Any additional associated emails to the person record with a lower level of confidence to the currently-displayed ones in the emails array
 	PossiblePhones          []Phone   `json:"possible_phones"`           // Any additional associated phones to the person record with a lower level of confidence to the currently-displayed ones in the phone_numbers array
 	PossibleProfiles        []Profile `json:"possible_profiles"`         // Any additional associated profiles to the person record w/ a lower level of confidence to the currently-displayed ones in the profiles
 	PossibleStreetAddresses []Address `json:"possible_street_addresses"` // Any additional associated addresses to the person record with a lower level of confidence to the currently-displayed ones in the street_addresses array
@@ -309,6 +302,16 @@ type Company struct {
 		InvestingCompanies   []string `json:"investing_companies"`   // The companies that invested in the funding round
 		InvestingIndividuals []string `json:"investing_individuals"` // The individuals that invested in the funding round
 	} `json:"funding_details"` // The details of the funding rounds the company has raised
+	AffiliatedEntities []struct {
+		AffiliatedId          string   `json:"affiliated_id"`          // The PDL ID of the affiliated company
+		Relationship          string   `json:"relationship"`           // The type of relationship (e.g., ultimate_parent, immediate_parent, subsidiary)
+		DisplayName           string   `json:"display_name"`           // The display name of the affiliated company
+		RelationshipCatalyst  string   `json:"relationship_catalyst"`  // The catalyst for the relationship (e.g., direct_acquisition)
+		RelationshipStatus    string   `json:"relationship_status"`    // The status of the relationship (e.g., active, inactive)
+		StartDate             string   `json:"start_date"`             // The start date of the relationship
+		EndDate               *string  `json:"end_date"`               // The end date of the relationship, if applicable
+		RelationshipCitations []string `json:"relationship_citations"` // Citations supporting the relationship
+	} `json:"affiliated_entities"` // List of affiliated entities related to the company
 }
 
 type School struct {
@@ -336,6 +339,16 @@ type Location struct {
 	AddressLine2  string `json:"address_line_2"` // The adress line 2 associated with the company HQ
 	PostalCode    string `json:"postal_code"`    // The postal code associated with the company HQ
 	Geo           string `json:"geo"`            // The geo code associated with the company HQ
+}
+
+type Email struct {
+	Address    string `json:"address"`      // An individual email address associated with this record
+	Type       string `json:"type"`         // The type of email either current_professional, professional, personal or null
+	FirstSeen  string `json:"first_seen"`   // The date when this email address was first associated to this record
+	LastSeen   string `json:"last_seen"`    // The date when this email address was last associated to this record
+	NumSources int    `json:"num_sources"`  // The number of sources that have contributed to the association of this email address to this record
+	MD5Hash    string `json:"md5_hash"`     // The MD5 hash of the email address
+	SHA256Hash string `json:"sha_256_hash"` // The SHA256 hash of the email address
 }
 
 type Phone struct {
