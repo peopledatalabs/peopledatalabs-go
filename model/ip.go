@@ -70,7 +70,7 @@ type IPLocation struct {
 type IPCompany struct {
 	Confidence      string            `json:"confidence"`
 	ID              string            `json:"id"`
-	Domain          string            `json:"domain"`
+	Website         string            `json:"website"`
 	Name            string            `json:"name"`
 	DisplayName     string            `json:"display_name"`
 	Location        IPCompanyLocation `json:"location"`
