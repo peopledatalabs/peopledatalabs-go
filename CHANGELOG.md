@@ -179,3 +179,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Added sha_256_hash to Emails and Possible Emails in Person Schema
 - Added md5_hash to Emails and Possible Emails in Person Schema
 - Added Affiliated Entities to Company Schema
+
+## [6.4.1] - 2025-12-10
+
+- Replaced Domain with Website in IPCompany Model
