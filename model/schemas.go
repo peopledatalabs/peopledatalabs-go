@@ -37,6 +37,7 @@ type Person struct {
 	JobCompanySize                  string    `json:"job_company_size"`                      // A person's current company's size range
 	JobCompanyFounded               int       `json:"job_company_founded"`                   // A person's current company's founded date
 	JobCompanyIndustry              string    `json:"job_company_industry"`                  // A person's current company's industry
+	JobCompanyIndustryV2            string    `json:"job_company_industry_v2"`               // A person's current company's industry v2
 	JobCompanyLinkedinUrl           string    `json:"job_company_linkedin_url"`              // A person's current company's linkedin url
 	JobCompanyLinkedinId            string    `json:"job_company_linkedin_id"`               // A person's current company's linkedin id
 	JobCompanyFacebookUrl           string    `json:"job_company_facebook_url"`              // A person's current company's facebook url

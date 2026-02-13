@@ -183,3 +183,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [6.4.1] - 2025-12-10
 
 - Replaced Domain with Website in IPCompany Model
+
+## [6.5.0] - 2026-02-13
+
+- Added job_company_industry_v2 to Person Schema
