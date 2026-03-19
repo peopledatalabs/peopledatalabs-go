@@ -52,7 +52,7 @@ func TestAutocompleteAllLocation(t *testing.T) {
 	// test
 	params := model.AutocompleteParams{
 		BaseParams:             model.BaseParams{Pretty: true, Size: 10},
-		AutocompleteBaseParams: model.AutocompleteBaseParams{Field: "all_location", Text: "miami"},
+		AutocompleteBaseParams: model.AutocompleteBaseParams{Field: "location", Text: "miami"},
 	}
 	resp, err := auto.Autocomplete(context.Background(), params)
 

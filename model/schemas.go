@@ -242,7 +242,7 @@ type Company struct {
 	EmployeeGrowthRate     map[string]float64 `json:"employee_growth_rate"`      // The percentage increase in total headcount from N months prior.
 	EmployeeChurnRate              map[string]float64 `json:"employee_churn_rate"`                // The rate of change in employee headcount from N months prior.
 	EmployeeTurnoverRate           map[string]float64 `json:"employee_turnover_rate"`             // The rate of employee turnover from N months prior.
-	AnnualizedEmployeeTurnoverRate float64            `json:"annualized_employee_turnover_rate"`  // The annualized rate of employee turnover.
+	AnnualizedEmployeeTurnoverRate map[string]float64 `json:"annualized_employee_turnover_rate"`  // The annualized rate of employee turnover.
 	AverageEmployeeTenure          float64            `json:"average_employee_tenure"`            // Average years of experience at the company.
 	MedianEmployeeTenure           float64            `json:"median_employee_tenure"`             // Median years of experience at the company.
 	AverageTenureByRole            map[string]float64 `json:"average_tenure_by_role"`             // Average years of experience at the company by job role.
