@@ -197,7 +197,7 @@ func (params ChangelogPersonParams) Validate() error {
 type ChangelogPersonResponse struct {
 	Status int `json:"status"` // The status of the response
 	Error  struct {
-		Type               []string `json:"type"`                 // The type of error
+		Type               string   `json:"type"`                 // The type of error
 		Message            string   `json:"message"`              // A message describing the error
 		ValidVersions      []string `json:"valid_versions"`       // A list of valid versions for the origin and current version
 		ValidTypes         []string `json:"valid_types"`          // A list of valid types for the changes
