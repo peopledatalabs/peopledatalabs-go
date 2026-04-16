@@ -334,6 +334,44 @@ params := model.IPParams{
 result, err := client.IP(ctx, params)
 ```
 
+### Job Posting Search
+
+#### Search (Elasticsearch)
+
+```go
+elasticSearchQuery := map[string]interface{}{
+    "query": map[string]interface{}{
+        "bool": map[string]interface{}{
+            "must": []map[string]interface{}{
+                {"term": map[string]interface{}{"title_role": "engineering"}},
+                {"term": map[string]interface{}{"remote_work_policy": "remote"}},
+            },
+        },
+    },
+}
+
+params := pdlmodel.JobPostingSearchParams{
+    BaseParams: pdlmodel.BaseParams{Size: 10},
+    Query:      elasticSearchQuery,
+}
+
+result, err := client.JobPosting.Search(ctx, params)
+```
+
+#### Search (Field Parameters)
+
+```go
+isActive := true
+params := pdlmodel.JobPostingSearchParams{
+    BaseParams:       pdlmodel.BaseParams{Size: 10},
+    TitleRole:        "engineering",
+    RemoteWorkPolicy: pdlmodel.RemoteWorkPolicyRemote,
+    IsActive:         &isActive,
+}
+
+result, err := client.JobPosting.Search(ctx, params)
+```
+
 ## 🏝 Sandbox Usage <a name="sandbox"></a>
 
 ```go
@@ -371,6 +409,12 @@ client := pdl.New(apiKey, api.ClientOptions(func(c *api.Client) {
 | [Company Enrichment API](https://docs.peopledatalabs.com/docs/company-enrichment-api)           | `client.Company.Enrich(params)` |
 | [Company Bulk Enrichment API](https://docs.peopledatalabs.com/docs/bulk-company-enrichment-api) | `client.Company.BulkEnrich(params)`   |
 | [Company Search API](https://docs.peopledatalabs.com/docs/company-search-api)                   | `client.Company.Search(params)` |
+
+**Job Posting Endpoints**
+
+| API Endpoint                                                                            | SDK Function                       |
+| --------------------------------------------------------------------------------------- |------------------------------------|
+| [Job Posting Search API](https://docs.peopledatalabs.com/docs/job-posting-search-api)   | `client.JobPosting.Search(params)` |
 
 **Supporting Endpoints**
 
