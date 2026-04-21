@@ -11,6 +11,7 @@ type pld struct {
 	Company      api.Company
 	Location     api.Location
 	School       api.School
+	JobPosting   api.JobPosting
 	Autocomplete api.AutocompleteFunc
 	JobTitle     api.JobTitleFunc
 	IP           api.IPFunc
@@ -32,6 +33,7 @@ func New(apiKey string, opts ...api.ClientOptions) *pld {
 		Company:      api.Company{Client: client},
 		Location:     api.Location{Client: client},
 		School:       api.School{Client: client},
+		JobPosting:   api.JobPosting{Client: client},
 		Autocomplete: autocompleteClient.Autocomplete,
 		JobTitle:     jobTitleClient.JobTitle,
 		IP:           ipClient.IP,
