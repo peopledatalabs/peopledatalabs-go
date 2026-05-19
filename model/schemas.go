@@ -179,7 +179,7 @@ type Person struct {
 type ProfileScoreFactor struct {
 	AttributeFillRate        *float64 `json:"attribute_fill_rate"`
 	ProfileAgeMonths         *int     `json:"profile_age_months"`
-	HasValidUrl              *int     `json:"has_valid_url"`
+	HasValidUrl              *float64 `json:"has_valid_url"`
 	LinkedinConnections      *int     `json:"linkedin_connections"`
 }
 
