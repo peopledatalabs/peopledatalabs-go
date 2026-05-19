@@ -171,16 +171,16 @@ type Person struct {
 	Summary  *string `json:"summary"`  // Self-written summaries tied to the person
 	Headline *string `json:"headline"` // Self-written headlines tied to the person
 	ProfileScore         *string              `json:"profile_score"`
-	ProfileScoreFactors  []ProfileScoreFactor `json:"profile_score_factors"`
+	ProfileScoreFactors  ProfileScoreFactor `json:"profile_score_factors"`
 	ActivityScore        *string              `json:"activity_score"`
-	ActivityScoreFactors []ActivityScoreFactor `json:"activity_score_factors"`
+	ActivityScoreFactors ActivityScoreFactor `json:"activity_score_factors"`
 }
 
 type ProfileScoreFactor struct {
 	AttributeFillRate        *float64 `json:"attribute_fill_rate"`
 	ProfileAgeMonths         *int     `json:"profile_age_months"`
 	HasValidUrl              *int     `json:"has_valid_url"`
-	MeetsConnectionThreshold *int     `json:"meets_connection_threshold"`
+	LinkedinConnections      *int     `json:"linkedin_connections"`
 }
 
 type ActivityScoreFactor struct {
