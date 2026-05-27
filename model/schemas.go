@@ -171,9 +171,9 @@ type Person struct {
 	Summary              *string               `json:"summary"`  // Self-written summaries tied to the person
 	Headline             *string               `json:"headline"` // Self-written headlines tied to the person
 	ProfileScore         *string               `json:"profile_score"`
-	ProfileScoreFactors  []ProfileScoreFactor  `json:"profile_score_factors"`
-	ActivityScore        *string               `json:"activity_score"`
-	ActivityScoreFactors []ActivityScoreFactor `json:"activity_score_factors"`
+	ProfileScoreFactors  ProfileScoreFactor `json:"profile_score_factors"`
+	ActivityScore        *string            `json:"activity_score"`
+	ActivityScoreFactors ActivityScoreFactor `json:"activity_score_factors"`
 }
 
 type ProfileScoreFactor struct {
