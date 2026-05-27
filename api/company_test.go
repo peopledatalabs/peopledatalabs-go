@@ -9,6 +9,7 @@ import (
 	"github.com/peopledatalabs/peopledatalabs-go/v6/model"
 
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestCompany_Enrich(t *testing.T) {
@@ -49,7 +50,7 @@ func TestCompany_BulkEnrich(t *testing.T) {
 	resp, err := company.BulkEnrich(context.Background(), params)
 
 	// assertions
-	assert.NoError(t, err)
+	require.NoError(t, err)
 	assert.Equal(t, http.StatusOK, resp[0].Status)
 	assert.Equal(t, http.StatusOK, resp[1].Status)
 	assert.Equal(t, "Walmart", resp[0].Company.DisplayName)
@@ -81,7 +82,7 @@ func TestCompany_Search(t *testing.T) {
 	resp, err := company.Search(context.Background(), params)
 
 	// assertions
-	assert.NoError(t, err)
+	require.NoError(t, err)
 	assert.Equal(t, http.StatusOK, resp.Status)
 	assert.Equal(t, "peopledatalabs.com", resp.Data[0].Website)
 }

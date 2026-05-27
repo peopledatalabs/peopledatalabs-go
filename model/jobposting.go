@@ -69,31 +69,31 @@ func (params JobPostingSearchParams) Validate() error {
 }
 
 type JobPosting struct {
-	ID                 string   `json:"id"`
-	Title              string   `json:"title"`
-	TitleClass         string   `json:"title_class"`
-	TitleRole          string   `json:"title_role"`
-	TitleSubRole       string   `json:"title_sub_role"`
-	TitleLevels        []string `json:"title_levels"`
-	CompanyID          string   `json:"company_id"`
-	CompanyName        string   `json:"company_name"`
-	CompanyIndustry    string   `json:"company_industry"`
-	CompanyIndustryV2  string   `json:"company_industry_v2"`
-	CompanyWebsite     string   `json:"company_website"`
-	CompanyProfile     string   `json:"company_profile"`
-	Location           string   `json:"location"`
-	Description        string   `json:"description"`
-	URLs               []string `json:"urls"`
-	FirstSeen          string   `json:"first_seen"`
-	LastVerified       string   `json:"last_verified"`
-	DeactivatedDate    string   `json:"deactivated_date"`
-	IsActive           bool     `json:"is_active"`
-	RemoteWorkPolicy   string   `json:"remote_work_policy"`
-	SalaryRangeMin     int      `json:"salary_range_min"`
-	SalaryRangeMax     int      `json:"salary_range_max"`
-	SalaryCurrency     string   `json:"salary_currency"`
-	SalaryPeriod       string   `json:"salary_period"`
-	InferredSkills     []string `json:"inferred_skills"`
+	ID                string      `json:"id"`
+	Title             string      `json:"title"`
+	TitleClass        string      `json:"title_class"`
+	TitleRole         string      `json:"title_role"`
+	TitleSubRole      string      `json:"title_sub_role"`
+	TitleLevels       []string    `json:"title_levels"`
+	CompanyID         string      `json:"company_id"`
+	CompanyName       string      `json:"company_name"`
+	CompanyIndustry   string      `json:"company_industry"`
+	CompanyIndustryV2 string      `json:"company_industry_v2"`
+	CompanyWebsite    string      `json:"company_website"`
+	CompanyProfile    string      `json:"company_profile"`
+	Location          string      `json:"location"`
+	Description       string      `json:"description"`
+	URLs              []string    `json:"urls"`
+	FirstSeen         string      `json:"first_seen"`
+	LastVerified      string      `json:"last_verified"`
+	DeactivatedDate   string      `json:"deactivated_date"`
+	IsActive          bool        `json:"is_active"`
+	RemoteWorkPolicy  string      `json:"remote_work_policy"`
+	SalaryRangeMin    int         `json:"salary_range_min"`
+	SalaryRangeMax    int         `json:"salary_range_max"`
+	SalaryCurrency    string      `json:"salary_currency"`
+	SalaryPeriod      string      `json:"salary_period"`
+	InferredSkills    interface{} `json:"inferred_skills"`
 }
 
 type SearchJobPostingResponse struct {
