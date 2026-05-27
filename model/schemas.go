@@ -152,28 +152,28 @@ type Person struct {
 		Organization string `json:"organization"` // Inputted Organization awarding certification
 		StartDate    string `json:"start_date"`   // Inputted Organization awarding certification
 	} `json:"certifications"` // Certification objects associated with this person profile
-	InferredSalary            *string `json:"inferred_salary"`              // inferred salary range
-	InferredYearsExperience   *int    `json:"inferred_years_experience"`    // Inferred years work experience
-	JobCompanyTicker          *string `json:"job_company_ticker"`           // Current Company Ticker
-	JobCompanyType            *string `json:"job_company_type"`             // Current Company Type
-	JobOnetCode               *string `json:"job_onet_code"`                // The 8 digit O*NET code for a person’s current job title, following the 2018 SOC guidelines.
-	JobOnetMajorGroup         *string `json:"job_onet_major_group"`         // The O*NET Major Group associated with a person’s current job title.
-	JobOnetMinorGroup         *string `json:"job_onet_minor_group"`         // The O*NET Minor Group associated with a person’s current job title.
-	JobOnetBroadOccupation    *string `json:"job_onet_broad_occupation"`    // The O*NET Broad Occupation category associated with a person’s current job title.
+	InferredSalary                  *string `json:"inferred_salary"`                     // inferred salary range
+	InferredYearsExperience         *int    `json:"inferred_years_experience"`           // Inferred years work experience
+	JobCompanyTicker                *string `json:"job_company_ticker"`                  // Current Company Ticker
+	JobCompanyType                  *string `json:"job_company_type"`                    // Current Company Type
+	JobOnetCode                     *string `json:"job_onet_code"`                       // The 8 digit O*NET code for a person’s current job title, following the 2018 SOC guidelines.
+	JobOnetMajorGroup               *string `json:"job_onet_major_group"`                // The O*NET Major Group associated with a person’s current job title.
+	JobOnetMinorGroup               *string `json:"job_onet_minor_group"`                // The O*NET Minor Group associated with a person’s current job title.
+	JobOnetBroadOccupation          *string `json:"job_onet_broad_occupation"`           // The O*NET Broad Occupation category associated with a person’s current job title.
 	JobOnetSpecificOccupation       *string `json:"job_onet_specific_occupation"`        // The O*NET Detailed Occupation category associated with a person’s current job title.
 	JobOnetSpecificOccupationDetail *string `json:"job_onet_specific_occupation_detail"` // A more detailed O*NET Specific Occupation category associated with a person’s current job title.
 	JobOnetTitle                    *string `json:"job_onet_title"`                      // An O*NET Alternative Title associated with a person’s current job title.
-	JobSummary                *string `json:"job_summary"`                  // User-inputted summary of experience
-	Languages                 []struct {
+	JobSummary                      *string `json:"job_summary"`                         // User-inputted summary of experience
+	Languages                       []struct {
 		Name        string `json:"name"`        // Name of the canonical language the person inputted
 		Proficiency int    `json:"proficiency"` // Self-identified proficiency score 1 (limited) - 5 (fluent)
 	} `json:"languages"` // Self-identified languages spoken
-	Summary  *string `json:"summary"`  // Self-written summaries tied to the person
-	Headline *string `json:"headline"` // Self-written headlines tied to the person
-	ProfileScore         *string              `json:"profile_score"`
-	ProfileScoreFactors  ProfileScoreFactor `json:"profile_score_factors"`
-	ActivityScore        *string              `json:"activity_score"`
-	ActivityScoreFactors ActivityScoreFactor `json:"activity_score_factors"`
+	Summary              *string               `json:"summary"`  // Self-written summaries tied to the person
+	Headline             *string               `json:"headline"` // Self-written headlines tied to the person
+	ProfileScore         *string               `json:"profile_score"`
+	ProfileScoreFactors  []ProfileScoreFactor  `json:"profile_score_factors"`
+	ActivityScore        *string               `json:"activity_score"`
+	ActivityScoreFactors []ActivityScoreFactor `json:"activity_score_factors"`
 }
 
 type ProfileScoreFactor struct {
@@ -256,62 +256,62 @@ type Company struct {
 		IndustryGroup  string `json:"industry_group"`  // The industry classification according to the first 3 digits in the SIC code.
 		IndustrySector string `json:"industry_sector"` // The industry classification according to all 4 digits in the SIC code.
 	} `json:"sic"` //Industry classifications for a company according to the Standard Industrial Classification (SIC) system. A company can (and frequently does) have multiple SIC codes.
-	EmployeeGrowthRate     map[string]float64 `json:"employee_growth_rate"`      // The percentage increase in total headcount from N months prior.
-	EmployeeChurnRate              map[string]float64 `json:"employee_churn_rate"`                // The rate of change in employee headcount from N months prior.
-	EmployeeTurnoverRate           map[string]float64 `json:"employee_turnover_rate"`             // The rate of employee turnover from N months prior.
-	AnnualizedEmployeeTurnoverRate map[string]float64 `json:"annualized_employee_turnover_rate"`  // The annualized rate of employee turnover.
-	AverageEmployeeTenure          float64            `json:"average_employee_tenure"`            // Average years of experience at the company.
-	MedianEmployeeTenure           float64            `json:"median_employee_tenure"`             // Median years of experience at the company.
-	AverageTenureByRole            map[string]float64 `json:"average_tenure_by_role"`             // Average years of experience at the company by job role.
-	MedianTenureByRole             map[string]float64 `json:"median_tenure_by_role"`              // Median years of experience at the company by job role.
-	AverageTenureByLevel           map[string]float64 `json:"average_tenure_by_level"`            // Average years of experience at the company by job level.
-	MedianTenureByLevel            map[string]float64 `json:"median_tenure_by_level"`             // Median years of experience at the company by job level.
-	EmployeeCountByCountry             map[string]int `json:"employee_count_by_country"` // The number of current employees broken out by country.
-	TopUsEmployeeMetros    map[string]struct {
+	EmployeeGrowthRate             map[string]float64 `json:"employee_growth_rate"`              // The percentage increase in total headcount from N months prior.
+	EmployeeChurnRate              map[string]float64 `json:"employee_churn_rate"`               // The rate of change in employee headcount from N months prior.
+	EmployeeTurnoverRate           map[string]float64 `json:"employee_turnover_rate"`            // The rate of employee turnover from N months prior.
+	AnnualizedEmployeeTurnoverRate map[string]float64 `json:"annualized_employee_turnover_rate"` // The annualized rate of employee turnover.
+	AverageEmployeeTenure          float64            `json:"average_employee_tenure"`           // Average years of experience at the company.
+	MedianEmployeeTenure           float64            `json:"median_employee_tenure"`            // Median years of experience at the company.
+	AverageTenureByRole            map[string]float64 `json:"average_tenure_by_role"`            // Average years of experience at the company by job role.
+	MedianTenureByRole             map[string]float64 `json:"median_tenure_by_role"`             // Median years of experience at the company by job role.
+	AverageTenureByLevel           map[string]float64 `json:"average_tenure_by_level"`           // Average years of experience at the company by job level.
+	MedianTenureByLevel            map[string]float64 `json:"median_tenure_by_level"`            // Median years of experience at the company by job level.
+	EmployeeCountByCountry         map[string]int     `json:"employee_count_by_country"`         // The number of current employees broken out by country.
+	TopUsEmployeeMetros            map[string]struct {
 		CurrentHeadcount int     `json:"current_headcount"`    // Number of employees in the metro
 		MonthGrowthRate  float64 `json:"12_month_growth_rate"` // Growth rate in the metro over the last 12 months, precise to 4th decimal place
 	} `json:"top_us_employee_metros"` // The top 10 US metros where employees are based.
-	EmployeeCountByMonth            map[string]int            `json:"employee_count_by_month"`               // The number of employees at the end of each month.
-	GrossAdditionsByMonth           map[string]int            `json:"gross_additions_by_month"`              // The total number of profiles that joined the company each month.
-	GrossDeparturesByMonth          map[string]int            `json:"gross_departures_by_month"`             // The total number of profiles that left the company each month.
-	EmployeeCountByMonthByRole      map[string]map[string]int `json:"employee_count_by_month_by_role"`       // The number of employees at the end of each month, broken down by job role.
-	EmployeeCountByMonthByLevel     map[string]map[string]int `json:"employee_count_by_month_by_level"`      // The number of employees at the end of each month, broken down by job level.
-	EmployeeGrowthRate12MonthByRole    map[string]float64 `json:"employee_growth_rate_12_month_by_role"` // The percentage increase in total headcount from N months prior, broken down by job role.
+	EmployeeCountByMonth               map[string]int            `json:"employee_count_by_month"`               // The number of employees at the end of each month.
+	GrossAdditionsByMonth              map[string]int            `json:"gross_additions_by_month"`              // The total number of profiles that joined the company each month.
+	GrossDeparturesByMonth             map[string]int            `json:"gross_departures_by_month"`             // The total number of profiles that left the company each month.
+	EmployeeCountByMonthByRole         map[string]map[string]int `json:"employee_count_by_month_by_role"`       // The number of employees at the end of each month, broken down by job role.
+	EmployeeCountByMonthByLevel        map[string]map[string]int `json:"employee_count_by_month_by_level"`      // The number of employees at the end of each month, broken down by job level.
+	EmployeeGrowthRate12MonthByRole    map[string]float64        `json:"employee_growth_rate_12_month_by_role"` // The percentage increase in total headcount from N months prior, broken down by job role.
 	EmployeeGrowthRate12MonthByCountry map[string]struct {
 		CurrentHeadcount int     `json:"current_headcount"`    // The number of current employees in this country.
 		MonthHeadcount   int     `json:"12_month_headcount"`   // The employee count 12 months ago in this country.
 		MonthGrowthRate  float64 `json:"12_month_growth_rate"` // The 12-month employee growth rate in this country.
 	} `json:"employee_growth_rate_12_month_by_country"` // The percentage increase in total headcount from 12 months prior, broken down by country.
-	EmployeeCountByRole             map[string]int            `json:"employee_count_by_role"`                // The number of employees at the end of each month, broken down by job role.
-	RecentExecHires                 []struct {
+	EmployeeCountByRole map[string]int `json:"employee_count_by_role"` // The number of employees at the end of each month, broken down by job role.
+	RecentExecHires     []struct {
 		JoinedDate                     string   `json:"joined_date"`                         // The month the Exec joined the company
 		PdlId                          string   `json:"pdl_id"`                              // ID of the Exec in our Person dataset
 		JobTitle                       string   `json:"job_title"`                           // Exec's current job title at the company
-		JobTitleRole                    string   `json:"job_title_role"`                       // Exec's current job role at the company. Will be one of the Canonical Job Roles.
-		JobTitleSubRole                 string   `json:"job_title_sub_role"`                   // Exec's current job subrole at the company. Will be one of the Canonical Job Subroles.
-		JobTitleClass                   string   `json:"job_title_class"`                      // Exec's current job class at the company.
-		JobTitleLevels                  []string `json:"job_title_levels"`                     // Exec's current job level at the company. Will be in the Canonical Job Levels.
-		PreviousCompanyId               string   `json:"previous_company_id"`                  // ID of company the Exec left
-		PreviousCompanyJobTitle         string   `json:"previous_company_job_title"`           // Exec's previous job title at the old company
-		PreviousCompanyJobTitleRole     string   `json:"previous_company_job_title_role"`      // Exec's previous job role at the old company. Will be one of the Canonical Job Roles.
-		PreviousCompanyJobTitleSubRole  string   `json:"previous_company_job_title_sub_role"`  // Exec's previous job subrole at the old company. Will be one of the Canonical Job Subroles.
-		PreviousCompanyJobTitleClass    string   `json:"previous_company_job_title_class"`     // Exec's previous job class at the old company.
-		PreviousCompanyJobTitleLevels   []string `json:"previous_company_job_title_levels"`    // Exec's previous job levels at the old company. Will be in the Canonical Job Levels.
+		JobTitleRole                   string   `json:"job_title_role"`                      // Exec's current job role at the company. Will be one of the Canonical Job Roles.
+		JobTitleSubRole                string   `json:"job_title_sub_role"`                  // Exec's current job subrole at the company. Will be one of the Canonical Job Subroles.
+		JobTitleClass                  string   `json:"job_title_class"`                     // Exec's current job class at the company.
+		JobTitleLevels                 []string `json:"job_title_levels"`                    // Exec's current job level at the company. Will be in the Canonical Job Levels.
+		PreviousCompanyId              string   `json:"previous_company_id"`                 // ID of company the Exec left
+		PreviousCompanyJobTitle        string   `json:"previous_company_job_title"`          // Exec's previous job title at the old company
+		PreviousCompanyJobTitleRole    string   `json:"previous_company_job_title_role"`     // Exec's previous job role at the old company. Will be one of the Canonical Job Roles.
+		PreviousCompanyJobTitleSubRole string   `json:"previous_company_job_title_sub_role"` // Exec's previous job subrole at the old company. Will be one of the Canonical Job Subroles.
+		PreviousCompanyJobTitleClass   string   `json:"previous_company_job_title_class"`    // Exec's previous job class at the old company.
+		PreviousCompanyJobTitleLevels  []string `json:"previous_company_job_title_levels"`   // Exec's previous job levels at the old company. Will be in the Canonical Job Levels.
 	} `json:"recent_exec_hires"` // The profiles of all of CXOs, owners and VPs that have joined the company in the last 3 months.
 	RecentExecDepartures []struct {
 		DepartedDate              string   `json:"departed_date"`                  // (Date: YYYY-MM) The month the Exec left the company
 		PdlId                     string   `json:"pdl_id"`                         // ID of the Exec in our Person dataset
 		JobTitle                  string   `json:"job_title"`                      // Exec's previous job title at the company
-		JobTitleRole               string   `json:"job_title_role"`                  // Exec's previous job role at the company. Will be one of the Canonical Job Roles.
-		JobTitleSubRole            string   `json:"job_title_sub_role"`              // Exec's previous job subrole at the company. Will be one of the Canonical Job Subroles.
-		JobTitleClass              string   `json:"job_title_class"`                 // Exec's previous job class at the company.
-		JobTitleLevels             []string `json:"job_title_levels"`                // Exec's previous job levels at the company. Will be in the Canonical Job Levels.
-		NewCompanyId               string   `json:"new_company_id"`                  // ID of company the Exec joined
-		NewCompanyJobTitle         string   `json:"new_company_job_title"`           // Exec's current job title at the new company
-		NewCompanyJobTitleRole     string   `json:"new_company_job_title_role"`      // Exec's current job role at the new company. Will be one of the Canonical Job Roles.
-		NewCompanyJobTitleSubRole  string   `json:"new_company_job_title_sub_role"`  // Exec's current job subrole at the new company. Will be one of the Canonical Job Subroles.
-		NewCompanyJobTitleClass    string   `json:"new_company_job_title_class"`     // Exec's current job class at the new company.
-		NewCompanyJobTitleLevels   []string `json:"new_company_job_title_levels"`    // Exec's current job levels at the new company. Will be in the Canonical Job Levels.
+		JobTitleRole              string   `json:"job_title_role"`                 // Exec's previous job role at the company. Will be one of the Canonical Job Roles.
+		JobTitleSubRole           string   `json:"job_title_sub_role"`             // Exec's previous job subrole at the company. Will be one of the Canonical Job Subroles.
+		JobTitleClass             string   `json:"job_title_class"`                // Exec's previous job class at the company.
+		JobTitleLevels            []string `json:"job_title_levels"`               // Exec's previous job levels at the company. Will be in the Canonical Job Levels.
+		NewCompanyId              string   `json:"new_company_id"`                 // ID of company the Exec joined
+		NewCompanyJobTitle        string   `json:"new_company_job_title"`          // Exec's current job title at the new company
+		NewCompanyJobTitleRole    string   `json:"new_company_job_title_role"`     // Exec's current job role at the new company. Will be one of the Canonical Job Roles.
+		NewCompanyJobTitleSubRole string   `json:"new_company_job_title_sub_role"` // Exec's current job subrole at the new company. Will be one of the Canonical Job Subroles.
+		NewCompanyJobTitleClass   string   `json:"new_company_job_title_class"`    // Exec's current job class at the new company.
+		NewCompanyJobTitleLevels  []string `json:"new_company_job_title_levels"`   // Exec's current job levels at the new company. Will be in the Canonical Job Levels.
 	} `json:"recent_exec_departures"` // The profiles of all of CXOs, owners and VPs that have left the company in the last 3 months.
 	DeactivatedJobPostings          float64                     `json:"deactivated_job_postings"`             // The number of deactivated job postings for the company
 	ActiveJobPostings               float64                     `json:"active_job_postings"`                  // The number of active job postings for the company
