@@ -353,6 +353,12 @@ type Company struct {
 		RelationshipCitations []string `json:"relationship_citations"` // Citations supporting the relationship
 		EmployeeCount         int      `json:"employee_count"`         // The number of employees at the affiliated company
 	} `json:"affiliated_entities"` // List of affiliated entities related to the company
+	TechnologiesUsed []struct {
+		ProductId             string `json:"product_id"`               // The PDL ID of the product/technology
+		Name                  string `json:"name"`                     // The name of the product/technology
+		NumJobPostingMentions int    `json:"num_job_posting_mentions"` // The number of job postings that mention the product/technology
+		NumResumeMentions     int    `json:"num_resume_mentions"`      // The number of resumes that mention the product/technology
+	} `json:"technologies_used"` // The technologies the company is known to use
 }
 
 type School struct {
