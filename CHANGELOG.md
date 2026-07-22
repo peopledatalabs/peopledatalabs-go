@@ -192,3 +192,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Added employee_growth_rate_12_month_by_country to Company Schema (PDL API v33.2)
 - Field is a map of country code to struct with current_headcount, 12_month_headcount, and 12_month_growth_rate
+
+## [6.7.0] - 2026-07-22
+
+- Added technologies_used to Company Schema (PDL API v35.0)
+- RestError.Details.Type now accepts either a string or an array of strings from the API
