@@ -168,19 +168,19 @@ type Person struct {
 		Name        string `json:"name"`        // Name of the canonical language the person inputted
 		Proficiency int    `json:"proficiency"` // Self-identified proficiency score 1 (limited) - 5 (fluent)
 	} `json:"languages"` // Self-identified languages spoken
-	Summary              *string               `json:"summary"`  // Self-written summaries tied to the person
-	Headline             *string               `json:"headline"` // Self-written headlines tied to the person
-	ProfileScore         *string               `json:"profile_score"`
-	ProfileScoreFactors  ProfileScoreFactor `json:"profile_score_factors"`
-	ActivityScore        *string            `json:"activity_score"`
+	Summary              *string             `json:"summary"`  // Self-written summaries tied to the person
+	Headline             *string             `json:"headline"` // Self-written headlines tied to the person
+	ProfileScore         *string             `json:"profile_score"`
+	ProfileScoreFactors  ProfileScoreFactor  `json:"profile_score_factors"`
+	ActivityScore        *string             `json:"activity_score"`
 	ActivityScoreFactors ActivityScoreFactor `json:"activity_score_factors"`
 }
 
 type ProfileScoreFactor struct {
-	AttributeFillRate        *float64 `json:"attribute_fill_rate"`
-	ProfileAgeMonths         *int     `json:"profile_age_months"`
-	HasValidUrl              *float64 `json:"has_valid_url"`
-	LinkedinConnections      *int     `json:"linkedin_connections"`
+	AttributeFillRate   *float64 `json:"attribute_fill_rate"`
+	ProfileAgeMonths    *int     `json:"profile_age_months"`
+	HasValidUrl         *float64 `json:"has_valid_url"`
+	LinkedinConnections *int     `json:"linkedin_connections"`
 }
 
 type ActivityScoreFactor struct {
@@ -335,11 +335,15 @@ type Company struct {
 	NumberFundingRounds             int                         `json:"number_funding_rounds"`                // The number of funding rounds the company has raised
 	FundingStages                   []string                    `json:"funding_stages"`                       // The funding stages the company has raised
 	FundingDetails                  []struct {
-		FundingRoundDate     string   `json:"funding_round_date"`    // The date of the funding round
-		FundingRaised        float64  `json:"funding_raised"`        // The amount of funding raised in the funding round
-		FundingCurrency      string   `json:"funding_currency"`      // The currency of the funding round
-		FundingType          string   `json:"funding_type"`          // The type of funding round
-		InvestingCompanies   []string `json:"investing_companies"`   // The companies that invested in the funding round
+		FundingRoundDate          string   `json:"funding_round_date"`  // The date of the funding round
+		FundingRaised             float64  `json:"funding_raised"`      // The amount of funding raised in the funding round
+		FundingCurrency           string   `json:"funding_currency"`    // The currency of the funding round
+		FundingType               string   `json:"funding_type"`        // The type of funding round
+		InvestingCompanies        []string `json:"investing_companies"` // The companies that invested in the funding round
+		InvestingCompaniesDetails []struct {
+			InvestingCompanyId          string `json:"investing_company_id"`           // The PDL ID of the investing company
+			InvestingCompanyDisplayName string `json:"investing_company_display_name"` // The display name of the investing company
+		} `json:"investing_companies_details"` // The details of the companies that invested in the funding round
 		InvestingIndividuals []string `json:"investing_individuals"` // The individuals that invested in the funding round
 	} `json:"funding_details"` // The details of the funding rounds the company has raised
 	AffiliatedEntities []struct {
@@ -354,10 +358,16 @@ type Company struct {
 		EmployeeCount         int      `json:"employee_count"`         // The number of employees at the affiliated company
 	} `json:"affiliated_entities"` // List of affiliated entities related to the company
 	TechnologiesUsed []struct {
-		ProductId             string `json:"product_id"`               // The PDL ID of the product/technology
-		Name                  string `json:"name"`                     // The name of the product/technology
-		NumJobPostingMentions int    `json:"num_job_posting_mentions"` // The number of job postings that mention the product/technology
-		NumResumeMentions     int    `json:"num_resume_mentions"`      // The number of resumes that mention the product/technology
+		ProductId               string `json:"product_id"`                 // The PDL ID of the product/technology
+		Name                    string `json:"name"`                       // The name of the product/technology
+		NumJobPostingMentions   int    `json:"num_job_posting_mentions"`   // The number of job postings that mention the product/technology
+		JobPostingFirstObserved string `json:"job_posting_first_observed"` // The date the product/technology was first observed in a job posting
+		JobPostingLastObserved  string `json:"job_posting_last_observed"`  // The date the product/technology was last observed in a job posting
+		NumResumeMentions       int    `json:"num_resume_mentions"`        // The number of resumes that mention the product/technology
+		ResumeFirstObserved     string `json:"resume_first_observed"`      // The date the product/technology was first observed in a resume
+		ResumeLastObserved      string `json:"resume_last_observed"`       // The date the product/technology was last observed in a resume
+		InferredFirstUsed       string `json:"inferred_first_used"`        // The inferred date the company first started using the product/technology
+		InferredLastUsed        string `json:"inferred_last_used"`         // The inferred date the company last used the product/technology
 	} `json:"technologies_used"` // The technologies the company is known to use
 }
 
