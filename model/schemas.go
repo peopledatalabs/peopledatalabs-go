@@ -358,10 +358,16 @@ type Company struct {
 		EmployeeCount         int      `json:"employee_count"`         // The number of employees at the affiliated company
 	} `json:"affiliated_entities"` // List of affiliated entities related to the company
 	TechnologiesUsed []struct {
-		ProductId             string `json:"product_id"`               // The PDL ID of the product/technology
-		Name                  string `json:"name"`                     // The name of the product/technology
-		NumJobPostingMentions int    `json:"num_job_posting_mentions"` // The number of job postings that mention the product/technology
-		NumResumeMentions     int    `json:"num_resume_mentions"`      // The number of resumes that mention the product/technology
+		ProductId               string `json:"product_id"`                 // The PDL ID of the product/technology
+		Name                    string `json:"name"`                       // The name of the product/technology
+		NumJobPostingMentions   int    `json:"num_job_posting_mentions"`   // The number of job postings that mention the product/technology
+		JobPostingFirstObserved string `json:"job_posting_first_observed"` // The date the product/technology was first observed in a job posting
+		JobPostingLastObserved  string `json:"job_posting_last_observed"`  // The date the product/technology was last observed in a job posting
+		NumResumeMentions       int    `json:"num_resume_mentions"`        // The number of resumes that mention the product/technology
+		ResumeFirstObserved     string `json:"resume_first_observed"`      // The date the product/technology was first observed in a resume
+		ResumeLastObserved      string `json:"resume_last_observed"`       // The date the product/technology was last observed in a resume
+		InferredFirstUsed       string `json:"inferred_first_used"`        // The inferred date the company first started using the product/technology
+		InferredLastUsed        string `json:"inferred_last_used"`         // The inferred date the company last used the product/technology
 	} `json:"technologies_used"` // The technologies the company is known to use
 }
 
