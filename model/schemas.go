@@ -168,19 +168,19 @@ type Person struct {
 		Name        string `json:"name"`        // Name of the canonical language the person inputted
 		Proficiency int    `json:"proficiency"` // Self-identified proficiency score 1 (limited) - 5 (fluent)
 	} `json:"languages"` // Self-identified languages spoken
-	Summary              *string               `json:"summary"`  // Self-written summaries tied to the person
-	Headline             *string               `json:"headline"` // Self-written headlines tied to the person
-	ProfileScore         *string               `json:"profile_score"`
-	ProfileScoreFactors  ProfileScoreFactor `json:"profile_score_factors"`
-	ActivityScore        *string            `json:"activity_score"`
+	Summary              *string             `json:"summary"`  // Self-written summaries tied to the person
+	Headline             *string             `json:"headline"` // Self-written headlines tied to the person
+	ProfileScore         *string             `json:"profile_score"`
+	ProfileScoreFactors  ProfileScoreFactor  `json:"profile_score_factors"`
+	ActivityScore        *string             `json:"activity_score"`
 	ActivityScoreFactors ActivityScoreFactor `json:"activity_score_factors"`
 }
 
 type ProfileScoreFactor struct {
-	AttributeFillRate        *float64 `json:"attribute_fill_rate"`
-	ProfileAgeMonths         *int     `json:"profile_age_months"`
-	HasValidUrl              *float64 `json:"has_valid_url"`
-	LinkedinConnections      *int     `json:"linkedin_connections"`
+	AttributeFillRate   *float64 `json:"attribute_fill_rate"`
+	ProfileAgeMonths    *int     `json:"profile_age_months"`
+	HasValidUrl         *float64 `json:"has_valid_url"`
+	LinkedinConnections *int     `json:"linkedin_connections"`
 }
 
 type ActivityScoreFactor struct {
@@ -335,11 +335,15 @@ type Company struct {
 	NumberFundingRounds             int                         `json:"number_funding_rounds"`                // The number of funding rounds the company has raised
 	FundingStages                   []string                    `json:"funding_stages"`                       // The funding stages the company has raised
 	FundingDetails                  []struct {
-		FundingRoundDate     string   `json:"funding_round_date"`    // The date of the funding round
-		FundingRaised        float64  `json:"funding_raised"`        // The amount of funding raised in the funding round
-		FundingCurrency      string   `json:"funding_currency"`      // The currency of the funding round
-		FundingType          string   `json:"funding_type"`          // The type of funding round
-		InvestingCompanies   []string `json:"investing_companies"`   // The companies that invested in the funding round
+		FundingRoundDate          string   `json:"funding_round_date"`  // The date of the funding round
+		FundingRaised             float64  `json:"funding_raised"`      // The amount of funding raised in the funding round
+		FundingCurrency           string   `json:"funding_currency"`    // The currency of the funding round
+		FundingType               string   `json:"funding_type"`        // The type of funding round
+		InvestingCompanies        []string `json:"investing_companies"` // The companies that invested in the funding round
+		InvestingCompaniesDetails []struct {
+			InvestingCompanyId          string `json:"investing_company_id"`           // The PDL ID of the investing company
+			InvestingCompanyDisplayName string `json:"investing_company_display_name"` // The display name of the investing company
+		} `json:"investing_companies_details"` // The details of the companies that invested in the funding round
 		InvestingIndividuals []string `json:"investing_individuals"` // The individuals that invested in the funding round
 	} `json:"funding_details"` // The details of the funding rounds the company has raised
 	AffiliatedEntities []struct {
