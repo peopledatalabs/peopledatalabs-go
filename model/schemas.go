@@ -153,6 +153,9 @@ type Person struct {
 		StartDate    string `json:"start_date"`   // Inputted Organization awarding certification
 	} `json:"certifications"` // Certification objects associated with this person profile
 	InferredSalary                  *string `json:"inferred_salary"`                     // inferred salary range
+	InferredSalaryLow               *int    `json:"inferred_salary_low"`                 // Lower bound of the inferred salary range
+	InferredSalaryHigh              *int    `json:"inferred_salary_high"`                // Upper bound of the inferred salary range
+	InferredSalaryConfidence        *string `json:"inferred_salary_confidence"`          // Confidence in the inferred salary range
 	InferredYearsExperience         *int    `json:"inferred_years_experience"`           // Inferred years work experience
 	JobCompanyTicker                *string `json:"job_company_ticker"`                  // Current Company Ticker
 	JobCompanyType                  *string `json:"job_company_type"`                    // Current Company Type

@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [6.9.0] - 2026-09-11
+
+- Added inferred_salary_low, inferred_salary_high, and inferred_salary_confidence to Person response (PDL API v35.2)
+
 ## [6.8.0] - 2026-08-14
 
 - Added investing_companies_details to Company response FundingDetails (PDL API v35.1)
