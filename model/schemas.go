@@ -202,6 +202,8 @@ type Company struct {
 	Id                        string   `json:"id"`                           // PDL company ID. This is currently non-persistent and generated from the company's primary linkedin username
 	DatasetVersion            string   `json:"dataset_version"`              // Explains the current major or minor release number.
 	Founded                   int      `json:"founded"`                      // The founded year of the company
+	InferredRevenue           string   `json:"inferred_revenue"`             // The inferred revenue range of the company
+	InferredRevenueInteger    int64    `json:"inferred_revenue_integer"`     // The estimated annual revenue of the company in USD (beta, premium add-on)
 	Industry                  string   `json:"industry"`                     // Self reported industry
 	IndustryV2                string   `json:"industry_v2"`                  // Self reported industry (v2)
 	GicsSector                string   `json:"gics_sector"`                  // The Global Industry Classification Standard (GICS) sector of the company
@@ -225,11 +227,12 @@ type Company struct {
 	DisplayNameHistory        []string `json:"display_name_history"`         // A list of all known display names for the company.
 	AlternativeNames          []string `json:"alternative_names"`            // A list of names associated with this company.
 	AlternativeDomains        []string `json:"alternative_domains"`          // A list of alternate domains associated with this company.
-	AffiliatedProfiles        []string `json:"affiliated_profiles"`          // Company IDs that are affiliated with the queried company (parents & subsidiaries).
-	DirectSubsidiaries        []string `json:"direct_subsidiaries"`          // Company IDs that are subsidiaries of the queried company.
-	AllSubsidiaries           []string `json:"all_subsidiaries"`             // Company IDs that are subsidiaries of the queried company.
-	Location                  Location `json:"location"`                     // Location of the company’s current HQ.
-	Locations                 []struct {
+	// Deprecated: Removal on 2027-02-16 (PDL API v37.1). Use AffiliatedEntities[].AffiliatedId instead.
+	AffiliatedProfiles []string `json:"affiliated_profiles"` // Company IDs that are affiliated with the queried company (parents & subsidiaries).
+	DirectSubsidiaries []string `json:"direct_subsidiaries"` // Company IDs that are subsidiaries of the queried company.
+	AllSubsidiaries    []string `json:"all_subsidiaries"`    // Company IDs that are subsidiaries of the queried company.
+	Location           Location `json:"location"`            // Location of the company’s current HQ.
+	Locations          []struct {
 		Name          string  `json:"name"`           // The canonical location name
 		Locality      string  `json:"locality"`       // The locality of the location
 		Region        string  `json:"region"`         // The region of the location
@@ -289,12 +292,15 @@ type Company struct {
 	RecentExecHires     []struct {
 		JoinedDate                     string   `json:"joined_date"`                         // The month the Exec joined the company
 		PdlId                          string   `json:"pdl_id"`                              // ID of the Exec in our Person dataset
+		Name                           string   `json:"name"`                                // Full name of the Exec
+		LinkedinUrl                    string   `json:"linkedin_url"`                        // LinkedIn profile URL of the Exec
 		JobTitle                       string   `json:"job_title"`                           // Exec's current job title at the company
 		JobTitleRole                   string   `json:"job_title_role"`                      // Exec's current job role at the company. Will be one of the Canonical Job Roles.
 		JobTitleSubRole                string   `json:"job_title_sub_role"`                  // Exec's current job subrole at the company. Will be one of the Canonical Job Subroles.
 		JobTitleClass                  string   `json:"job_title_class"`                     // Exec's current job class at the company.
 		JobTitleLevels                 []string `json:"job_title_levels"`                    // Exec's current job level at the company. Will be in the Canonical Job Levels.
 		PreviousCompanyId              string   `json:"previous_company_id"`                 // ID of company the Exec left
+		PreviousCompanyDisplayName     string   `json:"previous_company_display_name"`       // Display name of company the Exec left
 		PreviousCompanyJobTitle        string   `json:"previous_company_job_title"`          // Exec's previous job title at the old company
 		PreviousCompanyJobTitleRole    string   `json:"previous_company_job_title_role"`     // Exec's previous job role at the old company. Will be one of the Canonical Job Roles.
 		PreviousCompanyJobTitleSubRole string   `json:"previous_company_job_title_sub_role"` // Exec's previous job subrole at the old company. Will be one of the Canonical Job Subroles.
@@ -304,18 +310,37 @@ type Company struct {
 	RecentExecDepartures []struct {
 		DepartedDate              string   `json:"departed_date"`                  // (Date: YYYY-MM) The month the Exec left the company
 		PdlId                     string   `json:"pdl_id"`                         // ID of the Exec in our Person dataset
+		Name                      string   `json:"name"`                           // Full name of the Exec
+		LinkedinUrl               string   `json:"linkedin_url"`                   // LinkedIn profile URL of the Exec
 		JobTitle                  string   `json:"job_title"`                      // Exec's previous job title at the company
 		JobTitleRole              string   `json:"job_title_role"`                 // Exec's previous job role at the company. Will be one of the Canonical Job Roles.
 		JobTitleSubRole           string   `json:"job_title_sub_role"`             // Exec's previous job subrole at the company. Will be one of the Canonical Job Subroles.
 		JobTitleClass             string   `json:"job_title_class"`                // Exec's previous job class at the company.
 		JobTitleLevels            []string `json:"job_title_levels"`               // Exec's previous job levels at the company. Will be in the Canonical Job Levels.
 		NewCompanyId              string   `json:"new_company_id"`                 // ID of company the Exec joined
+		NewCompanyDisplayName     string   `json:"new_company_display_name"`       // Display name of company the Exec joined
 		NewCompanyJobTitle        string   `json:"new_company_job_title"`          // Exec's current job title at the new company
 		NewCompanyJobTitleRole    string   `json:"new_company_job_title_role"`     // Exec's current job role at the new company. Will be one of the Canonical Job Roles.
 		NewCompanyJobTitleSubRole string   `json:"new_company_job_title_sub_role"` // Exec's current job subrole at the new company. Will be one of the Canonical Job Subroles.
 		NewCompanyJobTitleClass   string   `json:"new_company_job_title_class"`    // Exec's current job class at the new company.
 		NewCompanyJobTitleLevels  []string `json:"new_company_job_title_levels"`   // Exec's current job levels at the new company. Will be in the Canonical Job Levels.
 	} `json:"recent_exec_departures"` // The profiles of all of CXOs, owners and VPs that have left the company in the last 3 months.
+	RecentExecInternalChanges []struct {
+		NewRoleDate             string   `json:"new_role_date"`               // (Date: YYYY-MM) The month the Exec started their new role at the company
+		PdlId                   string   `json:"pdl_id"`                      // ID of the Exec in our Person dataset
+		Name                    string   `json:"name"`                        // Full name of the Exec
+		LinkedinUrl             string   `json:"linkedin_url"`                // LinkedIn profile URL of the Exec
+		JobTitle                string   `json:"job_title"`                   // Exec's new job title at the company
+		JobTitleRole            string   `json:"job_title_role"`              // Exec's new job role at the company. Will be one of the Canonical Job Roles.
+		JobTitleSubRole         string   `json:"job_title_sub_role"`          // Exec's new job subrole at the company. Will be one of the Canonical Job Subroles.
+		JobTitleClass           string   `json:"job_title_class"`             // Exec's new job class at the company.
+		JobTitleLevels          []string `json:"job_title_levels"`            // Exec's new job levels at the company. Will be in the Canonical Job Levels.
+		PreviousJobTitle        string   `json:"previous_job_title"`          // Exec's previous job title at the company
+		PreviousJobTitleRole    string   `json:"previous_job_title_role"`     // Exec's previous job role at the company. Will be one of the Canonical Job Roles.
+		PreviousJobTitleSubRole string   `json:"previous_job_title_sub_role"` // Exec's previous job subrole at the company. Will be one of the Canonical Job Subroles.
+		PreviousJobTitleClass   string   `json:"previous_job_title_class"`    // Exec's previous job class at the company.
+		PreviousJobTitleLevels  []string `json:"previous_job_title_levels"`   // Exec's previous job levels at the company. Will be in the Canonical Job Levels.
+	} `json:"recent_exec_internal_changes"` // The profiles of all of CXOs, owners and VPs that have started a new role within the company in the last 3 months.
 	DeactivatedJobPostings          float64                     `json:"deactivated_job_postings"`             // The number of deactivated job postings for the company
 	ActiveJobPostings               float64                     `json:"active_job_postings"`                  // The number of active job postings for the company
 	ActiveJobPostingsByRole         map[string]int              `json:"active_job_postings_by_role"`          // The number of active job postings for the company, broken down by job role.
@@ -338,10 +363,11 @@ type Company struct {
 	NumberFundingRounds             int                         `json:"number_funding_rounds"`                // The number of funding rounds the company has raised
 	FundingStages                   []string                    `json:"funding_stages"`                       // The funding stages the company has raised
 	FundingDetails                  []struct {
-		FundingRoundDate          string   `json:"funding_round_date"`  // The date of the funding round
-		FundingRaised             float64  `json:"funding_raised"`      // The amount of funding raised in the funding round
-		FundingCurrency           string   `json:"funding_currency"`    // The currency of the funding round
-		FundingType               string   `json:"funding_type"`        // The type of funding round
+		FundingRoundDate string  `json:"funding_round_date"` // The date of the funding round
+		FundingRaised    float64 `json:"funding_raised"`     // The amount of funding raised in the funding round
+		FundingCurrency  string  `json:"funding_currency"`   // The currency of the funding round
+		FundingType      string  `json:"funding_type"`       // The type of funding round
+		// Deprecated: Removal on 2027-02-16 (PDL API v37.1). Use InvestingCompaniesDetails instead.
 		InvestingCompanies        []string `json:"investing_companies"` // The companies that invested in the funding round
 		InvestingCompaniesDetails []struct {
 			InvestingCompanyId          string `json:"investing_company_id"`           // The PDL ID of the investing company
