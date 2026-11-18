@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [6.11.0] - 2026-11-17
+
+- Added ProfileScore, LinkedinIsActive, and LinkedinLastVerified to Company response (PDL API v36.1)
+- Added EmployeeCountByUsState and EmployeeGrowthRate12MonthByUsState to Company response (PDL API v36.1)
+
 ## [6.10.0] - 2026-10-21
 
 - Added inferred_revenue and inferred_revenue_integer to Company response (PDL API v36.0)
