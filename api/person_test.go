@@ -144,8 +144,8 @@ func TestPerson_BulkRetrieve(t *testing.T) {
 func TestPerson_Changelog(t *testing.T) {
 	// setup
 	person := Person{Client: NewClient(os.Getenv("PDL_API_KEY"), "1.0.0")}
-	currentVersion := "36.0"
-	originVersion := "35.2"
+	currentVersion := "36.1"
+	originVersion := "36.0"
 	changeType := "updated"
 
 	// test
