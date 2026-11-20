@@ -199,6 +199,9 @@ type Company struct {
 	EmployeeCount             int      `json:"employee_count"`               // The current number of employees working at the company based on number of PDL profiles.
 	LinkedInEmployeeCount     int      `json:"linkedin_employee_count"`      // The current number of employees on the LinkedIn profile.
 	LinkedInFollowerCount     int      `json:"linkedin_follower_count"`      // The current number of followers on the LinkedIn profile.
+	ProfileScore              *string  `json:"profile_score"`                // How trustworthy the company's LinkedIn profile is: "positive signals", "neutral signals", or "negative signals".
+	LinkedinIsActive          *bool    `json:"linkedin_is_active"`           // Whether the company's LinkedIn profile was active when last verified.
+	LinkedinLastVerified      string   `json:"linkedin_last_verified"`       // (Date: YYYY-MM-DD) The date the company's LinkedIn profile was last verified.
 	Id                        string   `json:"id"`                           // PDL company ID. This is currently non-persistent and generated from the company's primary linkedin username
 	DatasetVersion            string   `json:"dataset_version"`              // Explains the current major or minor release number.
 	Founded                   int      `json:"founded"`                      // The founded year of the company
@@ -273,6 +276,7 @@ type Company struct {
 	AverageTenureByLevel           map[string]float64 `json:"average_tenure_by_level"`           // Average years of experience at the company by job level.
 	MedianTenureByLevel            map[string]float64 `json:"median_tenure_by_level"`            // Median years of experience at the company by job level.
 	EmployeeCountByCountry         map[string]int     `json:"employee_count_by_country"`         // The number of current employees broken out by country.
+	EmployeeCountByUsState         map[string]int     `json:"employee_count_by_us_state"`        // The number of current employees broken out by US state.
 	TopUsEmployeeMetros            map[string]struct {
 		CurrentHeadcount int     `json:"current_headcount"`    // Number of employees in the metro
 		MonthGrowthRate  float64 `json:"12_month_growth_rate"` // Growth rate in the metro over the last 12 months, precise to 4th decimal place
@@ -288,6 +292,11 @@ type Company struct {
 		MonthHeadcount   int     `json:"12_month_headcount"`   // The employee count 12 months ago in this country.
 		MonthGrowthRate  float64 `json:"12_month_growth_rate"` // The 12-month employee growth rate in this country.
 	} `json:"employee_growth_rate_12_month_by_country"` // The percentage increase in total headcount from 12 months prior, broken down by country.
+	EmployeeGrowthRate12MonthByUsState map[string]struct {
+		CurrentHeadcount int     `json:"current_headcount"`    // The number of current employees in this US state.
+		MonthHeadcount   int     `json:"12_month_headcount"`   // The employee count 12 months ago in this US state.
+		MonthGrowthRate  float64 `json:"12_month_growth_rate"` // The 12-month employee growth rate in this US state.
+	} `json:"employee_growth_rate_12_month_by_us_state"` // The percentage increase in total headcount from 12 months prior, broken down by US state.
 	EmployeeCountByRole map[string]int `json:"employee_count_by_role"` // The number of employees at the end of each month, broken down by job role.
 	RecentExecHires     []struct {
 		JoinedDate                     string   `json:"joined_date"`                         // The month the Exec joined the company
